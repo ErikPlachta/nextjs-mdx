@@ -1,4 +1,4 @@
-import { IndexedObjectType } from "@/utils/ObjectUtils";
+import { IndexedObjectType } from "@/lib/ObjectUtils";
 
 /**
  * Types definition for the Search component.

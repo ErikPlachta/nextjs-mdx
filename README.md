@@ -24,13 +24,14 @@ Additional libraries I used for this project that are not required for the core 
 - [x] Research MDX content in NextJs.
 - [x] Create NextJs project with MVP requirements and latest NextJs - 14.2.4.
 - [ ] Build Content
-  - [ ] Add MDX content to the main page.
-  - [ ] Add MDX content to the blog page.
+  - [ ] `main` - to be used with `next-mdx`
+  - [ ] `blog` - to be used with `next-mdx-remote`
 - [ ] Build App directory
 
-  - [ ] Generate MDX content from main with hard-coded content name.
-  - [ ] Get MDX content summary for blog feed.
-  - [ ] Get MDX page based on slug.
+  - [ ] blog
+    - [ ] Feed - Get summary, generate cards of content that exists
+    - [ ] Page - Get full remote mdx content from slug
+  - [ ] main
 
 - [ ] Use Page directory
   - [ ] Generate MDX content from main with hard-coded content name.

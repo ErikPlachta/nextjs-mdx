@@ -30,7 +30,15 @@ import { HeroConfig, HeroDefault } from "./Hero";
 import { FooterConfig, FooterDefault } from "./Footer";
 import LayoutConfig from "./Layout";
 import LinkConfig from "./Link";
-import Meta from "./Meta";
+import {
+  MdxDataType,
+  MdxContentType,
+  MdxContentSourceType,
+  FrontmatterType,
+  MainFrontmatterType,
+  BlogFrontmatterType,
+  FrontmatterStatusType,
+} from "./MDX";
 import StyleConfig from "./Styles";
 import { SearchPropTypes, SearchPropDefaultTypes } from "./Search";
 
@@ -46,7 +54,15 @@ export type {
   FooterDefault,
   LayoutConfig,
   LinkConfig,
-  Meta,
+  // MDX
+  MdxDataType,
+  MdxContentType,
+  MdxContentSourceType,
+  FrontmatterType,
+  MainFrontmatterType,
+  BlogFrontmatterType,
+  FrontmatterStatusType,
+  // style
   StyleConfig,
   SearchPropTypes,
   SearchPropDefaultTypes,

@@ -1,10 +1,10 @@
-import { SortAndFilter, SortAndFilterPropTypes } from "@/utils/ObjectUtils";
+"use client";
+import { SortAndFilter, SortAndFilterPropTypes } from "@/lib/ObjectUtils";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { Suspense } from "react";
-// import { Projects, Notes } from "contentlayer/generated";
-const Projects: any = [];
-const Notes: any = [];
+
+import { MdxDataType } from "@/types/index";
 
 /**
  * Build a summary card for a note or project.
@@ -13,9 +13,8 @@ const Notes: any = [];
  * @TODO 20240225 #EP || Cleanup rendering of card to be more flexible. Lots of hard-coded values related to Feeds and navigation.
  */
 export default function SummaryCards(
-  data: (typeof Notes)[] | (typeof Projects)[],
-  // 20240225 #EP || Update to work for anything, not just note and project.
-  slugRoutingTo: (typeof Notes)["slug"] | (typeof Projects)["slug"] | null,
+  data: MdxDataType[],
+  slugRoutingTo: string | null,
   heightFrom: number,
   heightTo: number,
   sortAndFilterConfig: SortAndFilterPropTypes["config"]
@@ -28,15 +27,15 @@ export default function SummaryCards(
   data = SortAndFilter({
     data,
     config: sortAndFilterConfig,
-  }) as (typeof Notes)[] | (typeof Projects)[];
+  }) as [];
   return (
     data &&
-    data.map((post) => {
+    data.map((post: MdxDataType) => {
       return (
-        <Suspense key={post.slug}>
+        <Suspense key={post.frontmatter.slug}>
           <Link
-            key={post.slug}
-            href={`${post.slug}`}
+            key={post.frontmatter.slug}
+            href={`${post.frontmatter.slug}`}
             passHref
             scroll={false}
             legacyBehavior
@@ -45,19 +44,21 @@ export default function SummaryCards(
              * Parent Element around each post.
              */}
             <motion.a
-              id={post.slug}
-              layoutId={`post-card-${post.slug}`}
+              id={post.frontmatter.slug}
+              layoutId={`post-card-${post.frontmatter.slug}`}
               className={`relative block h-full -z-0 break-words mx-2 rounded-3xl mb-8 bg-grid min-h-['fit-content'] ${
-                post.blend ? ` ${post.blend}` : ""
+                post.frontmatter.blend ? ` ${post.frontmatter.blend}` : ""
               }}`}
               // className="relative block mx-2 overflow-hidden rounded-md shadow shadow-slate-900/40"
               initial="hidden"
               animate="showing"
               whileHover={"hover"}
               onClick={() => {
-                slugRoutingTo = post.slug;
+                slugRoutingTo = post.frontmatter.slug;
               }}
-              exit={post.slug === slugRoutingTo ? "showing" : "hidden"}
+              exit={
+                post.frontmatter.slug === slugRoutingTo ? "showing" : "hidden"
+              }
               variants={{
                 hidden: { opacity: 0.7 },
                 showing: { opacity: 1 },
@@ -80,8 +81,8 @@ export default function SummaryCards(
                 className={
                   `relative border border-solid border-secondary rounded-3xl shadow shadow-slate-900/40 dark:shadow-slate-500/20 z-10 min-h-fit ` /* space is intentional */ +
                   `${
-                    post.blend
-                      ? post.blend
+                    post.frontmatter.blend
+                      ? post.frontmatter.blend
                       : "bg-gradient-to-br from-slate-900/100 via-slate-900/90 to-slate-900/100"
                   }`
                   // + `bg-gradient-to-tr from-slate-700/20 to-blue-900/20`
@@ -104,13 +105,13 @@ export default function SummaryCards(
                 {/**
                  * Image of post.
                  */}
-                {post.image && (
+                {post.frontmatter.image && (
                   <motion.img
                     // layoutId={`image-${post.slug}`}
                     // layout
-                    src={"/assets/images/placeholder.svg"}
+                    src={"/assets/images/placeholder.svg"} // TODO: update this so not ahrd-coded
                     // src={post.image}
-                    alt={post.title}
+                    alt={post.frontmatter.title}
                     className="absolute w-full object-cover rounded-md shadow shadow-slate-900/40 bg-grid min-h-[200px]"
                     initial={"initial"}
                     animate={"showing"}
@@ -182,17 +183,17 @@ export default function SummaryCards(
                       showing: { opacity: 1 },
                     }}
                   >
-                    {post.title}
+                    {post.frontmatter.title}
                   </motion.h3>
 
                   {/* Text */}
-                  {post.summary && (
+                  {post.frontmatter.summary && (
                     <motion.p
                       className="line-clamp-2 overflow-ellipsis"
                       // layout
                     >
                       {/* <motion.p className="overflow-wrap truncate ..." layout> */}
-                      {post.summary}
+                      {post.frontmatter.summary}
                     </motion.p>
                   )}
 
@@ -209,7 +210,7 @@ export default function SummaryCards(
                       delay: 0.5,
                     }}
                   >
-                    {post.status && (
+                    {post.frontmatter.status && (
                       <motion.p
                         // layout
                         className="text-sm flex flex-col flex-wrap"
@@ -220,12 +221,13 @@ export default function SummaryCards(
                         >
                           Status:
                         </span>
-                        <span data-role="value">{post.status}</span>
+                        <span data-role="value">{post.frontmatter.status}</span>
                       </motion.p>
                     )}
 
                     {/* Wrapper around Published and Updated dates to group together in footer. */}
-                    {(post.publishedAt || post.updatedAt) && (
+                    {(post.frontmatter?.publishedAt ||
+                      post.frontmatter?.updatedAt) && (
                       <motion.span
                         className="flex justify-between gap-4 mt-auto opacity-0"
                         initial={"hidden"}
@@ -238,7 +240,7 @@ export default function SummaryCards(
                           delay: 0.5,
                         }}
                       >
-                        {post.publishedAt && (
+                        {post.frontmatter.publishedAt && (
                           <motion.p
                             // layout
                             className="text-sm flex flex-col flex-wrap min-w-fit"
@@ -249,10 +251,12 @@ export default function SummaryCards(
                             >
                               Published:
                             </span>
-                            <span data-role="value">{post.publishedAt}</span>
+                            <span data-role="value">
+                              {post.frontmatter.publishedAt}
+                            </span>
                           </motion.p>
                         )}
-                        {post.updatedAt && (
+                        {post.frontmatter.updatedAt && (
                           <motion.p
                             // layout
                             className="text-sm flex flex-col flex-wrap"
@@ -263,7 +267,9 @@ export default function SummaryCards(
                             >
                               Updated:
                             </span>
-                            <span data-role="value">{post.updatedAt}</span>
+                            <span data-role="value">
+                              {post.frontmatter.updatedAt}
+                            </span>
                           </motion.p>
                         )}
                       </motion.span>

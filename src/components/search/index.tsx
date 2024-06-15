@@ -8,7 +8,7 @@ import { MagnifyingGlassIcon, XMarkIcon } from "@heroicons/react/24/outline";
 // Custom Content
 import { SearchPropTypes, SearchPropDefaultTypes } from "@/types";
 import useDebounce from "@/hooks/useDebounce";
-import { IndexedObjectType, pick } from "@/utils/ObjectUtils";
+import { IndexedObjectType, pick } from "@/lib/ObjectUtils";
 
 //--------------------------------------------------------------------------------
 // TYPES

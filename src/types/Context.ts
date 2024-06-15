@@ -4,7 +4,7 @@ import {
   HeroDefault,
   FooterConfig,
   FooterDefault,
-  Meta,
+  FrontmatterType,
 } from "@/types";
 
 /**
@@ -18,7 +18,7 @@ export interface ContextConfig {
     developerLink?: string;
     keywords?: string[];
   };
-  meta?: Partial<Meta> & {
+  meta?: Partial<FrontmatterType> & {
     author?: string;
     description?: string;
     created?: string;
@@ -47,7 +47,7 @@ export interface ContextDefault {
     developerLink: string;
     keywords: string[];
   };
-  meta: Partial<Meta> & {
+  meta: Partial<FrontmatterType> & {
     author: string;
     description: string;
     created: string;

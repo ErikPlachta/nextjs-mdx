@@ -14,8 +14,8 @@
 import { ContextDefault } from "@/types";
 import Config from "@/context/config";
 import Defaults from "@/context/defaults";
-import validateProps from "@/utils/ValidateProps";
-import { merge } from "@/utils/ObjectUtils";
+import validateProps from "@/lib/ValidateProps";
+import { merge } from "@/lib/ObjectUtils";
 
 /**
  * Evaluates User Config against Application Default and returns validated Context.

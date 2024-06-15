@@ -9,10 +9,10 @@ const Projects: any = [];
 
 // Importing Content Layer Types
 // Importing PropsType for sorting and filtering.
-import { SortAndFilterPropTypes } from "@/utils/ObjectUtils";
+import { SortAndFilterPropTypes } from "@/lib/ObjectUtils";
 
 // Importing card component to be used in feed.
-import SummaryCards from "@/components/card/summary";
+import SummaryCards from "@/components/mdx/card/summary";
 import Hero from "@/components/hero";
 import Search from "@/components/search";
 
