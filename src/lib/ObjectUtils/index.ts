@@ -162,7 +162,9 @@ export function SortAndFilter(params: SortAndFilterPropTypes): Object[] {
     //if (typeof data === "string") return [];
     //if (data.length === 0) return [];
 
-    console.log("info: ", typeof data, data.length, data[3]);
+    if (!Array.isArray(data) || data.length === 0) return [];
+
+    console.log("info: ", typeof data, data.length, data);
     const results = data.filter((post: any) => {
       return status.includes(post?.status?.toLowerCase());
     }) as Object[];
@@ -217,69 +219,74 @@ export function SortAndFilter(params: SortAndFilterPropTypes): Object[] {
     noSortKey_Remove: SortAndFilterPropTypes["config"]["noSortKey_Remove"],
     noSortKey_Last: SortAndFilterPropTypes["config"]["noSortKey_Last"]
   ): Object[] {
-    let sortedData = []; // Array to hold sorted data.
+    try {
+      let sortedData = []; // Array to hold sorted data.
 
-    // ---------------------------------
-    // 1. Invalid sortKey or sortDataType
-    if (!sortKey || !sortDataType) return data;
+      // ---------------------------------
+      // 1. Invalid sortKey or sortDataType
+      if (!sortKey || !sortDataType) return data;
 
-    // ---------------------------------
-    // 2. Optionally filter out records that do not contain the sort key.
-    data = data
-      .map((post: any) => {
-        // 2.1 Remove record if it does not contain the sort key.
-        if (noSortKey_Remove && !post?.[sortKey]) {
-          return null;
-        }
-        return post;
-      })
-      .filter(Boolean); // Remove null values from the array
+      // ---------------------------------
+      // 2. Optionally filter out records that do not contain the sort key.
+      data = data
+        .map((post: any) => {
+          // 2.1 Remove record if it does not contain the sort key.
+          if (noSortKey_Remove && !post?.[sortKey]) {
+            return null;
+          }
+          return post;
+        })
+        .filter(Boolean); // Remove null values from the array
 
-    // ---------------------------------
-    // 3. Optionally Move record to end of results if it does not contain the sort key.
-    if (noSortKey_Last) {
-      let data_noSortKey = data.filter((post: any) => {
-        return !post?.[sortKey];
-      });
-      let data_sortKey = data.filter((post: any) => {
-        return post?.[sortKey];
-      });
-      data = data_sortKey.concat(data_noSortKey);
-    }
+      // ---------------------------------
+      // 3. Optionally Move record to end of results if it does not contain the sort key.
+      if (noSortKey_Last) {
+        let data_noSortKey = data.filter((post: any) => {
+          return !post?.[sortKey];
+        });
+        let data_sortKey = data.filter((post: any) => {
+          return post?.[sortKey];
+        });
+        data = data_sortKey.concat(data_noSortKey);
+      }
 
-    // ---------------------------------
-    // 4. Sorting by a string
-    if (sortDataType === "date") {
-      sortedData = data.sort((a: any, b: any) => {
-        if (new Date(a?.[sortKey]) > new Date(b?.[sortKey])) {
-          return -1;
-        }
-        return 1;
-      });
-      // // check if sortOrder is ascending
-      // if (sortOrder === "ascending") return sortedData.reverse();
+      // ---------------------------------
+      // 4. Sorting by a string
+      if (sortDataType === "date") {
+        sortedData = data.sort((a: any, b: any) => {
+          if (new Date(a?.[sortKey]) > new Date(b?.[sortKey])) {
+            return -1;
+          }
+          return 1;
+        });
+        // // check if sortOrder is ascending
+        // if (sortOrder === "ascending") return sortedData.reverse();
+        // else return sortedData
+        // else return sortedData;
+      }
+      // 5. Sorting by a number
+      else if (sortDataType === "number") {
+        // Sort data by number in descending order.
+        sortedData = data.sort((a: any, b: any) => {
+          if (Number(a?.[sortKey]) > Number(b?.[sortKey])) {
+            return -1;
+          }
+          return 1;
+        });
+      }
+      //-- Type not defined above.
+      else {
+        throw new Error(`sortDataType "${sortDataType}" is not defined.`);
+      }
+
+      // check if sortOrder is ascending
+      if (sortOrder === "ascending") return sortedData.reverse();
       // else return sortedData
-      // else return sortedData;
+      else return sortedData;
+    } catch (error) {
+      console.error("Error in sortDataByKeyTypeOrder: ", error);
+      return [];
     }
-    // 5. Sorting by a number
-    else if (sortDataType === "number") {
-      // Sort data by number in descending order.
-      sortedData = data.sort((a: any, b: any) => {
-        if (Number(a?.[sortKey]) > Number(b?.[sortKey])) {
-          return -1;
-        }
-        return 1;
-      });
-    }
-    //-- Type not defined above.
-    else {
-      throw new Error(`sortDataType "${sortDataType}" is not defined.`);
-    }
-
-    // check if sortOrder is ascending
-    if (sortOrder === "ascending") return sortedData.reverse();
-    // else return sortedData
-    else return sortedData;
   }
 
   //------------------------------------
@@ -292,7 +299,7 @@ export function SortAndFilter(params: SortAndFilterPropTypes): Object[] {
     // 2. Populates data_filtered array with posts that match status and content type
     if (config) {
       // 2.1 Filter data by status and content type.
-      data_filtered = filterDataByStatus(data, config.status);
+      data_filtered = filterDataByStatus(data, config.status); // TODO: Remove this function once verified not wanted here. (I'm filtering on server side now so shouldn't be needed)
 
       // 2.2 Filter data by content type.
       data_filtered = filterDataByContentType(
@@ -302,13 +309,16 @@ export function SortAndFilter(params: SortAndFilterPropTypes): Object[] {
 
       // 2.3. Sort filtered data by sortKey, sortDataType, and sortOrder.
       data_filtered = sortDataByKeyTypeOrder(
-        data_filtered,
+        data,
         config.sortKey,
         config.sortDataType,
         config.sortOrder,
         config.noSortKey_Remove,
         config.noSortKey_Last
       ) as Object[];
+
+      console.log("!!!data", data_filtered);
+      console.log("!!!data_filtered", data_filtered);
 
       // 4. Return filtered data to be be used, if any.
       return data_filtered;

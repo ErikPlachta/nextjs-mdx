@@ -4,11 +4,10 @@ import { notFound } from "next/navigation";
 // Custom Component to working with the MDX content based on my needs.
 import Page from "@/components/mdx/page";
 import {
-  readPostFileByTypeBySlug,
+  getMdxFileByContentTypeBySlug,
   compileMDXContent,
-  CompileMDXContentResultsType,
-  ReadPostFileByTypeBySlugResultsType,
 } from "@/lib/MdxUtils";
+import { CompiledMDXContentResultsType, MdxFileContentType } from "@/types";
 import { SortAndFilterPropTypes } from "@/lib/ObjectUtils";
 
 /**
@@ -19,14 +18,16 @@ export default async function PostPage({
 }: {
   params: { slug: string };
 }) {
-  const markdown: ReadPostFileByTypeBySlugResultsType =
-    await readPostFileByTypeBySlug("blog", params.slug);
+  const markdown: MdxFileContentType = await getMdxFileByContentTypeBySlug(
+    "blog",
+    params.slug
+  );
 
   if (!markdown) {
     notFound(); // TODO: 20240615 #EP || Add a better 404 solution.
   }
 
-  const { content, frontmatter }: CompileMDXContentResultsType =
+  const { content, frontmatter }: CompiledMDXContentResultsType =
     await compileMDXContent({
       source: markdown,
     });
@@ -43,6 +44,7 @@ export default async function PostPage({
       sortOrder: undefined,
     };
 
+  // console.log("frontmatter: ", frontmatter);
   // Render a single Markdown data into a Client Component.
   return (
     <Page

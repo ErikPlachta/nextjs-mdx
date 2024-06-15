@@ -33,7 +33,9 @@ import LinkConfig from "./Link";
 import {
   MdxDataType,
   MdxContentType,
+  MdxFileContentType,
   MdxContentSourceType,
+  CompiledMDXContentResultsType,
   FrontmatterType,
   MainFrontmatterType,
   BlogFrontmatterType,
@@ -58,6 +60,8 @@ export type {
   MdxDataType,
   MdxContentType,
   MdxContentSourceType,
+  MdxFileContentType,
+  CompiledMDXContentResultsType,
   FrontmatterType,
   MainFrontmatterType,
   BlogFrontmatterType,

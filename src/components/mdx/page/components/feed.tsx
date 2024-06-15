@@ -15,12 +15,14 @@ import { SortAndFilterPropTypes } from "@/lib/ObjectUtils";
 import SummaryCards from "@/components/mdx/card/summary";
 import Hero from "@/components/hero";
 import Search from "@/components/search";
+import { FrontmatterType } from "@/types";
 
 /**
  * Default Props for feed component.
  *
  * @param {array} data - The posts to be rendered into feed.
  * @param {string|undefined} slugRoutingTo - The slug to be displayed when navigating to a post.
+ * @param {string|undefined} basePath - The base path for the feed.}
  * @param {string} description - The description of the feed.
  * @param {number} heightFrom - The height of the card when it is not being hovered.
  * @param {number} heightTo - The height of the card when it is being hovered.
@@ -28,16 +30,11 @@ import Search from "@/components/search";
  * @param {SortAndFilterPropTypes['config']} sortAndFilterConfig - The sort and filter options for the feed.
  */
 export interface FeedProps {
-  data:
-    | (typeof Projects)[]
-    | (typeof Notes)[]
-    | typeof Notes
-    | typeof Projects
-    | undefined;
-  slugRoutingTo: undefined | (typeof Projects)["slug"] | (typeof Notes)["slug"];
+  data: any[] | undefined;
+  slugRoutingTo: undefined | FrontmatterType["slug"];
   heightFrom: number;
   heightTo: number;
-  path: "notes" | "projects" | string;
+  path: "blog" | "main" | string;
   sortAndFilterConfig: SortAndFilterPropTypes["config"];
   title: string;
   description: string;
@@ -46,14 +43,15 @@ export interface FeedProps {
   hasFilter?: boolean;
 }
 
-export const FeedComponent_DefaultProps: FeedProps = {
+export const FeedComponent_DefaultProps: any = {
   data: [],
   slugRoutingTo: undefined,
+  basePath: undefined,
   heightFrom: 400,
   heightTo: 200,
   sortAndFilterConfig: {
     status: ["published"],
-    contentType: ["app", "library", "utility", "note", "project", "article"],
+    contentType: ["blog", "main"],
     sortKey: "publishedAt", // is initially managed at the page level using the feed
     sortDataType: "date",
     sortOrder: "descending", // is initially managed at the page level using the feed
@@ -94,81 +92,81 @@ export default function Feed(params: FeedProps = FeedComponent_DefaultProps) {
   if (!heightFrom) heightFrom = FeedComponent_DefaultProps.heightFrom;
   if (!heightTo) heightTo = FeedComponent_DefaultProps.heightTo;
 
-  if (path == "notes") title = "Notes";
-  if (path == "projects") title = "Projects";
+  if (path == "blog") title = "Blog";
+  if (path == "main") title = "Main";
 
   // console.log(FeedComponent_DefaultProps)
 
   //-- Used to determine element to remain visible on navigate to [slug]
-  let slugRoutingTo: (typeof Notes)["slug"] | (typeof Projects)["slug"] | null =
+  let slugRoutingTo: FrontmatterType["slug"] | null =
     useSearchParams()?.get("slug");
 
-  // if (process.env.NODE_ENV === "development") {
-  // console.log(`[Feed.tsx] params: `, params);
-  // }
-
-  function buildFilterTags(config: SortAndFilterPropTypes["config"]) {
-    // 1. Get all distinct Tags from all data
-    let allTags: any = [];
-
-    let allData = data as (typeof Projects)[] | (typeof Notes)[];
-    // Get all
-    allData &&
-      allData.map((post: any) => {
-        post.tags.map((tag: any) => {
-          allTags.push(tag.title);
-        });
-      });
-    // Remove duplicates
-    allTags = Array.from(new Set(allTags));
-    // Sort alphabetically
-    allTags.sort();
-    // console.log(allTags);
-
-    // 2. Create a Multi-Select menu
-    let multiSelectElement = (
-      <select
-        id="filter-tags"
-        name="filter-tags"
-        multiple
-        className="w-full h-[2rem] p-2 rounded-lg bg-white dark:bg-slate-800"
-        key={Date.now()}
-      >
-        {allTags.map((tag: string) => {
-          return (
-            <option key={tag} value={tag}>
-              {tag}
-            </option>
-          );
-        })}
-      </select>
-    );
-
-    // 3. Create a Wrapper Element with a Label, Multi-Select, and Clear All Tags button
-    let filterTagsWrapper = (
-      <div className="flex flex-col gap-2">
-        <label htmlFor="filter-tags" className="text-lg">
-          Tags
-        </label>
-        {multiSelectElement}
-        <button
-          className="p-2 rounded-lg bg-white dark:bg-slate-800"
-          onClick={() => {
-            let select = document.getElementById(
-              "filter-tags"
-            ) as HTMLSelectElement;
-            select.selectedIndex = -1;
-          }}
-        >
-          Clear Tags
-        </button>
-      </div>
-    );
-
-    // 5. return the Multi-Select menu
-    return filterTagsWrapper;
-    // console.log(filterTagsWrapper);
+  if (process.env.NODE_ENV === "development") {
+    console.log(`[Feed.tsx] params: `, params);
   }
+
+  // function buildFilterTags(config: SortAndFilterPropTypes["config"]) {
+  //   // 1. Get all distinct Tags from all data
+  //   let allTags: any = [];
+
+  //   let allData = data as (typeof Projects)[] | (typeof Notes)[];
+  //   // Get all
+  //   allData &&
+  //     allData.map((post: any) => {
+  //       post.tags.map((tag: any) => {
+  //         allTags.push(tag.title);
+  //       });
+  //     });
+  //   // Remove duplicates
+  //   allTags = Array.from(new Set(allTags));
+  //   // Sort alphabetically
+  //   allTags.sort();
+  //   // console.log(allTags);
+
+  //   // 2. Create a Multi-Select menu
+  //   let multiSelectElement = (
+  //     <select
+  //       id="filter-tags"
+  //       name="filter-tags"
+  //       multiple
+  //       className="w-full h-[2rem] p-2 rounded-lg bg-white dark:bg-slate-800"
+  //       key={Date.now()}
+  //     >
+  //       {allTags.map((tag: string) => {
+  //         return (
+  //           <option key={tag} value={tag}>
+  //             {tag}
+  //           </option>
+  //         );
+  //       })}
+  //     </select>
+  //   );
+
+  //   // 3. Create a Wrapper Element with a Label, Multi-Select, and Clear All Tags button
+  //   let filterTagsWrapper = (
+  //     <div className="flex flex-col gap-2">
+  //       <label htmlFor="filter-tags" className="text-lg">
+  //         Tags
+  //       </label>
+  //       {multiSelectElement}
+  //       <button
+  //         className="p-2 rounded-lg bg-white dark:bg-slate-800"
+  //         onClick={() => {
+  //           let select = document.getElementById(
+  //             "filter-tags"
+  //           ) as HTMLSelectElement;
+  //           select.selectedIndex = -1;
+  //         }}
+  //       >
+  //         Clear Tags
+  //       </button>
+  //     </div>
+  //   );
+
+  //   // 5. return the Multi-Select menu
+  //   return filterTagsWrapper;
+  //   // console.log(filterTagsWrapper);
+  // }
 
   //----------------------------------------------------------------------------
   //-- Render Page
@@ -229,8 +227,9 @@ export default function Feed(params: FeedProps = FeedComponent_DefaultProps) {
           {
             // For each post in data, build a card in the feed.
             SummaryCards(
-              data as [],
+              data as any,
               slugRoutingTo,
+              path,
               heightFrom,
               heightTo,
               sortAndFilterConfig

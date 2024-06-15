@@ -1,3 +1,5 @@
+import { JSXElementConstructor, ReactElement } from "react";
+
 /**
  * MDX file type definition for the project.
  */
@@ -11,7 +13,17 @@ export type MdxContentSourceType = {
   dir: string;
 };
 
+export type MdxFileContentType = string | null; // TODO: 20240615 #EP || Import type from @/types instead of using this
+
 export type MdxContentType = "main" | "blog";
+
+export type CompiledMDXContentResultsType = {
+  content: ReactElement<any, string | JSXElementConstructor<any>>;
+  frontmatter:
+    | Partial<FrontmatterType>
+    | Partial<BlogFrontmatterType>
+    | Partial<MainFrontmatterType>;
+};
 
 /**
  * Metadata within MDX files.
