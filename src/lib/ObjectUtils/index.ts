@@ -158,18 +158,18 @@ export function SortAndFilter(params: SortAndFilterPropTypes): Object[] {
    */
   function filterDataByStatus(data: object[], status: statusTypes[]): Object[] {
     // console.log("data.length", typeof data);
-    if (!data) return [];
+    // if (!data) return [];
     //if (typeof data === "string") return [];
     //if (data.length === 0) return [];
 
-    if (!Array.isArray(data) || data.length === 0) return [];
+    // if (!Array.isArray(data) || data.length === 0) return [];
 
-    console.log("info: ", typeof data, data.length, data);
+    // console.log("info: ", typeof data, data.length, data);
     const results = data.filter((post: any) => {
       return status.includes(post?.status?.toLowerCase());
     }) as Object[];
 
-    console.log("results", results);
+    // console.log("results", results);
     return results;
   }
 

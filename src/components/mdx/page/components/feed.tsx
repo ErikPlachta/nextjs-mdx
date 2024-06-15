@@ -3,13 +3,6 @@ import React, { Suspense } from "react";
 // import ExtLink from '@/components/anchor/external';
 import { motion } from "framer-motion";
 import { useSearchParams } from "next/navigation";
-// import { Projects, Notes } from "contentlayer/generated";
-const Notes: any = [];
-const Projects: any = [];
-
-// Importing Content Layer Types
-// Importing PropsType for sorting and filtering.
-import { SortAndFilterPropTypes } from "@/lib/ObjectUtils";
 
 // Importing card component to be used in feed.
 import SummaryCards from "@/components/mdx/card/summary";
@@ -35,7 +28,6 @@ export interface FeedProps {
   heightFrom: number;
   heightTo: number;
   path: "blog" | "main" | string;
-  sortAndFilterConfig: SortAndFilterPropTypes["config"];
   title: string;
   description: string;
   hasSearch?: boolean;
@@ -71,7 +63,6 @@ export default function Feed(params: FeedProps = FeedComponent_DefaultProps) {
     data,
     heightFrom,
     heightTo,
-    sortAndFilterConfig,
     path,
     title,
     description,
@@ -87,8 +78,7 @@ export default function Feed(params: FeedProps = FeedComponent_DefaultProps) {
   if (!searchDataKeys)
     searchDataKeys = FeedComponent_DefaultProps.searchDataKeys;
   if (!hasFilter) hasFilter = FeedComponent_DefaultProps.hasFilter;
-  if (!sortAndFilterConfig)
-    sortAndFilterConfig = FeedComponent_DefaultProps.sortAndFilterConfig;
+
   if (!heightFrom) heightFrom = FeedComponent_DefaultProps.heightFrom;
   if (!heightTo) heightTo = FeedComponent_DefaultProps.heightTo;
 
@@ -102,7 +92,7 @@ export default function Feed(params: FeedProps = FeedComponent_DefaultProps) {
     useSearchParams()?.get("slug");
 
   if (process.env.NODE_ENV === "development") {
-    console.log(`[Feed.tsx] params: `, params);
+    console.log(`[Feed.tsx] - dev so printing params: `, params);
   }
 
   // function buildFilterTags(config: SortAndFilterPropTypes["config"]) {
@@ -226,14 +216,7 @@ export default function Feed(params: FeedProps = FeedComponent_DefaultProps) {
         >
           {
             // For each post in data, build a card in the feed.
-            SummaryCards(
-              data as any,
-              slugRoutingTo,
-              path,
-              heightFrom,
-              heightTo,
-              sortAndFilterConfig
-            )
+            SummaryCards(data as any, slugRoutingTo, path, heightFrom, heightTo)
           }
         </motion.div>
       </section>

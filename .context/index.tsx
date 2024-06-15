@@ -12,8 +12,8 @@
  */
 
 import { ContextDefault } from "@/types";
-import Config from "@/context/config";
-import Defaults from "@/context/defaults";
+import Config from "context/config";
+import Defaults from "context/defaults";
 import validateProps from "@/lib/ValidateProps";
 import { merge } from "@/lib/ObjectUtils";
 

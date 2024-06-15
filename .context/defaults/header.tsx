@@ -29,7 +29,7 @@
 
 import { HeaderDefault } from "@/types";
 import { HomeIcon, PencilIcon } from "@heroicons/react/20/solid";
-import Brand from "@/context/defaults/brand";
+import Brand from "context/defaults/brand";
 
 //----------------------------------------------------------------------------------------
 // Define Defaults Section

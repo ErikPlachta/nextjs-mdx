@@ -1,5 +1,3 @@
-import { JSXElementConstructor, ReactElement } from "react";
-
 // Work with the file system.
 import path from "path";
 import { readFile, access, readdir } from "fs/promises";
@@ -18,8 +16,8 @@ import {
  * The content directories to search for content files and their hard-coded paths from root directory.
  */
 export const CONTENT: MdxContentSourceType[] = [
-  { type: "blog", dir: path.join(process.cwd(), "./src/content/blog") },
-  { type: "main", dir: path.join(process.cwd(), "./src/content/main") },
+  { type: "blog", dir: path.join(process.cwd(), "./content/blog") },
+  { type: "main", dir: path.join(process.cwd(), "./content/main") },
 ];
 
 // TODO: Make sure ALL components that are used in ALL files are here and then in COMPONENTS below.

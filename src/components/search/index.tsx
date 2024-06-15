@@ -216,9 +216,9 @@ export default function Search(props: SearchPropTypes) {
             isActive: {
               backgroundColor: "var(--color-tertiary)",
             },
-            blur: {
-              backgroundColor: "var(--color-secondary)",
-            },
+            // blur: {
+            //   backgroundColor: "var(--color-secondary)",
+            // },
           }}
         />
 

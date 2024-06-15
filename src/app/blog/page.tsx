@@ -2,7 +2,7 @@ import React, { Suspense } from "react";
 
 import { getMdxFilesFrontmatterByContentTypeByStatus } from "@/lib/MdxUtils/index";
 import Page from "@/components/mdx/page";
-import { SortAndFilter } from "@/lib/ObjectUtils/index";
+// import { SortAndFilter } from "@/lib/ObjectUtils/index";
 
 const defaults: any = {
   // TODO: import the correct type and add here
