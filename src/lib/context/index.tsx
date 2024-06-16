@@ -14,8 +14,8 @@
  * @todo  //TODO: 20240616 #EP || Add "Setup" logic and update readme accordingly.
  */
 
-import { ContextDefault } from "@/types";
-// import Config from "./config"; // TODO: Update to move from root.
+import { ContextDefault } from "context/types";
+import Config from "./config"; // TODO: Update to move from root.
 import Defaults from "./defaults";
 import validateProps from "@/lib/ValidateProps";
 import { merge } from "@/lib/ObjectUtils";
@@ -41,8 +41,8 @@ export default function Context(): ContextDefault {
   // 2. Get user defined config values.
   const defaultTypes = Defaults();
   // 3. Get user defined config values.
-  const config = {};
-  // const config = await Config();
+  // const config = {};
+  const config = Config();
   // 4. Pass into validateProps function and return validated props.
   const validateConfig = validateProps(defaultTypes, config);
   // 5. Merge validated props with defaults and return with deep merge.

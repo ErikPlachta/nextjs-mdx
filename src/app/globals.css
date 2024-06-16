@@ -1,33 +1,191 @@
+/** IMPORTS ------------------------------------------------------------------*/
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/** ROOT ---------------------------------------------------------------------*/
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  /** Default theme prefers dark mode if user undefined */
+  color-scheme: dark light;
+
+  /** COLORS  -----------*/
+
+  --white: hsla(0, 100%, 100%, 1);
+  --white-900: hsla(0, 0%, 100%, 1);
+  --white-1000: hsla(0, 100%, 100%, 1);
+  --black-1000: hsla(0, 0%, 0%, 1);
+
+  /* BLUES */
+  --blue-100: hsla(218, 91%, 60%, 0.1);
+  --blue-200: hsla(218, 91%, 60%, 0.2);
+  --blue-300: hsla(218, 91%, 60%, 0.3);
+  --blue-400: hsla(218, 91%, 60%, 0.4);
+  --blue-500: hsla(218, 91%, 60%, 0.5);
+  --blue-600: hsla(218, 91%, 60%, 0.6);
+  --blue-700: hsla(218, 91%, 60%, 0.7);
+  --blue-800: hsla(218, 91%, 60%, 0.8);
+  --blue-900: hsla(218, 91%, 60%, 0.9);
+  --blue-1000: hsla(218, 91%, 60%, 1); /* #3c80f6 */
+
+  /* From tailwinds as css var so I can use dynamically */
+  --slate-100: rgb(241 245 249);
+  --slate-200: rgb(226 232 240);
+  --slate-300: rgb(203 213 225);
+  --slate-400: rgb(148 163 184);
+  --slate-500: rgb(100 116 139);
+  --slate-600: rgb(71 85 105);
+  --slate-700: rgb(51 65 85);
+  --slate-800: rgb(30 41 59);
+  --slate-900: rgb(15 23 42); /* #0f172a */ /* color-primary on dark mode */
+
+  /** HEIGHT PARAMS */
+  /* TODO: 20230121 #EP || Add these or remove these from here and below body calc. */
+  --header-height: 0;
+  --footer-height: 0;
+
+  /** FONTS ------*/
+  --ff-body: "Roboto", sans-serif;
+  --ff-heading: "Roboto", sans-serif;
+  --ff-code: "Roboto Mono", monospace;
+
+  /** FONT - SIZES ------*/
+  --fs-500: 0.9rem;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+/** NORMALIZING --------------------------------------------------------------*/
+
+/* .__next{
+    
+} */
+
+html {
+  scroll-behavior: smooth;
+}
+
+*,
+*::after,
+::before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  outline: none;
+  text-decoration: none;
+  list-style: none;
+  vertical-align: baseline;
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  scroll-behavior: smooth;
+
+  /* Disabling user selection */
+  /* -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -o-user-select: none;
+    user-select: none; */
+
+  line-height: 1.5;
+  text-rendering: optimizeSpeed;
+  -webkit-font-smoothing: antialiased;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+#root {
+  /* Container for the application excluding the header and footer. */
+  height: calc(100vh - var(--header-height) - var(--footer-height));
+}
+
+/** UTILITIES ----------------------------------------------------------------*/
+/* Utilities are defined within tailwind.config.ts */
+
+/** COLOR THEMES -------------------------------------------------------------*/
+
+/** LIGHT THEME */
+@media (prefers-color-scheme: light) {
+  :root {
+    --color-accent: var(--blue-1000);
+    --color-primary: var(--slate-100);
+    --color-secondary: var(--slate-200);
+    --color-tertiary: var(--slate-300);
+    --color-quaternary: var(--slate-400);
+    --color-quinary: var(--slate-500);
+
+    --text-color-accent: var(--blue-1000);
+    --text-color-primary: var(--slate-900);
+    --text-color-secondary: var(--slate-800);
+    --text-color-tertiary: var(--slate-700);
+    --text-color-quaternary: var(--slate-600);
+    --text-color-quinary: var(--slate-500);
+  }
+  html {
+    color-scheme: light;
+  }
+}
+
+/** DARK THEME */
+@media (prefers-color-scheme: dark) {
+  :root {
+    /*--------------------------------------------------------------------*/
+    /* APPLE COLORS - DARK THEME  */
+    --systemMint: rgb(102, 212, 207);
+    --systemRed: hsla(3, 99%, 67%, 1);
+    --systemRed2: hsla(0, 99%, 62%, 1);
+    --systemRed3: rgb(255, 69, 58);
+    --systemOrange: rgb(255, 159, 10);
+    --systemYellow: rgb(255, 214, 10);
+    --systemGreen: rgb(48, 209, 88);
+    --systemTeal: rgb(64, 200, 224);
+    --systemCyan: rgb(100, 210, 255);
+    --systemBlue: rgb(10, 132, 255);
+    --systemIndigo: rgb(94, 92, 230);
+    --systemPurple: rgb(191, 90, 242);
+    --systemPink: rgb(255, 55, 95);
+    --systemBrown: rgb(172, 142, 104);
+
+    /* APPLE GRAY - DARK THEME  */
+    --systemGray: rgba(142, 142, 147);
+    --systemGray2: rgb(99, 99, 102);
+    --systemGray3: rgb(72, 72, 74);
+    --systemGray4: rgb(58, 58, 60);
+    --systemGray5: rgb(44, 44, 46);
+
+    /*--------------------------------------------------------------------*/
+    /* EVENT COLORS */
+    --error: var(--systemRed);
+    --error-active: var(--systemRed2);
+    --danger: var(--systemRed);
+    --danger-active: var(--systemRed2);
+    --warning: var(--systemOrange);
+    --success: var(--systemGreen);
+    --info: var(--systemBlue);
+    --general: var(--systemGray2);
+    --light: var(--systemGray);
+    --dark: var(--systemGray2);
+
+    /*--------------------------------------------------------------------*/
+    /* Additional theme colors */
+    --color-accent: var(--blue-1000);
+    --color-primary: var(--slate-900);
+    --color-secondary: #0f1b34;
+    --color-tertiary: var(--slate-800);
+    --color-quaternary: var(--slate-700);
+    --color-quinary: var(--slate-600);
+
+    --text-color-accent: var(--blue-1000);
+    --text-color-primary: var(--slate-100);
+    --text-color-secondary: var(--slate-200);
+    --text-color-tertiary: var(--slate-300);
+    --text-color-quaternary: var(--slate-400);
+    --text-color-quinary: var(--slate-500);
+  }
+  html {
+    color-scheme: dark;
+    color: white;
   }
 }

@@ -8,7 +8,7 @@ import { useSearchParams } from "next/navigation";
 import SummaryCards from "@/components/mdx/card/summary";
 import Hero from "@/components/hero";
 import Search from "@/components/search";
-import { FrontmatterType } from "@/types";
+import { FrontmatterType } from "context/types";
 
 /**
  * Default Props for feed component.
@@ -175,7 +175,7 @@ export default function Feed(params: FeedProps = FeedComponent_DefaultProps) {
       {hasSearch && (
         <div id="feed-search-wrapper" className="p-2 m-auto max-w-[80%]">
           <Search
-            data={data as any}
+            data={Array.isArray(data) ? data : []}
             dataKeys={searchDataKeys as any}
             searchWhenTyping={true}
           />
@@ -196,7 +196,7 @@ export default function Feed(params: FeedProps = FeedComponent_DefaultProps) {
       {/* TODO: Split up sort and filtering. for now just as one. */}
 
       {/* Wrapper around container holding cards */}
-      <section className="flex flex-col gap-4 h-full rounded-lg max-w-4xl mt-4 py-10 m-auto bg-slate-100 dark:bg-slate-800/30 shadow-sm shadow-slate-500">
+      <section className="flex flex-col gap-4 h-full rounded-lg max-w-4xl mt-4 py-10 m-auto bg-slate-100 dark:bg-slate-800/30 shadow-sm shadow-slate-500 w-full">
         {/* Container holding cards */}
         <motion.div
           className="relative"

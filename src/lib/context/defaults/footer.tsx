@@ -1,9 +1,9 @@
 /**
- * Default Application configuration for the footer component. 
- * 
+ * Default Application configuration for the footer component.
+ *
  * To customize the application, see the `src/context/config.tsx` file.
  * Only to be modified unless the application requires a different default configuration.
- * 
+ *
  * @file       src/context/defaults/footer.tsx
  * @module     context.footer
  * @author     Erik Plachta
@@ -13,13 +13,13 @@
  * @exports    footerDefault The default props for the `footer` and `nav` components.
  */
 
-import { FooterDefault } from "@/types";
+import { FooterDefault } from "context/types";
 import { HomeIcon, PencilIcon } from "@heroicons/react/20/solid";
 
 /**
  * The default props for the `footer` and `nav` components.
- * 
- * - Used by Context module to provide default values for the footer component. 
+ *
+ * - Used by Context module to provide default values for the footer component.
  * - User defined values within context/config will override these defaults IF they are
  *    defined and valid.
  * - Validity is determined by the `validateProps` function in `@/utils/ValidateProps.tsx`,
@@ -30,7 +30,7 @@ import { HomeIcon, PencilIcon } from "@heroicons/react/20/solid";
  * @see       {@link '@/types/footerDefault'} for type definition reference.
  * @see       {@link '@/context/config.tsx'} to change values from default.
  * @see       {@link '@/utils/ValidateProps.tsx'} for the function that validates props.
- * 
+ *
  */
 export default function footer(): FooterDefault {
   return {

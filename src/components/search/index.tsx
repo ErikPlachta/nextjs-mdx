@@ -6,7 +6,7 @@ import { motion, useAnimationControls } from "framer-motion";
 import { MagnifyingGlassIcon, XMarkIcon } from "@heroicons/react/24/outline";
 
 // Custom Content
-import { SearchPropTypes, SearchPropDefaultTypes } from "@/types";
+import { SearchPropTypes, SearchPropDefaultTypes } from "context/types";
 import useDebounce from "@/hooks/useDebounce";
 import { IndexedObjectType, pick } from "@/lib/ObjectUtils";
 
@@ -253,7 +253,7 @@ export default function Search(props: SearchPropTypes) {
             <Link
               onClick={() => handleResultClick(item.slug)}
               className={styles.result}
-              href={`${item.slug}`}
+              href={`${item.contentType}/${item.slug}`}
               key={index}
             >
               <div>{item.title}</div>

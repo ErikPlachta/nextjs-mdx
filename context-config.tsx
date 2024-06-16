@@ -1,4 +1,3 @@
-"use server";
 /**
  * Custom configuration for the application Context library, a custom lib for modifying the default values of the application.
  *
@@ -11,10 +10,10 @@
  */
 
 // Path and fs are Node.js modules to work with file paths and the file system.
-import path from "path";
+// import path from "path";
 
 // Library types for the context configuration.
-import { ContextConfig } from "@/types";
+import { ContextConfig } from "context/types";
 
 // Icons to be used in the header navigation. (Hero Icons is NOT a part of the library, can use anything.)
 import {
@@ -34,14 +33,14 @@ const config: ContextConfig = {
       description: "A collection mdx content using next-mdx.",
       fileType: "mdx",
       contentType: "main",
-      source: path.join(process.cwd(), "/content/main"),
+      source: "/content/main",
     },
     {
       title: "Blog",
       description: "A collection of notes using next-mdx-remote.",
       fileType: "mdx",
       contentType: "blog",
-      source: path.join(process.cwd(), "/content/blog"),
+      source: "/content/blog",
     },
   ],
   brand: {
@@ -55,7 +54,7 @@ const config: ContextConfig = {
       "TailwindCSS",
       "React",
       "TypeScript",
-      "JavaScript",
+      "mdx",
     ],
   },
   app: {
@@ -64,7 +63,7 @@ const config: ContextConfig = {
       header: {
         content: {
           // Brand Name to render in the header.
-          title: "ErikPlachta.com",
+          title: "NextJs-MDX ",
           // Brand Slogan/Description to render in the header.
           description: "", //"//TODO: Add description.",
           // Navigation Items for the header and nav components.
@@ -78,28 +77,28 @@ const config: ContextConfig = {
               // icon: () => <HomeIcon className='mr-3 h-5 w-5' />,
             },
             {
-              title: "notes",
-              href: "/notes",
-              label: "Notes",
+              title: "blog",
+              href: "/blog",
+              label: "Blog",
               default: true,
               icon: () => <PencilIcon />,
               // icon: () => <PencilIcon className='mr-3 h-5 w-5' />,
             },
-            {
-              title: "projects",
-              href: "/projects",
-              label: "Projects",
-              default: true,
-              icon: () => <CheckIcon />,
-            },
-            {
-              title: "resources",
-              href: "/resources",
-              label: "Resources",
-              default: true,
-              icon: () => <WrenchScrewdriverIcon />,
-              // icon: () => <WrenchScrewdriverIcon className='mr-3 h-5 w-5' />,
-            },
+            // {
+            //   title: "projects",
+            //   href: "/projects",
+            //   label: "Projects",
+            //   default: true,
+            //   icon: () => <CheckIcon />,
+            // },
+            // {
+            //   title: "resources",
+            //   href: "/resources",
+            //   label: "Resources",
+            //   default: true,
+            //   icon: () => <WrenchScrewdriverIcon />,
+            //   // icon: () => <WrenchScrewdriverIcon className='mr-3 h-5 w-5' />,
+            // },
           ],
         },
 

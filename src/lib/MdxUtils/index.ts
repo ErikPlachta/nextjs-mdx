@@ -7,7 +7,10 @@ import { readFile, access, readdir } from "fs/promises";
 // Parses MDX file to get frontmatter (metadata) and content (body).
 // import { MDXComponents } from "mdx/types"; // TODO: 20240615 #EP || Remove once verified not needed in COMPONENTS below
 import { compileMDX } from "next-mdx-remote/rsc";
-import { MdxContentSourceType, CompiledMDXContentResultsType } from "@/types";
+import {
+  MdxContentSourceType,
+  CompiledMDXContentResultsType,
+} from "context/types";
 
 /**
  * The content directories to search for content files and their hard-coded paths from root directory.

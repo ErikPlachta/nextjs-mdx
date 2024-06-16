@@ -7,7 +7,10 @@ import {
   getMdxFileByContentTypeBySlug,
   compileMDXContent,
 } from "@/lib/MdxUtils";
-import { CompiledMDXContentResultsType, MdxContentSourceType } from "@/types";
+import {
+  CompiledMDXContentResultsType,
+  MdxContentSourceType,
+} from "context/types";
 import { SortAndFilterPropTypes } from "@/lib/ObjectUtils";
 
 /**

@@ -91,11 +91,12 @@ export default async function BlogFeed(): Promise<JSX.Element> {
   //  config: sortAndFilterConfig,
   //}) as any;
 
-  let dataForFeed = {
-    // ...feedData,
-    data: content,
-    config: sortAndFilterConfig,
-  } as any;
+  let dataForFeed = content;
+  //{
+  //  // ...feedData,
+  //  data: content,
+  //  config: sortAndFilterConfig,
+  //} as any;
 
   //console.log("!!!!: content: ", content);
   //console.log("!!!!: feedData: ", feedData);
@@ -124,6 +125,7 @@ export default async function BlogFeed(): Promise<JSX.Element> {
           "createdAt",
           "publishedAt",
           "updatedAt",
+          "contentType",
         ]}
         hasFilter={true}
       />

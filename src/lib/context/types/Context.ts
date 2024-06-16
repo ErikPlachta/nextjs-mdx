@@ -6,7 +6,7 @@ import {
   FooterDefault,
   FrontmatterType,
   MdxContentSourceType,
-} from "@/types";
+} from "context/types";
 
 /**
  * Optional args to be passed in to Context component.

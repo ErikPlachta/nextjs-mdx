@@ -27,7 +27,7 @@
 //----------------------------------------------------------------------------------------
 // Imports Section (Import interfaces, then components, then assets//
 
-import { HeaderDefault } from "@/types";
+import { HeaderDefault } from "context/types";
 import { HomeIcon, PencilIcon } from "@heroicons/react/20/solid";
 import Brand from "context/defaults/brand";
 
