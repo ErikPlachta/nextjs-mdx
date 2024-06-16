@@ -1,4 +1,4 @@
-import { StyleConfig } from '@/types';
+import { StyleConfig } from "context/types";
 
 /**
  * Optional args to be passed in to Footer component.
@@ -15,8 +15,8 @@ export interface FooterConfig {
     description?: string;
     nav?: string;
   };
-  style ?: StyleConfig,
-  nav?:  NavLink[];
+  style?: StyleConfig;
+  nav?: NavLink[];
 }
 
 /**
@@ -31,8 +31,8 @@ export interface FooterDefault {
   dataRole: {
     [key: string]: string;
   };
-  style: StyleConfig,
-  nav:  NavLink[];
+  style: StyleConfig;
+  nav: NavLink[];
 }
 
 /**
@@ -44,5 +44,5 @@ export interface NavLink {
   label: string;
   default: boolean;
   // Using Hero Icons for this project.
-  icon: () => JSX.Element; 
+  icon: () => JSX.Element;
 }

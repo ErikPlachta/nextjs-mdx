@@ -1,7 +1,7 @@
-import { StyleConfig } from '@/types';
+import { StyleConfig } from "context/types";
 
 export interface Icon {
-  [key: string]: string | 'home' | 'about' | 'blog' | 'sandbox';
+  [key: string]: string;
 }
 
 export type Icons = Icon[];

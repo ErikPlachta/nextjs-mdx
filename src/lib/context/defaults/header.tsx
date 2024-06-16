@@ -12,7 +12,7 @@
  * @modified    2023-09-11
  * @version     0.0.12
  * @since       0.0.1
- * @requires    {HeaderDefault} from '@/types'
+ * @requires    {HeaderDefault} from 'context/types'
  * @requires    {Brand} from "@/context/defaults/brand";
  * @requires    {HomeIcon, PencilIcon} from "@heroicons/react/20/solid";
  * @exports     HeaderDefault The default props for the `header` and `nav` components.

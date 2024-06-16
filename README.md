@@ -25,7 +25,7 @@ Additional libraries I used for this project that are not required for the core 
 - [x] Create NextJs project with MVP requirements and latest NextJs - 14.2.4.
 - [ ] Build Content
   - [ ] `main` - to be used with `next-mdx`
-  - [ ] `blog` - to be used with `next-mdx-remote`
+  - [x] `blog` - to be used with `next-mdx-remote`
 - [ ] Build App directory
 
   - [ ] blog
