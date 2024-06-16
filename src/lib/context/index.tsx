@@ -1,3 +1,4 @@
+// "use server";
 /**
  * Evaluates User Config against Application Default and returns validated Context.
  *
@@ -9,11 +10,13 @@
  * @since     2023-08-20
  * @changelog
  *  - 0.0.1 | Erik Plachta | feat: Initial commit of concept fully working and integrated into app/layout.
+ *
+ * @todo  //TODO: 20240616 #EP || Add "Setup" logic and update readme accordingly.
  */
 
 import { ContextDefault } from "@/types";
-import Config from "context/config";
-import Defaults from "context/defaults";
+// import Config from "./config"; // TODO: Update to move from root.
+import Defaults from "./defaults";
 import validateProps from "@/lib/ValidateProps";
 import { merge } from "@/lib/ObjectUtils";
 
@@ -32,17 +35,17 @@ import { merge } from "@/lib/ObjectUtils";
  *
  */
 export default function Context(): ContextDefault {
-  // Get default context.
+  // 1. Get default context.
   const defaults = Defaults();
   // console.log('defaults: ', defaults)
-
-  // Get user defined config values.
+  // 2. Get user defined config values.
   const defaultTypes = Defaults();
-  // Get user defined config values.
-  const config = Config();
-  // Pass into validateProps function and return validated props.
+  // 3. Get user defined config values.
+  const config = {};
+  // const config = await Config();
+  // 4. Pass into validateProps function and return validated props.
   const validateConfig = validateProps(defaultTypes, config);
-  // Merge validated props with defaults and return with deep merge.
+  // 5. Merge validated props with defaults and return with deep merge.
   const validContext: ContextDefault = merge(
     "deep",
     defaults,

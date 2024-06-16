@@ -1,4 +1,4 @@
-import Context from "context/index";
+import Context from "context"; // TODO: Update to get from header?
 import { ContextConfigType, HeroConfig, HeroDefault } from "@/types";
 
 // Gets default component values for the Hero Component from src/context. ( Application defaults unless user modified in src/context/config/index.tsx )
@@ -17,7 +17,19 @@ const heroDefaults: HeroDefault = context.app.component.hero;
  * @todo Add prop for style
  */
 export default function Hero(props: HeroConfig): JSX.Element {
-  const { content, dataRole, style } = { ...heroDefaults, ...props };
+  // Takes expected defaults, user defined props, validates them, and returns props object.
+  // const {verifiedProps, validProps} = validateProps(heroDefault, props) as HeroDefault;
+
+  // ELSE log warning and use default prop.
+
+  // Spread props over defaults to ensure all props are set correctly
+
+  const {
+    content,
+    dataRole,
+    //layout, //TODO: 20230826 | Onboard layout once everything else is configured
+    style,
+  } = { ...heroDefaults, ...props };
 
   return (
     <div data-role={dataRole.wrapper} className={style.wrapper.tailwinds}>

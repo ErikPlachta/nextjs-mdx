@@ -32,8 +32,6 @@ import LayoutConfig from "./Layout";
 import LinkConfig from "./Link";
 import {
   MdxDataType,
-  MdxContentType,
-  MdxFileContentType,
   MdxContentSourceType,
   CompiledMDXContentResultsType,
   FrontmatterType,
@@ -58,9 +56,7 @@ export type {
   LinkConfig,
   // MDX
   MdxDataType,
-  MdxContentType,
   MdxContentSourceType,
-  MdxFileContentType,
   CompiledMDXContentResultsType,
   FrontmatterType,
   MainFrontmatterType,

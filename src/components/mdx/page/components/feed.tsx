@@ -88,11 +88,10 @@ export default function Feed(params: FeedProps = FeedComponent_DefaultProps) {
   // console.log(FeedComponent_DefaultProps)
 
   //-- Used to determine element to remain visible on navigate to [slug]
-  let slugRoutingTo: FrontmatterType["slug"] | null =
-    useSearchParams()?.get("slug");
+  let slugRoutingTo: FrontmatterType["slug"] = useSearchParams()?.get("slug");
 
   if (process.env.NODE_ENV === "development") {
-    console.log(`[Feed.tsx] - dev so printing params: `, params);
+    // console.log(`[Feed.tsx] - dev so printing params: `, params);
   }
 
   // function buildFilterTags(config: SortAndFilterPropTypes["config"]) {

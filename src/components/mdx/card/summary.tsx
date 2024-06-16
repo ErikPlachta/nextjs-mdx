@@ -9,7 +9,7 @@ import { Suspense, useEffect } from "react";
  */
 export default function SummaryCards(
   data: any,
-  slugRoutingTo: string | null,
+  slugRoutingTo: string | null | undefined,
   basePath: string | null,
   heightFrom: number,
   heightTo: number
@@ -21,7 +21,7 @@ export default function SummaryCards(
 
   const runTest = false;
   if (runTest) {
-    console.log("dataForFeed: ", dataForFeed);
+    // console.log("dataForFeed: ", dataForFeed);
     return dataForFeed.map((item: any, index: number) => {
       return (
         <motion.div

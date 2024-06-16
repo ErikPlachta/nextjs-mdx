@@ -1,21 +1,19 @@
+// "use server";
 // Work with the file system.
 import path from "path";
 import { readFile, access, readdir } from "fs/promises";
+// import Content from 'context/content' // TODO: Update path for content to come from context.
 
 // Parses MDX file to get frontmatter (metadata) and content (body).
 // import { MDXComponents } from "mdx/types"; // TODO: 20240615 #EP || Remove once verified not needed in COMPONENTS below
 import { compileMDX } from "next-mdx-remote/rsc";
-import {
-  MdxContentSourceType,
-  MdxContentType,
-  CompiledMDXContentResultsType,
-  MdxFileContentType,
-} from "@/types";
+import { MdxContentSourceType, CompiledMDXContentResultsType } from "@/types";
 
 /**
  * The content directories to search for content files and their hard-coded paths from root directory.
  */
-export const CONTENT: MdxContentSourceType[] = [
+export const CONTENT: any[] = [
+  // TODO: Update this to pull from ContextConfig
   { type: "blog", dir: path.join(process.cwd(), "./content/blog") },
   { type: "main", dir: path.join(process.cwd(), "./content/main") },
 ];
@@ -58,9 +56,10 @@ export const COMPONENTS: any = {
  * @returns The content of the file if found, otherwise null.
  */
 export async function getMdxFileByContentTypeBySlug(
-  contentType: MdxContentType,
+  contentType: string,
   slug: string
-): Promise<MdxFileContentType> {
+): Promise<any> {
+  // TODO: 20240616 #EP || Add type here once finalized concept
   console.log("readPostFile: ", contentType, slug);
   // 1. Based on contentType, get directory and then files
   const contentDir = CONTENT.find(
@@ -112,7 +111,7 @@ export async function getMdxFileByContentTypeBySlug(
  * @returns {Promise<any[]>} - The front matter of the files in the content directory.
  */
 export async function getMdxFilesFrontmatterByContentTypeByStatus(
-  contentType: MdxContentType,
+  contentType: string,
   visibleStatusTypes: string[]
 ): Promise<any[]> {
   const contentDir = CONTENT.find(

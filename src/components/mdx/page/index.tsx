@@ -1,7 +1,6 @@
 import React, { Suspense } from "react";
+
 // import { Projects, Notes } from "contentlayer/generated";
-const Notes: any = [];
-const Projects: any = [];
 // import { SortAndFilterPropTypes } from "@/utils/ObjectUtils";
 
 // Type of Content to be rendered.
@@ -10,7 +9,6 @@ import Single from "./components/single";
 
 /**
  * The props for the ContentPage component.
- *
  *
  * @property {string} type - The type of content to be rendered.
  * @property {object} feedData - Data to be rendered (both because a single page can have a feed within it or the page can just be a feed.)
@@ -29,17 +27,13 @@ import Single from "./components/single";
  */
 export interface ContentPageProps {
   type: "feed" | "single";
-  feedData: (typeof Projects)[] | (typeof Notes)[] | undefined;
-  singleData: typeof Notes | typeof Projects | undefined;
+  feedData: [] | undefined;
+  singleData: any | undefined;
   path: string | "notes" | "projects";
   slug: string;
   heightFrom: number;
   heightTo: number;
-  slugRoutingTo:
-    | undefined
-    | string
-    | (typeof Projects)["slug"]
-    | (typeof Notes)["slug"];
+  slugRoutingTo: string | undefined;
   sortAndFilterConfig: any; // TODO: Remove this or add types from other project.
   title: string;
   description: string;
@@ -98,7 +92,7 @@ export const defaults: ContentPageProps = {
  *
  * @todo  20230909 | Erik Plachta | Add logic for more than just notes/projects
  */
-export default function Page(params: ContentPageProps) {
+export default function Page(params: ContentPageProps): JSX.Element {
   // Set the config to the defaults or the params.
   const args = { ...defaults, ...params };
 
@@ -128,7 +122,7 @@ export default function Page(params: ContentPageProps) {
           data={feedData}
           heightFrom={heightFrom} // image height start px (when navigating back to feed)
           heightTo={heightTo} // image height default px.
-          sortAndFilterConfig={sortAndFilterConfig}
+          // sortAndFilterConfig={sortAndFilterConfig}
           path={path}
           slugRoutingTo={slugRoutingTo}
           title={title}

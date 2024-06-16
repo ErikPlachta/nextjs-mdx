@@ -7,7 +7,7 @@ import {
   getMdxFileByContentTypeBySlug,
   compileMDXContent,
 } from "@/lib/MdxUtils";
-import { CompiledMDXContentResultsType, MdxFileContentType } from "@/types";
+import { CompiledMDXContentResultsType, MdxContentSourceType } from "@/types";
 import { SortAndFilterPropTypes } from "@/lib/ObjectUtils";
 
 /**
@@ -18,7 +18,7 @@ export default async function PostPage({
 }: {
   params: { slug: string };
 }) {
-  const markdown: MdxFileContentType = await getMdxFileByContentTypeBySlug(
+  const markdown: string = await getMdxFileByContentTypeBySlug(
     "blog",
     params.slug
   );

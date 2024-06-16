@@ -1,5 +1,4 @@
 import React, { Suspense } from "react";
-
 import { getMdxFilesFrontmatterByContentTypeByStatus } from "@/lib/MdxUtils/index";
 import Page from "@/components/mdx/page";
 // import { SortAndFilter } from "@/lib/ObjectUtils/index";
@@ -53,28 +52,8 @@ export const metadata: any = {
   description: defaults.description,
 };
 
-/**
- * @module app/blog/blog-page
- * @desc Feed page for blog.
- *
- * @todo 20240615 #EP || Add feed content here for blog.
- */
-export function BlogFeed_temp() {
-  return (
-    <div className="flex flex-col items-center justify-center min-h-screen py-2">
-      <main className="flex flex-col items-center justify-center w-full flex-1 px-20 text-center">
-        <h1>Placeholder Blog Feed page.</h1>
-        <p className="">
-          <br /> -- TODO: 20240615 #EP || Add feed content here for blog.
-          <code className="">src/app/blog/blog-page.tsx</code>
-        </p>
-      </main>
-    </div>
-  );
-}
-
 async function getData(): Promise<{ allContent: [] }> {
-  console.log("test");
+  // console.log("test");
   return {
     allContent: (await getMdxFilesFrontmatterByContentTypeByStatus(
       "blog", // contentType
@@ -83,7 +62,7 @@ async function getData(): Promise<{ allContent: [] }> {
   };
 }
 
-export default async function BlogFeed() {
+export default async function BlogFeed(): Promise<JSX.Element> {
   const args = { ...defaults };
   // deconstructing
   let {
@@ -101,7 +80,7 @@ export default async function BlogFeed() {
   } = args;
 
   const content: any = await getData().then((data) => {
-    console.log("data: ", data.allContent);
+    // console.log("data: ", data.allContent);
     return data.allContent;
   });
 
