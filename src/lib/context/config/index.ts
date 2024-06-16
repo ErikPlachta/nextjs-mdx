@@ -11,7 +11,7 @@
  * @modified    2023-08-20
  * @version     0.1.0
  *
- * @requires    {ContextConfig} from '@/types'
+ * @requires    {ContextConfig} from 'context/types'
  * //@requires    {HomeIcon, PencilIcon} from "@heroicons/react/20/solid";
  * @exports     Config
  *

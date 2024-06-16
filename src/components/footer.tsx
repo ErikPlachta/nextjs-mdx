@@ -7,7 +7,7 @@ import { FooterConfig, FooterDefault } from "context/types";
  * @name Footer
  * @memberof components
  * @description The Footer component is used to display a title and description for a page.
- * @param {FooterConfig} props The props for the component. @see {@link '@/types/FooterConfig'} for more information.
+ * @param {FooterConfig} props The props for the component. @see {@link 'context/types/FooterConfig'} for more information.
  * @returns A React component.
  *
  * @todo Add a prop for the Footer image, alt text, etc.

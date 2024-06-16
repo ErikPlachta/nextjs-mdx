@@ -8,7 +8,7 @@ import Link from "next/link";
  * All headerProps defaults are defined within the `src/context/defaults/index.ts` file,
  * and all modifications to those defaults values are defined within `src/context/config/index.ts`.
  *
- * - @see {@link '@/types/HeaderConfig'} for more information on types.
+ * - @see {@link 'context/types/HeaderConfig'} for more information on types.
  * - @see {@link '@/context'} to verify the context is being passed in properly.
  * - @see {@link '@/components/defaults'} to understand the default defaults.
  * - @see {@link '@/context/config'} to modify Header components default content, like nav items, styling, etc.
