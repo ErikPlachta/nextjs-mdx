@@ -11,7 +11,7 @@ export default function Home() {
             "Using MDX content within NextJs App and Page routes via `next-mdx` and `next-mdx-remote`.",
         }}
       />
-      ,
+
       <section>
         <article>
           <h2 className="text-2xl pb-2">A Development Sandbox</h2>
