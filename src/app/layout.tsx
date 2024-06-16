@@ -1,6 +1,13 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+// import { Suspense } from "react";
+// import { headers } from "next/headers";
+
+import Context from "context";
+import Header from "@/components/header";
+import Footer from "@/components/footer";
+// import Admin from "@/components/utils/admin";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -14,9 +21,30 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // const headerList = headers();
+  // const context = headerList.get("context");
+
+  // Getting context data from custom context provider to spread into content.
+  const context = Context();
+
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body
+        className={`${inter.className} flex flex-col pb-20 mt-[50px] md:mt-0 md:pb-0 max-w-4xl m-auto min-h-[100vh] bg-primary`}
+      >
+        {/* Spreading values defined within src/context into header. */}
+        <Header {...context.app.layout.header} />
+
+        <main
+          data-role="children-wrapper"
+          className="flex flex-col flex-grow gap-10 h-[100%] w-full px-4 py-4 min-h-[100vh]"
+        >
+          {children}
+        </main>
+
+        {/* TODO: 2023-08-20 | Erik Plachta |  Onboard footer once header verified with context design. */}
+        <Footer {...context.app.layout.footer} />
+      </body>
     </html>
   );
 }
