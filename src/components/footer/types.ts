@@ -1,4 +1,4 @@
-import { StyleConfig } from "@/libs/context/types";
+import { StylesType } from "@/libs/context/types";
 
 /**
  * Optional args to be passed in to Footer component.
@@ -15,7 +15,7 @@ export interface FooterConfig {
     description?: string;
     nav?: string;
   };
-  style?: StyleConfig;
+  style?: StylesType;
   nav?: NavLink[];
 }
 
@@ -31,7 +31,7 @@ export interface FooterDefault {
   dataRole: {
     [key: string]: string;
   };
-  style: StyleConfig;
+  style: StylesType;
   nav: NavLink[];
 }
 

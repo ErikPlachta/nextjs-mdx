@@ -7,10 +7,7 @@ import { readFile, access, readdir } from "fs/promises";
 // Parses MDX file to get frontmatter (metadata) and content (body).
 // import { MDXComponents } from "mdx/types"; // TODO: 20240615 #EP || Remove once verified not needed in COMPONENTS below
 import { compileMDX } from "next-mdx-remote/rsc";
-import {
-  MdxContentSourceType,
-  CompiledMDXContentResultsType,
-} from "@/libs/context/types";
+import { MdxContentComponentTypes } from "@/libs/context/types";
 
 /**
  * The content directories to search for content files and their hard-coded paths from root directory.
@@ -144,7 +141,7 @@ export async function getMdxFilesFrontmatterByContentTypeByStatus(
       ) {
         return frontmatter;
       }
-
+      // If the status is not in the visibleStatusTypes, return null
       return null;
     })
   );
@@ -161,7 +158,7 @@ export async function compileMDXContent({
   source,
 }: {
   source: string;
-}): Promise<CompiledMDXContentResultsType> {
+}): Promise<MdxContentComponentTypes> {
   const { content, frontmatter } = await compileMDX({
     source: source,
     options: { parseFrontmatter: true },

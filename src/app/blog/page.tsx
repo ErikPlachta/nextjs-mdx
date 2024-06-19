@@ -1,6 +1,6 @@
 import React, { Suspense } from "react";
-import { getMdxFilesFrontmatterByContentTypeByStatus } from "@/libs/MdxUtils/index";
-import Page from "@/components/mdx/page";
+import { getMdxFilesFrontmatterByContentTypeByStatus } from "@/libs/mdx/index";
+import MdxFeed from "@/components/mdx/feed";
 // import { SortAndFilter } from "@/lib/ObjectUtils/index";
 
 const defaults: any = {
@@ -104,30 +104,27 @@ export default async function BlogFeed(): Promise<JSX.Element> {
 
   return (
     <Suspense>
-      <Page
+      <MdxFeed
         title={title}
         description={description}
-        type={type}
-        feedData={dataForFeed}
-        singleData={singleData}
+        data={dataForFeed}
         path={path}
-        slug={slug}
         slugRoutingTo={"slugRoutingTo"}
         heightFrom={heightFrom}
         heightTo={heightTo}
-        sortAndFilterConfig={sortAndFilterConfig}
-        hasSearch={true}
-        searchDataKeys={[
-          "slug",
-          "title",
-          "summary",
-          "author",
-          "createdAt",
-          "publishedAt",
-          "updatedAt",
-          "contentType",
-        ]}
-        hasFilter={true}
+        // sortAndFilterConfig={sortAndFilterConfig}
+        // hasSearch={true}
+        // searchDataKeys={[
+        // "slug",
+        // "title",
+        // "summary",
+        // "author",
+        // "createdAt",
+        // "publishedAt",
+        // "updatedAt",
+        // "contentType",
+        // ]}
+        // hasFilter={true}
       />
       {/* TODO: 20230826 | Remove this console log once done testing. */}
       {/* {console.log("feedData", content)}{" "} */}

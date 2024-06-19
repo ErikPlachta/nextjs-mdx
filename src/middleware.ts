@@ -25,9 +25,10 @@ export default function middleware(request: NextRequest) {
     url.pathname.includes("/middleware/global") ||
     url.searchParams.get("path")?.match(/middleware\/global/)
   ) {
-    console.log("running global middleware function!");
+    // console.log("running global middleware function!");
+    // TODO: Onboard this to custom context lib to feed to pages.
   } else {
-    console.log("running non-global middleware function!");
+    // console.log("running non-global middleware function!");
     // console.log("context: ", context);
   }
 

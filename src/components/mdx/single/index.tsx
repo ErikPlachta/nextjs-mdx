@@ -41,7 +41,10 @@ const SingleDefaults: SingleProps = {
   hasSearch: false,
 };
 
-export default function Single(params: SingleProps) {
+/**
+ * MDX File Content rendered into a single page.
+ */
+export default function MdxPage(params: SingleProps) {
   // console.log("params - single:", params);
   let slug = params.slug;
   let pathname = usePathname();

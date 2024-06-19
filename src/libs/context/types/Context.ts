@@ -4,8 +4,8 @@ import {
   HeroDefault,
   FooterConfig,
   FooterDefault,
-  FrontmatterType,
-  MdxContentSourceType,
+  MdxFrontmatterTypes,
+  MdxContentSourceTypes,
 } from "@/libs/context/types";
 
 /**
@@ -20,13 +20,13 @@ import {
  */
 export type ContextConfig = {
   content?: {
-    title: MdxContentSourceType["title"];
-    description: MdxContentSourceType["description"];
-    fileType: MdxContentSourceType["fileType"];
-    contentType: MdxContentSourceType["contentType"];
-    source: MdxContentSourceType["source"];
+    title: MdxContentSourceTypes["title"];
+    description: MdxContentSourceTypes["description"];
+    fileType: MdxContentSourceTypes["fileType"];
+    contentType: MdxContentSourceTypes["contentType"];
+    source: MdxContentSourceTypes["source"];
   }[] &
-    MdxContentSourceType[]; // TODO: 20240616 #EP || Update so that not hard-coded above, and can still hover to get info on type ContextConfig. (ATM it just shows the name so doing this to prevent the need to navigate in here.).
+    MdxContentSourceTypes[]; // TODO: 20240616 #EP || Update so that not hard-coded above, and can still hover to get info on type ContextConfig. (ATM it just shows the name so doing this to prevent the need to navigate in here.).
   brand?: {
     title?: string;
     description?: string;
@@ -34,7 +34,7 @@ export type ContextConfig = {
     developerLink?: string;
     keywords?: string[];
   };
-  meta?: Partial<FrontmatterType> & {
+  meta?: Partial<MdxFrontmatterTypes> & {
     author?: string;
     description?: string;
     created?: string;
@@ -56,7 +56,7 @@ export type ContextConfig = {
  * Required args to be passed in to Context component.
  */
 export interface ContextDefault {
-  content: MdxContentSourceType[] | [];
+  content: MdxContentSourceTypes[] | [];
   brand: {
     title: string;
     description: string;
@@ -64,7 +64,7 @@ export interface ContextDefault {
     developerLink: string;
     keywords: string[];
   };
-  meta: Partial<FrontmatterType> & {
+  meta: Partial<MdxFrontmatterTypes> & {
     author: string;
     description: string;
     created: string;

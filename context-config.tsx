@@ -68,9 +68,9 @@ const config: ContextConfig = {
               icon: () => <HomeIcon />,
             },
             {
-              title: "blog",
+              title: "mdx",
               href: "/blog",
-              label: "Blog",
+              label: "MDX Blog",
               default: true,
               icon: () => <PencilIcon />,
             },

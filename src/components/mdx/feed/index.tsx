@@ -8,87 +8,49 @@ import { useSearchParams } from "next/navigation";
 import SummaryCards from "@/components/mdx/card/summary";
 import Hero from "@/components/hero";
 import Search from "@/components/search";
-import { FrontmatterType } from "@/libs/context/types";
 
-/**
- * Default Props for feed component.
- *
- * @param {array} data - The posts to be rendered into feed.
- * @param {string|undefined} slugRoutingTo - The slug to be displayed when navigating to a post.
- * @param {string|undefined} basePath - The base path for the feed.}
- * @param {string} description - The description of the feed.
- * @param {number} heightFrom - The height of the card when it is not being hovered.
- * @param {number} heightTo - The height of the card when it is being hovered.
- * @param {string} path - The path of the feed.
- * @param {SortAndFilterPropTypes['config']} sortAndFilterConfig - The sort and filter options for the feed.
- */
-export interface FeedProps {
-  data: any[] | undefined;
-  slugRoutingTo: undefined | FrontmatterType["slug"];
-  heightFrom: number;
-  heightTo: number;
-  path: "blog" | "main" | string;
-  title: string;
-  description: string;
-  hasSearch?: boolean;
-  searchDataKeys?: string[];
-  hasFilter?: boolean;
-}
+import { FeedComponentPropsTypes, FeedComponentDefaultsTypes } from "./types";
 
-export const FeedComponent_DefaultProps: any = {
+export const FeedComponent_DefaultProps: FeedComponentDefaultsTypes = {
+  title: "NO_TITLE_DEFINED",
+  description: "NO_DESCRIPTION_DEFINED",
+  path: "NO_PATH_DEFINED",
   data: [],
+  searchDataKeys: [],
   slugRoutingTo: undefined,
   basePath: undefined,
   heightFrom: 400,
   heightTo: 200,
+  hasSearch: false,
+  hasFilter: false,
   sortAndFilterConfig: {
-    status: ["published"],
-    contentType: ["blog", "main"],
+    status: ["published"], // TODO: Update so this is pulled from context.
+    contentType: ["blog", "main"], // TODO: Update so this is pulled from Context and/or more generic.
     sortKey: "publishedAt", // is initially managed at the page level using the feed
     sortDataType: "date",
     sortOrder: "descending", // is initially managed at the page level using the feed
     noSortKey_Last: true,
     noSortKey_Remove: true,
   },
-  path: "NO_PATH_DEFINED",
-  title: "NO_TITLE_DEFINED",
-  description: "NO_DESCRIPTION_DEFINED",
-  hasSearch: false,
-  searchDataKeys: [],
-  hasFilter: false,
 };
 
-export default function Feed(params: FeedProps = FeedComponent_DefaultProps) {
-  let {
-    data,
-    heightFrom,
-    heightTo,
-    path,
-    title,
-    description,
-    hasSearch,
-    searchDataKeys,
-    hasFilter,
-  } = params;
+export default function Feed(params: FeedComponentPropsTypes): JSX.Element {
+  //----------------------------------------------------------------------------
+  // Spread Default Props and then params to ensure all values are set.
 
-  if (!data) data = FeedComponent_DefaultProps.data;
-  if (!title) title = FeedComponent_DefaultProps.title;
-  if (!description) description = FeedComponent_DefaultProps.description;
-  if (!hasSearch) hasSearch = FeedComponent_DefaultProps.hasSearch;
-  if (!searchDataKeys)
-    searchDataKeys = FeedComponent_DefaultProps.searchDataKeys;
-  if (!hasFilter) hasFilter = FeedComponent_DefaultProps.hasFilter;
+  const props: FeedComponentDefaultsTypes = {
+    ...FeedComponent_DefaultProps,
+    ...params,
+  };
 
-  if (!heightFrom) heightFrom = FeedComponent_DefaultProps.heightFrom;
-  if (!heightTo) heightTo = FeedComponent_DefaultProps.heightTo;
-
-  if (path == "blog") title = "Blog";
-  if (path == "main") title = "Main";
+  //if (path == "blog") title = "Blog";
+  //if (path == "main") title = "Main";
 
   // console.log(FeedComponent_DefaultProps)
 
   //-- Used to determine element to remain visible on navigate to [slug]
-  let slugRoutingTo: FrontmatterType["slug"] = useSearchParams()?.get("slug");
+  let slugRoutingTo: FeedComponentPropsTypes["slugRoutingTo"] =
+    useSearchParams()?.get("slug");
 
   if (process.env.NODE_ENV === "development") {
     // console.log(`[Feed.tsx] - dev so printing params: `, params);
@@ -163,8 +125,8 @@ export default function Feed(params: FeedProps = FeedComponent_DefaultProps) {
     <Suspense>
       <Hero
         content={{
-          title: title,
-          description: description,
+          title: props.title,
+          description: props.description,
         }}
       />
 
@@ -172,11 +134,11 @@ export default function Feed(params: FeedProps = FeedComponent_DefaultProps) {
       {/* <span className="p-2"></span> */}
 
       {/* Custom Search Component to search for content to navigate to instead of scroll click down below */}
-      {hasSearch && (
+      {props.hasSearch && (
         <div id="feed-search-wrapper" className="p-2 m-auto max-w-[80%]">
           <Search
-            data={Array.isArray(data) ? data : []}
-            dataKeys={searchDataKeys as any}
+            data={Array.isArray(props.data) ? props.data : []}
+            dataKeys={props.searchDataKeys as any}
             searchWhenTyping={true}
           />
         </div>
@@ -215,7 +177,13 @@ export default function Feed(params: FeedProps = FeedComponent_DefaultProps) {
         >
           {
             // For each post in data, build a card in the feed.
-            SummaryCards(data as any, slugRoutingTo, path, heightFrom, heightTo)
+            SummaryCards(
+              props.data as any,
+              slugRoutingTo,
+              props.path,
+              props.heightFrom,
+              props.heightTo
+            )
           }
         </motion.div>
       </section>

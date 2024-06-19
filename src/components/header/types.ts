@@ -1,4 +1,4 @@
-import { StyleConfig } from "@/libs/context/types";
+import { StylesType } from "@/libs/context/types";
 
 /**
  * Optional args to be passed in to Header component to override default values via src/context/config/index.tsx
@@ -22,7 +22,7 @@ export interface HeaderConfig {
     navIcon?: string;
     navLink?: string;
   };
-  style?: StyleConfig;
+  style?: StylesType;
 }
 
 /**
@@ -48,7 +48,7 @@ export interface HeaderDefault {
     navLink: string;
   };
   // Any collection of objects that match the NavLink interface.
-  style: StyleConfig;
+  style: StylesType;
 }
 
 /**
