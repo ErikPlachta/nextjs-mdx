@@ -21,16 +21,6 @@ export default function Home() {
           <br />- [ ] TODO: Get content from MDX with next-mdx.
         </article>
       </section>
-      {/* <section>
-        <h2 className="text-2xl">Projects</h2>
-        <p>TODO: Add feed + details once page/framework is finalized.</p>
-        <span className="w-full flex gap-4 justify-between mt-2">
-          <span>item1</span>
-          <span>item2</span>
-          <span>item3</span>
-          <span>item4</span>
-        </span>
-      </section> */}
     </>
   );
 }

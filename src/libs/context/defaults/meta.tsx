@@ -1,4 +1,4 @@
-import { ContextDefault } from "context/types";
+import { ContextDefault } from "@/libs/context/types";
 export default function Meta(): ContextDefault["meta"] {
   return {
     author: "CONTEXT_META_AUTHOR_UNDEFINED",

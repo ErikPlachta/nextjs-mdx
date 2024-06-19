@@ -1,4 +1,4 @@
-import { StyleConfig } from "context/types";
+import { StyleConfig } from "@/libs/context/types";
 
 /**
  * Optional args to be passed in to Footer component.

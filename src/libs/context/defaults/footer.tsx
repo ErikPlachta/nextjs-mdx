@@ -13,7 +13,7 @@
  * @exports    footerDefault The default props for the `footer` and `nav` components.
  */
 
-import { FooterDefault } from "context/types";
+import { FooterDefault } from "@/libs/context/types";
 import { HomeIcon, PencilIcon } from "@heroicons/react/20/solid";
 
 /**

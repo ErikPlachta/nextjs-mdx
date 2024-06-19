@@ -1,5 +1,5 @@
 import React from "react";
-import { FooterConfig, FooterDefault } from "context/types";
+import { FooterConfig, FooterDefault } from "@/libs/context/types";
 // import validateProps from "@/lib/ValidateProps";
 // import { HomeIcon, PencilIcon } from "@heroicons/react/20/solid";
 

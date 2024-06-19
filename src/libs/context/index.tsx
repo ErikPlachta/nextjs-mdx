@@ -14,11 +14,11 @@
  * @todo  //TODO: 20240616 #EP || Add "Setup" logic and update readme accordingly.
  */
 
-import { ContextDefault } from "context/types";
+import { ContextDefault } from "@/libs/context/types";
 import Config from "./config"; // TODO: Update to move from root.
 import Defaults from "./defaults";
-import validateProps from "@/lib/ValidateProps";
-import { merge } from "@/lib/ObjectUtils";
+import validateProps from "@/libs/ValidateProps";
+import { merge } from "@/libs/ObjectUtils";
 
 /**
  * Evaluates User Config against Application Default and returns validated Context.

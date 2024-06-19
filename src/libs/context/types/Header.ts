@@ -1,4 +1,4 @@
-import { StyleConfig } from "context/types";
+import { StyleConfig } from "@/libs/context/types";
 
 /**
  * Optional args to be passed in to Header component to override default values via src/context/config/index.tsx

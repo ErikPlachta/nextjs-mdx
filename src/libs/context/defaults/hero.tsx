@@ -13,7 +13,7 @@
  * @changelog
  *  - 0.0.1 | 2023-08-26 | feat: Initial version extracted from component.
  */
-import { HeroDefault } from "context/types";
+import { HeroDefault } from "@/libs/context/types";
 /**
  * Returns default values for Hero component.
  *

@@ -1,5 +1,5 @@
 import React, { Suspense } from "react";
-import { getMdxFilesFrontmatterByContentTypeByStatus } from "@/lib/MdxUtils/index";
+import { getMdxFilesFrontmatterByContentTypeByStatus } from "@/libs/MdxUtils/index";
 import Page from "@/components/mdx/page";
 // import { SortAndFilter } from "@/lib/ObjectUtils/index";
 

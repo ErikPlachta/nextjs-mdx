@@ -1,7 +1,9 @@
 /**
+ * Custom utility used by app to centralize prop validation.
+ *
  * @name ValidateProps
  * @type {function}
- * @memberof namespace.utils
+ * @memberof namespace.libs
  * @module ValidateProps
  * @description Validates the props passed to a component.
  * @param {object} defaultParams  - The default parameters for the component.

@@ -1,4 +1,4 @@
-import { ContextDefault } from "context/types";
+import { ContextDefault } from "@/libs/context/types";
 import Brand from "./brand";
 import Footer from "./footer";
 import Header from "./header";

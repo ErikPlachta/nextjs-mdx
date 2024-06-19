@@ -4,7 +4,7 @@ import "./globals.css";
 // import { Suspense } from "react";
 // import { headers } from "next/headers";
 
-import Context from "context";
+import Context from "@/libs/context";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 // import Admin from "@/components/utils/admin";

@@ -9,23 +9,15 @@
  * @type {Object}
  */
 
-// Path and fs are Node.js modules to work with file paths and the file system.
-// import path from "path";
-
-// Library types for the context configuration.
-import { ContextConfig } from "context/types";
-
+import Image from "next/image";
+import githubMark from "./public/images/github-mark-white.svg";
 // Icons to be used in the header navigation. (Hero Icons is NOT a part of the library, can use anything.)
-import {
-  //ArchiveBoxArrowDownIcon,
-  //ArchiveBoxXMarkIcon,
-  CheckIcon,
-  HomeIcon,
-  PencilIcon,
-  //WrenchIcon,
-  WrenchScrewdriverIcon,
-} from "@heroicons/react/20/solid";
+import { HomeIcon, PencilIcon, UserIcon } from "@heroicons/react/20/solid";
 
+// Custom library types for the context configuration.
+import { ContextConfig } from "@/libs/context/types";
+
+// My user specific definitions for the context configuration.
 const config: ContextConfig = {
   content: [
     {
@@ -74,7 +66,6 @@ const config: ContextConfig = {
               label: "Home",
               default: true,
               icon: () => <HomeIcon />,
-              // icon: () => <HomeIcon className='mr-3 h-5 w-5' />,
             },
             {
               title: "blog",
@@ -82,34 +73,36 @@ const config: ContextConfig = {
               label: "Blog",
               default: true,
               icon: () => <PencilIcon />,
-              // icon: () => <PencilIcon className='mr-3 h-5 w-5' />,
             },
-            // {
-            //   title: "projects",
-            //   href: "/projects",
-            //   label: "Projects",
-            //   default: true,
-            //   icon: () => <CheckIcon />,
-            // },
-            // {
-            //   title: "resources",
-            //   href: "/resources",
-            //   label: "Resources",
-            //   default: true,
-            //   icon: () => <WrenchScrewdriverIcon />,
-            //   // icon: () => <WrenchScrewdriverIcon className='mr-3 h-5 w-5' />,
-            // },
+            {
+              title: "github",
+              href: "https://github.com/ErikPlachta/nextjs-mdx",
+              label: "GitHub",
+              default: true,
+              icon: () => (
+                <span className="w-2">
+                  <Image src={githubMark} alt="GitHub Mark" />
+                </span>
+              ),
+            },
+            {
+              title: "website",
+              href: "https://erikplachta.com",
+              label: "ErikPlachta",
+              default: true,
+              icon: () => <UserIcon />,
+            },
           ],
         },
 
-        // The data-role attribute values for the header and nav components.
+        // Custom data-role attribute values for the header and nav components. Commented out but kept for personal reference.
         // dataRole: {
         //   wrapper: 'header-wrapper',
         //   brandingWrapper: 'header-branding-wrapper',
         //   title: 'header-title',
         //   description: 'header-description',
         //   nav: 'header-nav',
-        //   // navListHamburger: 'header-nav-list-hamburger',
+        //   navListHamburger: 'header-nav-list-hamburger',
         //   navList: 'header-nav-list',
         //   navItem: 'header-nav-item',
         //   navLink: 'header-nav-item-link',
@@ -147,13 +140,13 @@ const config: ContextConfig = {
       footer: {
         content: {
           // Brand Name to render in the footer.
-          title: "",
-          description: "",
+          title: "", // Empty string required to keep field blank at this time.
+          description:
+            "MVP project using NextJS and MDX to learn and maintain a working knowledge.",
           developer: "Erik Plachta",
         },
       },
     },
-
     // Modify default values for the non-layout components used within the application.
     component: {
       // hero: {

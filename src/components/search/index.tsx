@@ -6,9 +6,9 @@ import { motion, useAnimationControls } from "framer-motion";
 import { MagnifyingGlassIcon, XMarkIcon } from "@heroicons/react/24/outline";
 
 // Custom Content
-import { SearchPropTypes, SearchPropDefaultTypes } from "context/types";
+import { SearchPropTypes, SearchPropDefaultTypes } from "@/libs/context/types";
 import useDebounce from "@/hooks/useDebounce";
-import { IndexedObjectType, pick } from "@/lib/ObjectUtils";
+import { IndexedObjectType, pick } from "@/libs/ObjectUtils";
 
 //--------------------------------------------------------------------------------
 // TYPES

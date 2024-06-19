@@ -1,4 +1,4 @@
-import { ContextDefault } from "context/types";
+import { ContextDefault } from "@/libs/context/types";
 export default function Brand(): ContextDefault["brand"] {
   return {
     title: "CONTEXT_BRAND_TITLE_UNDEFINED",

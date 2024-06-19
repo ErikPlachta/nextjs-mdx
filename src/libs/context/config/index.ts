@@ -21,7 +21,7 @@
  *  - 0.1.0 | 2024-06-16 | Erik Plachta | feat: Get config file from root, if defined. Updated to handle context-config.ts in the root dir vs having hard-coded values here. Goal is to prevent the need to modify this library file for each project.
  */
 
-import { ContextConfig } from "context/types";
+import { ContextConfig } from "@/libs/context/types";
 import UserConfig from "UserConfig";
 
 /**

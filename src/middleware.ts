@@ -1,6 +1,6 @@
 // middleware.tsx
 import { NextRequest, NextResponse } from "next/server";
-import Context from "context";
+import Context from "@/libs/context";
 
 export default function middleware(request: NextRequest) {
   // 1. Get incoming request

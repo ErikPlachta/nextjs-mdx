@@ -1,4 +1,4 @@
-import { StyleConfig } from "context/types";
+import { StyleConfig } from "@/libs/context/types";
 
 export interface Icon {
   [key: string]: string;

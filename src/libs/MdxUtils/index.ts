@@ -10,7 +10,7 @@ import { compileMDX } from "next-mdx-remote/rsc";
 import {
   MdxContentSourceType,
   CompiledMDXContentResultsType,
-} from "context/types";
+} from "@/libs/context/types";
 
 /**
  * The content directories to search for content files and their hard-coded paths from root directory.

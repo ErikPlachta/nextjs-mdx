@@ -8,7 +8,7 @@ import { useSearchParams } from "next/navigation";
 import SummaryCards from "@/components/mdx/card/summary";
 import Hero from "@/components/hero";
 import Search from "@/components/search";
-import { FrontmatterType } from "context/types";
+import { FrontmatterType } from "@/libs/context/types";
 
 /**
  * Default Props for feed component.

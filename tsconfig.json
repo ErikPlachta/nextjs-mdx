@@ -19,8 +19,8 @@
     ],
     "paths": {
       "@/*": ["./src/*"],
-      "context": ["./src/lib/context/index.tsx"], // For context
-      "context/*": ["./src/lib/context/*"], // For all other context files
+      "context": ["src/libs/context/index.tsx"], // For context
+      "context/*": ["src/libs/context/*"], // For all other context files
       // "config": ["./config/index.ts"],
       // "content": ["./content/*"]
       "UserConfig": ["./context-config.tsx"]

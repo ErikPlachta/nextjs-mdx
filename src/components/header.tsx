@@ -1,5 +1,5 @@
 import React from "react";
-import { HeaderDefault } from "context/types";
+import { HeaderDefault } from "@/libs/context/types";
 import Link from "next/link";
 
 /**

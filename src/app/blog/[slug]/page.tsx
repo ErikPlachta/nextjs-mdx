@@ -6,12 +6,12 @@ import Page from "@/components/mdx/page";
 import {
   getMdxFileByContentTypeBySlug,
   compileMDXContent,
-} from "@/lib/MdxUtils";
+} from "@/libs/MdxUtils";
 import {
   CompiledMDXContentResultsType,
   MdxContentSourceType,
-} from "context/types";
-import { SortAndFilterPropTypes } from "@/lib/ObjectUtils";
+} from "@/libs/context/types";
+import { SortAndFilterPropTypes } from "@/libs/ObjectUtils";
 
 /**
  * Render MDX Content for a single Blog post from slug.
