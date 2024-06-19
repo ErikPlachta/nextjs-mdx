@@ -18,7 +18,6 @@ export const FeedComponent_DefaultProps: FeedComponentDefaultsTypes = {
   data: [],
   searchDataKeys: [],
   slugRoutingTo: undefined,
-  basePath: undefined,
   heightFrom: 400,
   heightTo: 200,
   hasSearch: false,

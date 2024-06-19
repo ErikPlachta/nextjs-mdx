@@ -62,6 +62,11 @@ async function getData(): Promise<{ allContent: [] }> {
   };
 }
 
+/**
+ * Take MDX Content and generate a feed.
+ *
+ * @returns {JSX.Element} - The rendered MDX content for Blog.
+ */
 export default async function BlogFeed(): Promise<JSX.Element> {
   const args = { ...defaults };
   // deconstructing
@@ -84,23 +89,7 @@ export default async function BlogFeed(): Promise<JSX.Element> {
     return data.allContent;
   });
 
-  // Building the feedData based on the sortAndFilterConfig
-  //let dataForFeed2 = SortAndFilter({
-  //  // ...feedData,
-  //  data: content,
-  //  config: sortAndFilterConfig,
-  //}) as any;
-
   let dataForFeed = content;
-  //{
-  //  // ...feedData,
-  //  data: content,
-  //  config: sortAndFilterConfig,
-  //} as any;
-
-  //console.log("!!!!: content: ", content);
-  //console.log("!!!!: feedData: ", feedData);
-  // console.log("!!!!: config: ", sortAndFilterConfig);
 
   return (
     <Suspense>
@@ -112,19 +101,19 @@ export default async function BlogFeed(): Promise<JSX.Element> {
         slugRoutingTo={"slugRoutingTo"}
         heightFrom={heightFrom}
         heightTo={heightTo}
-        // sortAndFilterConfig={sortAndFilterConfig}
-        // hasSearch={true}
-        // searchDataKeys={[
-        // "slug",
-        // "title",
-        // "summary",
-        // "author",
-        // "createdAt",
-        // "publishedAt",
-        // "updatedAt",
-        // "contentType",
-        // ]}
-        // hasFilter={true}
+        sortAndFilterConfig={sortAndFilterConfig}
+        searchDataKeys={[
+          "slug",
+          "title",
+          "summary",
+          "author",
+          "createdAt",
+          "publishedAt",
+          "updatedAt",
+          "contentType",
+        ]}
+        hasFilter={true}
+        hasSearch={true}
       />
       {/* TODO: 20230826 | Remove this console log once done testing. */}
       {/* {console.log("feedData", content)}{" "} */}

@@ -57,10 +57,10 @@ export const search_Defaults: SearchComponentDefaultsTypes = {
     buttonClear: "m-auto w-[35px] p-[8px] bg-transparent text-white ",
     // Results container to pick from when searching
     results:
-      // TODO: update this
-      "absolute flex flex-col z-50 min-h-[fit-content] max-h-[300px] overflow-scroll w-[100%] mt-[.25rem] " +
+      "absolute flex w-full flex-col z-50 min-h-[fit-content] max-h-[300px] w-[100%] mt-[.25rem] " +
       " transition-all duration-300 " +
-      " border-solid border-2 border-secondary bg-tertiary rounded-md shadow-md",
+      " border-solid border-2 border-secondary bg-tertiary rounded-md shadow-md" +
+      " overflow-y-auto",
     result:
       "z-50 hover:bg-accent hover:cursor-pointer px-2 py-4 " +
       " border-solid border-2 border-secondary border-t-0 border-l-0 border-r-0",

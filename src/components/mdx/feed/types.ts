@@ -19,15 +19,14 @@ export type FeedComponentSortAndFilterConfigTypes = {
 export type FeedComponentDefaultsTypes = {
   title: string;
   description: string;
-  path: string;
+  path: string; // Base path to the content, like "/blog".
   data: any[];
-  searchDataKeys: [];
+  searchDataKeys: string[];
   slugRoutingTo: MdxFrontmatterTypes["slug"];
-  basePath: undefined;
-  heightFrom: 400;
-  heightTo: 200;
-  hasSearch: false;
-  hasFilter: false;
+  heightFrom: number;
+  heightTo: number;
+  hasSearch: boolean;
+  hasFilter: boolean;
   sortAndFilterConfig: FeedComponentSortAndFilterConfigTypes;
 };
 
@@ -39,10 +38,11 @@ export type FeedComponentPropsTypes = {
   description: FeedComponentDefaultsTypes["description"];
   data: FeedComponentDefaultsTypes["data"];
   searchDataKeys?: FeedComponentDefaultsTypes["searchDataKeys"];
-  path: FeedComponentDefaultsTypes["path"];
+  path: FeedComponentDefaultsTypes["path"]; // The path to the content, like "/blog".
   slugRoutingTo: FeedComponentDefaultsTypes["slugRoutingTo"];
   heightFrom: FeedComponentDefaultsTypes["heightFrom"];
   heightTo: FeedComponentDefaultsTypes["heightTo"];
   hasSearch?: FeedComponentDefaultsTypes["hasSearch"];
   hasFilter?: FeedComponentDefaultsTypes["hasFilter"];
+  sortAndFilterConfig?: FeedComponentDefaultsTypes["sortAndFilterConfig"];
 };
