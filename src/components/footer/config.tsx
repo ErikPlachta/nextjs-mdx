@@ -8,47 +8,28 @@ import { HomeIcon, PencilIcon } from "@heroicons/react/20/solid";
 /**
  * The default props for the `footer` and `nav` components within breadcrumb component.
  */
-export default function footer(): FooterDefault {
+export default function getFooterDefaultConfig(): FooterDefault {
   return {
     content: {
       title: "BRAND_NAME_UNDEFINED",
-      description: "BRAND_SLOG_UNDEFINED",
       developer: "DEVELOPER_NAME_UNDEFINED",
+      copyright: `All Rights Reserved © ${new Date().getFullYear()}`,
     },
     dataRole: {
-      wrapper: undefined,
-      brandingWrapper: undefined,
-      title: "footer-title",
-      description: "footer-description",
-      nav: "footer-nav",
-      navList: "footer-nav-list",
-      navItem: "footer-nav-item",
-      navLink: "footer-nav-item-link",
+      wrapper: "footer-wrapper",
+      branding: "footer-branding",
+      copyright: "footer-copyright",
     },
     style: {
       wrapper: {
-        tailwinds: undefined,
+        tailwinds:
+          "space-evenly m-auto flex w-full justify-center gap-4 rounded-xl bg-slate-900/20 p-4 px-8",
       },
-      brandingWrapper: {
-        tailwinds: undefined,
+      branding: {
+        tailwinds: "mt-auto flex justify-center text-center",
       },
-      title: {
-        tailwinds: undefined,
-      },
-      description: {
-        tailwinds: undefined,
-      },
-      nav: {
-        tailwinds: undefined,
-      },
-      navList: {
-        tailwinds: undefined,
-      },
-      navItem: {
-        tailwinds: undefined,
-      },
-      navLink: {
-        tailwinds: undefined,
+      copyright: {
+        tailwinds: "mt-auto flex justify-center text-center",
       },
     },
   };

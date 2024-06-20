@@ -6,8 +6,8 @@ import { StylesType } from "@/libs/context/types";
 export interface FooterConfig {
   content?: {
     title?: string;
-    description?: string;
     developer?: string;
+    copyright?: string;
   };
   dataRole?: {
     wrapper?: string | undefined;
@@ -25,8 +25,8 @@ export interface FooterConfig {
 export interface FooterDefault {
   content: {
     title: string;
-    description?: string | undefined;
     developer?: string | undefined;
+    copyright?: string | undefined;
   };
   dataRole: {
     [key: string]: string | undefined;

@@ -139,8 +139,9 @@ const config: ContextConfig = {
       },
       footer: {
         content: {
-          title: "ErikPlachta.com", // Empty string required to keep field blank at this time
+          title: "ErikPlachta.com",
           developer: "Erik Plachta",
+          // copyright: `All Rights Reserved © ${new Date().getFullYear()}`,
         },
       },
     },

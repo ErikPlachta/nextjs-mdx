@@ -30,7 +30,7 @@ export default function Header(props: HeaderDefault): JSX.Element {
   // No props defined for component, throws error.
   if (!props || typeof props !== "object")
     throw new Error(
-      "ERROR: <Header> Component - Invalid props. To review app specific configuration, see `src/app/context/config/index.tsx`. To review default configuration, see `src/app/context/defaults/header.tsx`"
+      "ERROR: <Header> Component - Invalid props. To review app specific configuration, see `src/app/context/config/index.tsx`. To review default configuration, see `src/app/context/defaults/header.tsx`",
     );
 
   // Destructure props
@@ -38,13 +38,7 @@ export default function Header(props: HeaderDefault): JSX.Element {
 
   // Return component
   return (
-    <header
-      data-role={dataRole.wrapper}
-      className={
-        style?.wrapper?.tailwinds ??
-        `fixed md:sticky flex flex-col pointer-events-none md:flex-row gap-4 justify-between max-w-4xl w-full m-auto items-center z-10 top-0 bottom-0 md:bottom-[unset] md:top-0  md:py-2 md:px-6 md:backdrop-blur md:bg-slate-100 dark:md:bg-slate-800/70 rounded-tl-lg rounded-tr-lg md:rounded-none md:rounded-bl-lg md:rounded-br-lg transition-all`
-      }
-    >
+    <header data-role={dataRole.wrapper} className={style.wrapper.tailwinds}>
       <Branding content={content} dataRole={dataRole} style={style} />
       <Navigation content={content} dataRole={dataRole} style={style} />
     </header>
