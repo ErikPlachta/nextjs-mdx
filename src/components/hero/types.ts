@@ -1,4 +1,4 @@
-import { StylesType, LayoutConfig } from "@/libs/context/types/index";
+import { StylesType, LayoutConfig } from "@/libs/context/types";
 
 /**
  * Optional args to be passed in to Hero component.

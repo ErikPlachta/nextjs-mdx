@@ -164,34 +164,31 @@ export default function MdxPage(params: SingleProps) {
     heightTo,
   ]);
 
-  // console.log("post: ", post);
-  // console.log("params", params);
-
-  // useEffect(() => {
-
-  // }, [elements, headerHeight]);
-
   // If no post is found, return an error message.
   if (!post) {
     return (
       <div
         className={`flex flex-col py-0 px-0 mx-auto gap-4 rounded-lg max-w-4xl`}
       >
-        <div className="relative px-6">ERROR: id not found: `{slug}`</div>
+        <h3 className="relative px-6">ERROR: id not found: `{slug}`</h3>
+        <span>
+          <Link href={`/${path}`} passHref scroll={false} legacyBehavior>
+            <a className="flex items-center gap-1 px-4 py-2 bg-slate-600 bg-opacity-10 hover:bg-opacity-70 ease-in-out duration-100 text-gray-50 text-md font-medium">
+              <ChevronLeftIcon className="h-4 w-4" />
+              Back
+            </a>
+          </Link>
+        </span>
       </div>
     );
   }
 
-  // console.log("params:", params);
-  // return <div>{post}</div>;
-  // return <>{post}</>;
-
-  // Otherwise returns the single post.
+  // Render MDX Content as a page.
   return (
     <article
       // ref={targetRefWrapper}
       data-role="content-wrapper"
-      className={`z-0 flex flex-col gap-4 overflow-hidden rounded-lg max-w-4xl w-100 m-auto relative break-words bg-slate-100 dark:bg-slate-800/30 shadow-sm shadow-slate-500 rounded-tl-lg rounded-tr-lg`}
+      className={`z-0 flex flex-col gap-4 overflow-hidden rounded-lg max-w-4xl w-100 mt-[2rem] md:mt-[4rem] m-auto relative break-words bg-slate-100 dark:bg-slate-800/30 shadow-sm shadow-slate-500 rounded-tl-lg rounded-tr-lg`}
     >
       <Link href={`/${path}`} passHref scroll={false} legacyBehavior>
         <motion.a

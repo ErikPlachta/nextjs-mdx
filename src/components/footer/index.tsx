@@ -4,6 +4,8 @@ import { FooterConfig, FooterDefault } from "@/libs/context/types";
 // import { HomeIcon, PencilIcon } from "@heroicons/react/20/solid";
 
 /**
+ * Footer component for the full application.
+ *
  * @name Footer
  * @memberof components
  * @description The Footer component is used to display a title and description for a page.

@@ -1,4 +1,5 @@
-import { StylesType } from "@/libs/context/types";
+import { MdxFrontmatterTypes } from "@/libs/mdx/types";
+import StylesType from "@/types/styles";
 
 /**
  * Optional args to be passed in to Header component to override default values via src/context/config/index.tsx
@@ -62,3 +63,18 @@ export interface NavLink {
   // Using Hero Icons for this project.
   icon: () => JSX.Element;
 }
+
+export type HeaderBrandTypes = {
+  title: string;
+  description: string | undefined;
+  developer: string | undefined;
+  developerLink: string | undefined;
+  keywords: string[];
+};
+export type HeaderMetaTypes = {
+  author: string;
+  description: string;
+  created: string;
+  modified: string;
+  version: string;
+} & Partial<MdxFrontmatterTypes>;

@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 // import { compileMDX } from "next-mdx-remote/rsc"; // build the MDX content and frontmatter from the remote file
 
 // Custom Component to working with the MDX content based on my needs.
-import MdxSinglePage from "@/components/mdx/single";
+import MdxSinglePage from "@/components/mdx/page/single";
 import { getMdxFileByContentTypeBySlug, compileMDXContent } from "@/libs/mdx";
 import { MdxContentComponentTypes } from "@/libs/context/types";
 import { SortAndFilterPropTypes } from "@/libs/ObjectUtils";

@@ -1,6 +1,8 @@
 import React from "react";
-import { HeaderDefault } from "@/libs/context/types";
-import Link from "next/link";
+import { HeaderDefault } from "./types";
+
+import Navigation from "./navigation";
+import Branding from "./branding";
 
 /**
  * The header component is used to display a title and description for a page.
@@ -31,122 +33,20 @@ export default function Header(props: HeaderDefault): JSX.Element {
       "ERROR: <Header> Component - Invalid props. To review app specific configuration, see `src/app/context/config/index.tsx`. To review default configuration, see `src/app/context/defaults/header.tsx`"
     );
 
-  const { content, dataRole, style } = props;
-
-  // Uncomment for testing.
-  // return (
-  //   <div>
-  //     {/* {console.log(props.content)} */}
-  //     {JSON.stringify(content)}
-  //   </div>
-  // )
+  // Destructure props
+  const { content, dataRole, style } = props; // TODO: Add style from context or use these defaults.
 
   // Return component
   return (
     <header
       data-role={dataRole.wrapper}
-      className={style.wrapper.tailwinds}
-      // className={"w-full flex gap-4 justify-between"}
+      className={
+        style?.wrapper?.tailwinds ??
+        `fixed md:sticky flex flex-col pointer-events-none md:flex-row gap-4 justify-between max-w-4xl w-full m-auto items-center z-10 top-0 bottom-0 md:bottom-[unset] md:top-0  md:py-2 md:px-6 md:backdrop-blur md:bg-slate-100 dark:md:bg-slate-800/70 rounded-tl-lg rounded-tr-lg md:rounded-none md:rounded-bl-lg md:rounded-br-lg transition-all`
+      }
     >
-      {/* Wrapper around Brand Name and Description */}
-      <div
-        data-role={dataRole?.brandingWrapper}
-        className={style?.brandingWrapper.tailwinds}
-      >
-        <Link href="/" className={style.titleLink.tailwinds}>
-          <h1 data-role={dataRole?.title} className={style?.title.tailwinds}>
-            {content.title}
-          </h1>
-        </Link>
-        {content?.description && (
-          <p
-            data-role="page-description"
-            className={style?.description.tailwinds}
-          >
-            {content.description}
-          </p>
-        )}
-      </div>
-
-      {/* <nav data-role={dataRole.nav} className="w-full flex gap-4 justify-evenly">
-        {content?.nav?.map((item: any, index: any): any => {
-          return (
-            <li  key={index}>
-              <Link
-                data-role={dataRole.navItem}
-                className={style.navItem.tailwinds}
-                href={item.href}
-              >
-                {item.icon()}
-                {item.label}
-              </Link>
-            </li>
-          );
-        })}
-      </nav> */}
-
-      {/* <nav data-role={dataRole.nav} className={style.nav.tailwinds}>
-        <ul data-role={dataRole.navList} className={style.navList.tailwinds}>
-          {content?.nav?.map((item: any, index: any): any => {
-            return (
-              <li
-                key={index}
-                data-role={dataRole.navItem}
-                className={style.navItem.tailwinds}
-              >
-                <Link
-                  data-role={dataRole.navLink}
-                  className={style.navLink.tailwinds}
-                  // TODO 2023-08-26 | Add active vs not active class for nav items.
-                  href={item.href}
-                  aria-label={item.label}
-                  title={item.title}
-                >
-                  <span
-                    data-role={dataRole.navIcon}
-                    className="h-4 w-4"
-                  >
-                    {item.icon()}
-                  </span>
-                  {item.label}
-                </Link>
-              </li>
-            );
-          })}
-        </ul>
-      </nav> */}
-
-      <nav data-role={dataRole.nav} className={style.nav.tailwinds}>
-        <ul data-role={dataRole.navList} className={style.navList.tailwinds}>
-          {content?.nav?.map((item: any, index: any): any => {
-            return (
-              <li
-                key={index}
-                data-role={dataRole.navItem}
-                className={style.navItem.tailwinds}
-              >
-                <Link
-                  key={index}
-                  data-role={dataRole.navLink}
-                  className={style.navLink.tailwinds}
-                  // TODO 2023-08-26 | Add active vs not active class for nav items.
-                  href={item.href}
-                  aria-label={item.label}
-                  title={item.title}
-                >
-                  <span
-                    data-role={dataRole.navIcon}
-                    className={style.navIcon.tailwinds}
-                  >
-                    {item.icon()}
-                  </span>
-                  {item.label}
-                </Link>
-              </li>
-            );
-          })}
-        </ul>
-      </nav>
+      <Branding content={content} dataRole={dataRole} style={style} />
+      <Navigation content={content} dataRole={dataRole} style={style} />
     </header>
   );
 }

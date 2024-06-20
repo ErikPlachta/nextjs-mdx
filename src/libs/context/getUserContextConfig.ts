@@ -29,12 +29,11 @@ import UserConfig from "UserConfig";
  *
  * @name        Config
  * @memberof    module:context
- * @type        {ContextConfig}
+ * @returns     {ContextConfig} The configuration object for the application.
  **/
 export default function Config(): ContextConfig {
   // 1. Look for file in root directory called context-config.ts with fs
-  let config: ContextConfig = UserConfig || {}; // Default to empty object.
-
+  let config: ContextConfig = UserConfig || {};
   // 2. Return the config object
   return config;
 }

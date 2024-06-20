@@ -1,12 +1,25 @@
+/**
+ * Centralized Type Definitions for all components managed by the Context.
+ */
+
+// -- IMPORTS FROM COMPONENTS USED IN CONTEXT ----------------------------------
+// import { ContextConfigType, ContextConfig, ContextDefault } from "./context";
+import { HeaderConfig, HeaderDefault } from "@/components/header/types";
+import { HeroConfig, HeroDefault } from "@/components/hero/types";
+import { FooterConfig, FooterDefault } from "@/components/footer/types";
+import LayoutConfig from "@/types/layout";
 import {
-  HeaderConfig,
-  HeaderDefault,
-  HeroDefault,
-  FooterConfig,
-  FooterDefault,
-  MdxFrontmatterTypes,
+  MdxContentProcessedTypes,
   MdxContentSourceTypes,
-} from "@/libs/context/types";
+  FrontmatterStatusTypes,
+  MdxFrontmatterTypes,
+  MdxContentComponentTypes,
+} from "@/libs/mdx/types";
+import StylesType from "@/types/styles";
+import {
+  SearchComponentDefaultsTypes,
+  SearchComponentPropsTypes,
+} from "@/components/search/types";
 
 /**
  * Optional args to be passed in to Context component.
@@ -18,7 +31,7 @@ import {
  *
  *
  */
-export type ContextConfig = {
+type ContextConfig = {
   content?: {
     title: MdxContentSourceTypes["title"];
     description: MdxContentSourceTypes["description"];
@@ -55,7 +68,7 @@ export type ContextConfig = {
 /**
  * Required args to be passed in to Context component.
  */
-export interface ContextDefault {
+type ContextDefault = {
   content: MdxContentSourceTypes[] | [];
   brand: {
     title: string;
@@ -80,9 +93,37 @@ export interface ContextDefault {
       hero: HeroDefault;
     };
   };
-}
+};
 
-/**
- * Required values for the Context configuration.
- */
-export type ContextConfigType = ContextDefault;
+type ContextConfigType = ContextDefault;
+
+// -- EXPORT ---------------------------
+// Export all types for use in the context module.
+export type {
+  // Context
+  ContextConfigType,
+  ContextConfig,
+  ContextDefault,
+  // Header Component
+  HeaderConfig,
+  HeaderDefault,
+  // Hero Component
+  HeroConfig,
+  HeroDefault,
+  // Footer Component
+  FooterConfig,
+  FooterDefault,
+  // Layout Component
+  LayoutConfig,
+  // MDX Content
+  MdxContentProcessedTypes,
+  MdxContentSourceTypes,
+  FrontmatterStatusTypes,
+  MdxFrontmatterTypes,
+  // MDX Components
+  MdxContentComponentTypes,
+  // style
+  StylesType,
+  SearchComponentDefaultsTypes,
+  SearchComponentPropsTypes,
+};

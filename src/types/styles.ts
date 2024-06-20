@@ -5,7 +5,7 @@
  */
 export default interface StylesType {
   [key: string]: {
-    tailwinds: string;
+    tailwinds: string | undefined;
   };
 }
 

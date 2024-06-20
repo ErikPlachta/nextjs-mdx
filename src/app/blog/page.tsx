@@ -1,6 +1,6 @@
 import React, { Suspense } from "react";
 import { getMdxFilesFrontmatterByContentTypeByStatus } from "@/libs/mdx/index";
-import MdxFeed from "@/components/mdx/feed";
+import MdxFeed from "@/components/mdx/page/feed";
 // import { SortAndFilter } from "@/lib/ObjectUtils/index";
 
 const defaults: any = {

@@ -7,7 +7,7 @@
  */
 
 // Importing style ype
-import { StylesType } from "./index";
+import { StylesType } from "@/libs/context/types";
 
 /**
  * Type reference for how layouts are managed within the project.
