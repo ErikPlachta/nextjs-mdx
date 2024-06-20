@@ -14,14 +14,14 @@ export default function Navigation({
       data-role={dataRole.nav}
       className={
         style?.nav?.tailwinds ||
-        ` z-40  p-2 w-full md:m-t-auto bg-slate-100 dark:bg-slate-800/70 md:bg-transparent md:dark:bg-transparent backdrop-blur md:backdrop-blur-none md:backdrop-filter-none`
+        `md:m-t-auto z-40 w-full bg-slate-100 p-2 backdrop-blur md:bg-transparent md:backdrop-blur-none md:backdrop-filter-none dark:bg-slate-800/70 md:dark:bg-transparent`
       }
     >
       <ul
         data-role={dataRole.navList}
         className={
           style?.navList?.tailwinds ??
-          `pointer-events-auto z-40 flex flex-row gap-8 md:gap-4 w-full justify-center space-evenly md:justify-end`
+          `space-evenly pointer-events-auto z-40 flex w-full flex-row justify-center gap-8 md:justify-end md:gap-4`
         }
       >
         {content?.nav?.map((item: any, index: any): any => {
@@ -31,7 +31,7 @@ export default function Navigation({
               data-role={dataRole.navItem}
               className={
                 style?.navItem?.tailwinds ??
-                `p-2 w-[500px] md:text-nowrap md:w-[auto] rounded-lg shadow-xl bg-transparent shadow-slate-900/30 md:shadow-none text-md`
+                `text-md w-[500px] rounded-lg bg-transparent p-2 shadow-xl shadow-slate-900/30 md:w-[auto] md:text-nowrap md:shadow-none`
               }
             >
               <Link
@@ -39,7 +39,7 @@ export default function Navigation({
                 data-role={dataRole.navLink}
                 className={
                   style?.navLink?.tailwinds ??
-                  "flex flex-col md:flex-row text-center items-center gap-1 hover:text-blue-500 active:text-blue-300"
+                  "flex flex-col items-center gap-1 text-center hover:text-blue-500 active:text-blue-300 md:flex-row"
                 }
                 // TODO 2023-08-26 | Add active vs not active class for nav items.
                 href={item.href}

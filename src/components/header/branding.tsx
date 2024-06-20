@@ -14,21 +14,21 @@ export default function Branding({
       data-role={dataRole?.brandingWrapper}
       className={
         style?.brandingWrapper?.tailwinds ||
-        "flex pointer-events-auto justify-left w-full items-center justify-center md:justify-left md:items-left min-w-[fit-content] backdrop-blur md:backdrop-filter-none"
+        "justify-left md:justify-left md:items-left pointer-events-auto flex w-full min-w-[fit-content] items-center justify-center backdrop-blur md:backdrop-filter-none"
       }
     >
       <Link
         href="/"
         className={
           style?.titleLink?.tailwinds ||
-          "w-[100%] md:w-auto flex text-center bg-slate-800/70 md:bg-transparent px-2 md:px-auto rounded-bl rounded-br"
+          "md:px-auto flex w-[100%] rounded-bl rounded-br bg-slate-800/70 px-2 text-center md:w-auto md:bg-transparent"
         }
       >
         <h1
           data-role={dataRole?.title}
           className={
             style?.title?.tailwinds ||
-            "text-xl bg:transparent font-medium tracking-wide w-full m-auto p-2 md:px-auto"
+            "bg:transparent md:px-auto m-auto w-full p-2 text-xl font-medium tracking-wide"
           }
         >
           {content.title}

@@ -13,7 +13,7 @@ export interface HeroConfig {
     title?: string;
     description: string;
   };
-  layout?: keyof LayoutConfig | "1x1"; // 1x1, 1x2, 2x1, 2x2
+  layout?: keyof LayoutConfig | "1x1"; // 1x1, 1x2, 2x1, 2x2 // TODO: 20240620 #EP || Add more layouts if/when needed.
   style?: StylesType;
   children?: React.ReactNode;
 }
@@ -31,7 +31,7 @@ export interface HeroDefault {
     title: string;
     description: string;
   };
-  layout: keyof LayoutConfig | "1x1"; // 1x1, 1x2, 2x1, 2x2
+  layout: keyof LayoutConfig | "1x1"; // 1x1, 1x2, 2x1, 2x2 // TODO: 20240620 #EP || Add more layouts if/when needed.
   style: StylesType;
   children?: React.ReactNode;
 }

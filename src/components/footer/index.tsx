@@ -1,24 +1,15 @@
 import React from "react";
-import { FooterConfig, FooterDefault } from "@/libs/context/types";
+import { FooterConfig, FooterDefault } from "./types";
 // import validateProps from "@/lib/ValidateProps";
 // import { HomeIcon, PencilIcon } from "@heroicons/react/20/solid";
 
 /**
- * Footer component for the full application.
- *
- * @name Footer
- * @memberof components
- * @description The Footer component is used to display a title and description for a page.
- * @param {FooterConfig} props The props for the component. @see {@link 'context/types/FooterConfig'} for more information.
- * @returns A React component.
- *
- * @todo Add a prop for the Footer image, alt text, etc.
- * @todo Add prop for layouts? (e.g. centered, left, right, etc.)
- * @todo Add prop for style
+ * Footer component for the full application with defaults and optional user defined props via context.
  */
 export default function Footer(
-  props: FooterDefault & Partial<FooterConfig>
+  props: FooterDefault & Partial<FooterConfig>,
 ): JSX.Element {
+  const { dataRole, content, style } = props;
   // Takes expected defaults, user defined props, validates them, and returns props object.
   // const { invalidProps, validProps } = validateProps(FooterDefault, props);
 
@@ -28,18 +19,32 @@ export default function Footer(
   // Return component
   return (
     <footer
-      data-role={props.dataRole.wrapper}
-      className={props.style.wrapper.tailwinds}
+      data-role={dataRole?.wrapper || "footer-wrapper"}
+      className={
+        style?.wrapper?.tailwinds ||
+        "space-evenly m-auto flex w-full justify-center gap-4 rounded-xl bg-slate-900/20 p-4 px-8"
+      }
     >
-      <section className="flex text-center justify-center m-auto mt-4">
-        © {new Date().getFullYear()}
-        {props?.content?.developer && ` - ${props.content.developer}`}
-        {props?.content?.title && ` & ${props.content.title}`}
-        {". "} All Rights Reserved.
-      </section>
+      <span
+        data-role={dataRole.copyright || "footer-copyright"}
+        className="mt-auto flex justify-center text-center"
+      >
+        All Rights Reserved © {new Date().getFullYear()}
+      </span>
+      <span className="mt-auto flex justify-center text-center">-</span>
+      <span
+        data-role={dataRole?.branding || "footer-branding"}
+        className={
+          style.description?.tailwinds ||
+          "mt-auto flex justify-center text-center"
+        }
+      >
+        {content?.developer && `${content.developer}`}
+        {content?.title && ` & ${content.title}`}
+      </span>
 
       {/* TODO: Onboard this component.
-       <Breadcrumb {...props?.BreadCrumb} /> */}
+       <Breadcrumb {...BreadCrumb} /> */}
     </footer>
   );
 }

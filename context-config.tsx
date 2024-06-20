@@ -38,7 +38,7 @@ const config: ContextConfig = {
   brand: {
     title: "ErikPlachta.com",
     description: "My personal website.",
-    developer: "Erik Plachta",
+    developer: "NOPE",
     developerLink: "https://erikplachta.com",
     keywords: [
       "Erik Plachta",
@@ -139,10 +139,7 @@ const config: ContextConfig = {
       },
       footer: {
         content: {
-          // Brand Name to render in the footer.
-          title: "", // Empty string required to keep field blank at this time.
-          description:
-            "MVP project using NextJS and MDX to learn and maintain a working knowledge.",
+          title: "ErikPlachta.com", // Empty string required to keep field blank at this time
           developer: "Erik Plachta",
         },
       },

@@ -10,10 +10,10 @@ export interface FooterConfig {
     developer?: string;
   };
   dataRole?: {
-    wrapper?: string;
-    title?: string;
-    description?: string;
-    nav?: string;
+    wrapper?: string | undefined;
+    title?: string | undefined;
+    description?: string | undefined;
+    nav?: string | undefined;
   };
   style?: StylesType;
   nav?: NavLink[];
@@ -25,14 +25,14 @@ export interface FooterConfig {
 export interface FooterDefault {
   content: {
     title: string;
-    description: string;
-    developer: string;
+    description?: string | undefined;
+    developer?: string | undefined;
   };
   dataRole: {
-    [key: string]: string;
+    [key: string]: string | undefined;
   };
   style: StylesType;
-  nav: NavLink[];
+  nav?: NavLink[];
 }
 
 /**
