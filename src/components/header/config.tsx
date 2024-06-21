@@ -1,5 +1,5 @@
-import { HeaderConfig, HeaderDefault } from "./types";
-import { HomeIcon, PencilIcon } from "@heroicons/react/20/solid";
+import { HeaderDefault } from "./types";
+import { HomeIcon } from "@heroicons/react/20/solid";
 
 /**
  * Header components default configuration.
@@ -13,16 +13,12 @@ export const HeaderDefaultConfig: HeaderDefault = {
       {
         title: "home",
         href: "/",
-        label: "Home",
+        label: "Default Homepage for this project.",
+        value: "Home",
         default: true,
         icon: () => <HomeIcon />,
-      },
-      {
-        title: "about",
-        href: "/about",
-        label: "About",
-        default: false,
-        icon: () => <PencilIcon className="mr-3 h-5 w-5" />,
+        rel: "noopener",
+        target: "_self",
       },
     ],
   },
@@ -40,7 +36,7 @@ export const HeaderDefaultConfig: HeaderDefault = {
   },
   style: {
     wrapper: {
-      // The header element.
+      // The header element itself around the branding and nav content.
       tailwinds:
         "fixed md:sticky flex flex-col pointer-events-none md:flex-row gap-4 justify-between max-w-4xl w-full m-auto items-center z-10 top-0 bottom-0 md:bottom-[unset] md:top-0  md:py-2 md:px-6 md:backdrop-blur md:bg-slate-100 dark:md:bg-slate-800/70 rounded-tl-lg rounded-tr-lg md:rounded-none md:rounded-bl-lg md:rounded-br-lg transition-all",
     },
@@ -89,7 +85,6 @@ export const HeaderDefaultConfig: HeaderDefault = {
 };
 
 //----------------------------------------------------------------------------------------
-
 /**
  * The default props for apps Header component, including branding and navigation used by
  * the header and nav components along with the Context library.

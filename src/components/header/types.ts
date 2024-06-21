@@ -1,5 +1,6 @@
 import { MdxFrontmatterTypes } from "@/libs/mdx/types";
 import StylesType from "@/types/styles";
+import { HTMLAttributeAnchorTarget, HtmlHTMLAttributes } from "react";
 
 /**
  * Optional args to be passed in to Header component to override default values via src/context/config/index.tsx
@@ -59,7 +60,10 @@ export interface NavLink {
   title: string;
   href: string;
   label: string;
+  value: string;
   default: boolean;
+  rel?: HtmlHTMLAttributes<HTMLAnchorElement>["rel"] | undefined;
+  target?: HTMLAttributeAnchorTarget | undefined;
   // Using Hero Icons for this project.
   icon: () => JSX.Element;
 }
