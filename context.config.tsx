@@ -63,22 +63,27 @@ const config: ContextConfig = {
             {
               title: "home",
               href: "/",
-              label: "Home",
+              label: "Homepage for this project.",
+              value: "Home",
               default: true,
               icon: () => <HomeIcon />,
             },
             {
               title: "mdx",
               href: "/blog",
-              label: "MDX Blog",
+              label: "Blog feed using next-mdx-remote.",
+              value: "MDX Blog",
               default: true,
               icon: () => <PencilIcon />,
             },
             {
               title: "github",
               href: "https://github.com/ErikPlachta/nextjs-mdx",
-              label: "GitHub",
+              label: "GitHub Repository for this project.",
+              value: "GitHub",
               default: true,
+              target: "_blank",
+              rel: "noopener noreferrer",
               icon: () => (
                 <span className="w-2">
                   <Image src={githubMark} alt="GitHub Mark" />
@@ -88,8 +93,11 @@ const config: ContextConfig = {
             {
               title: "website",
               href: "https://erikplachta.com",
-              label: "ErikPlachta",
+              label: "Link to developers personal website, Erik Plachta.com",
+              value: "ErikPlachta.com",
               default: true,
+              target: "_blank",
+              rel: "noopener noreferrer",
               icon: () => <UserIcon />,
             },
           ],

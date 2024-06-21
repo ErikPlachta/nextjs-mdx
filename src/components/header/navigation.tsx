@@ -26,6 +26,8 @@ export default function Navigation({
                 href={item.href}
                 aria-label={item.label}
                 title={item.title}
+                rel={item.rel} // https://web.dev/external-anchors-use-rel-noopener/
+                target={item.target}
               >
                 <span
                   data-role={dataRole.navIcon}
@@ -33,7 +35,7 @@ export default function Navigation({
                 >
                   {item.icon()}
                 </span>
-                {item.label}
+                {item.value}
               </Link>
             </li>
           );

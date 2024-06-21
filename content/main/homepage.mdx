@@ -10,6 +10,15 @@ contentType: "main"
 status: "Published"
 ---
 
-# Homepage
+<Hero
+  content={{
+    title: "Home",
+    description:
+      "Using MDX content within NextJs App and Page routes via `next-mdx` and `next-mdx-remote`.",
+  }}
+/>
 
-This is the homepage content. It will be updated with more information soon.
+<Callout emoji="🥳" headingLevel="2" title="Rendering a Component within MDX">
+  This is an custom component, `Callout`, with state defined in MDX, and
+  rendered by @next/mdx into jsx.
+</Callout>
