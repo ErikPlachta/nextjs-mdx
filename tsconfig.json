@@ -27,9 +27,15 @@
       // Context contains application configuration controls for components to override default values.
       "context": ["./src/libs/context/index.tsx"], // Primary Context library file.
       "context/*": ["./src/libs/context/*"], // Secondary Context library files.
-      "UserConfig": ["./context-config.tsx"] // Context Configuration
+      "UserConfig": ["./context.config.tsx"] // Context Configuration
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    ".config.tsx"
+  ],
   "exclude": ["node_modules"]
 }
