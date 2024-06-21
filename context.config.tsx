@@ -94,7 +94,7 @@ const config: ContextConfig = {
               title: "website",
               href: "https://erikplachta.com",
               label: "Link to developers personal website, Erik Plachta.com",
-              value: "ErikPlachta.com",
+              value: "ErikPlachta",
               default: true,
               target: "_blank",
               rel: "noopener noreferrer",
