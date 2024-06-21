@@ -19,11 +19,15 @@
     ],
     "paths": {
       "@/*": ["./src/*"],
-      "context": ["./src/lib/context/index.tsx"], // For context
-      "context/*": ["./src/lib/context/*"], // For all other context files
-      // "config": ["./config/index.ts"],
-      // "content": ["./content/*"]
-      "UserConfig": ["./context-config.tsx"]
+      // ----------------- Content ---------------------------------------------
+      // MDX Content used in the application.
+      "content": ["./content/*"],
+
+      // ----------------- Context ---------------------------------------------
+      // Context contains application configuration controls for components to override default values.
+      "context": ["./src/libs/context/index.tsx"], // Primary Context library file.
+      "context/*": ["./src/libs/context/*"], // Secondary Context library files.
+      "UserConfig": ["./context-config.tsx"] // Context Configuration
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],

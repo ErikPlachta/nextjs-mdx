@@ -6,14 +6,17 @@ import { motion, useAnimationControls } from "framer-motion";
 import { MagnifyingGlassIcon, XMarkIcon } from "@heroicons/react/24/outline";
 
 // Custom Content
-import { SearchPropTypes, SearchPropDefaultTypes } from "context/types";
 import useDebounce from "@/hooks/useDebounce";
-import { IndexedObjectType, pick } from "@/lib/ObjectUtils";
+import { IndexedObjectType, pick } from "@/libs/ObjectUtils";
+import {
+  SearchComponentDefaultsTypes,
+  SearchComponentPropsTypes,
+} from "./types";
 
 //--------------------------------------------------------------------------------
 // TYPES
 
-export const search_Defaults: SearchPropDefaultTypes = {
+export const search_Defaults: SearchComponentDefaultsTypes = {
   data: [],
   dataKeys: [],
   placeholder: "Search...",
@@ -54,10 +57,10 @@ export const search_Defaults: SearchPropDefaultTypes = {
     buttonClear: "m-auto w-[35px] p-[8px] bg-transparent text-white ",
     // Results container to pick from when searching
     results:
-      // TODO: update this
-      "absolute flex flex-col z-50 min-h-[fit-content] max-h-[300px] overflow-scroll w-[100%] mt-[.25rem] " +
+      "absolute flex w-full flex-col z-50 min-h-[fit-content] max-h-[300px] w-[100%] mt-[.25rem] " +
       " transition-all duration-300 " +
-      " border-solid border-2 border-secondary bg-tertiary rounded-md shadow-md",
+      " border-solid border-2 border-secondary bg-tertiary rounded-md shadow-md" +
+      " overflow-y-auto",
     result:
       "z-50 hover:bg-accent hover:cursor-pointer px-2 py-4 " +
       " border-solid border-2 border-secondary border-t-0 border-l-0 border-r-0",
@@ -70,14 +73,21 @@ export const search_Defaults: SearchPropDefaultTypes = {
 /**
  * Custom search component to search through data and display results.
  *
- * @param props
+ * @param {SearchComponentPropsType} props - The props for the search component.
  * @returns
  */
-export default function Search(props: SearchPropTypes) {
+export default function Search(props: SearchComponentPropsTypes) {
   const [isMounted, setIsMounted] = useState(false);
 
   // Destructure the props and set defaults
-  const { data, dataKeys, placeholder, searchWhenTyping, autoFocus, styles } = {
+  const {
+    data,
+    dataKeys,
+    placeholder,
+    searchWhenTyping,
+    autoFocus,
+    styles,
+  }: SearchComponentDefaultsTypes = {
     ...search_Defaults,
     ...props,
   };
@@ -86,38 +96,43 @@ export default function Search(props: SearchPropTypes) {
   const [filteredData, setFilteredData] = useState<IndexedObjectType[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
   const searchInputRef = useRef(null);
-  const [searchDebounceTimeoutId, setSearchDebounceTimeoutId] = useState<
-    number | null
-  >(null);
+  // TODO: Onboard debounce or remove from here.
+  //const [searchDebounceTimeoutId, setSearchDebounceTimeoutId] = useState<  number | null>(null);
   const controls = useAnimationControls();
 
-  const handleSearch = (value: any) => {
-    // Validation
-
+  /**
+   * Take value from input and search within dataset.
+   *
+   * @param {string} value - The value to search for within the dataset.
+   * @returns
+   */
+  function handleSearch(value: string): void {
+    // ---------------------------------
+    // 1. Validation
     if (!value) {
-      setFilteredData([]);
+      setFilteredData([]); // Remove filter if input cleared
       return;
     }
-
     if (!data) {
-      throw new Error("[Components/Search] No data defined for search");
-      return;
+      throw new Error("[Components/Search] No data defined for search!");
     }
-
     if (!dataKeys || dataKeys.length === 0) {
       throw new Error("[Components/Search] No dataKeys defined for search");
-      return;
     }
-    // Execute the search
+    // ---------------------------------
+    // 2. Execute the search
+
     try {
+      // 2.a Attempt search
       const filterValues = pick(data, dataKeys, value);
-      setFilteredData(filterValues);
+      setFilteredData(filterValues); // Set the filter based on input
     } catch (err) {
-      // Failed to search
+      // 2.b Handle error
       throw new Error(`[Components/Search] Unable to handleSearch: ${err}`);
     }
-  };
+  }
 
+  // -----------------------------------
   // Debounce the handleSearch function
   const debouncedHandleSearch = useDebounce(handleSearch, 300);
 
@@ -137,28 +152,32 @@ export default function Search(props: SearchPropTypes) {
     }
   };
 
-  const handleOnClick = (
-    ref: any,
-    searchTerm: string,
-    setFilteredData: any
-  ) => {
+  /**
+   * On-Click event for Search Button and Clear Button.
+   *
+   * @param ref
+   * @param searchTerm
+   */
+  function handleOnClick(ref: any, searchTerm: string): void {
     if (searchTerm.length === 0) {
       ref.current.focus();
     } else {
       debouncedHandleSearch(searchTerm);
     }
-  };
+  }
 
-  // Clearing out search params because navigating away from the search results
-  function handleResultClick(slug: string) {
+  /**
+   * Clearing out search params because navigating away from the search results.
+   **/
+  function handleResultClick(slug: string): void {
     setSearchTerm("");
     setFilteredData([]);
   }
 
   /**
-   * Handle framer animations of the search input based on category.
+   * Start Framer Motion animations of the search input based on category.
    */
-  function handleAnimation(type: string) {
+  function handleAnimation(type: string): void {
     controls.start(type === "focus" ? "isActive" : "isInactive");
   }
 
@@ -188,9 +207,7 @@ export default function Search(props: SearchPropTypes) {
             className={styles.buttonSearch}
             id="button-search"
             disabled={searchTerm.length === 0}
-            onClick={() =>
-              handleOnClick(searchInputRef.current, searchTerm, setFilteredData)
-            }
+            onClick={() => handleOnClick(searchInputRef.current, searchTerm)}
             //TODO: Add FramerMotion animations
           >
             <MagnifyingGlassIcon />

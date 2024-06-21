@@ -1,6 +1,6 @@
 // pages/api/context.ts
 import { NextApiRequest, NextApiResponse } from "next";
-import Context from "context";
+import Context from "@/libs/context";
 
 export default async function handler(
   req: NextApiRequest,

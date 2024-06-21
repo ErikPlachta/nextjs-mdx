@@ -1,5 +1,9 @@
-import Context from "context"; // TODO: Update to get from header?
-import { ContextConfigType, HeroConfig, HeroDefault } from "context/types";
+import Context from "@/libs/context"; // TODO: Update to get from header?
+import {
+  ContextConfigType,
+  HeroConfig,
+  HeroDefault,
+} from "@/libs/context/types";
 
 // Gets default component values for the Hero Component from src/context. ( Application defaults unless user modified in src/context/config/index.tsx )
 const context: ContextConfigType = Context();

@@ -4,10 +4,9 @@ import "./globals.css";
 // import { Suspense } from "react";
 // import { headers } from "next/headers";
 
-import Context from "context";
+import Context from "@/libs/context";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
-// import Admin from "@/components/utils/admin";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -25,7 +24,7 @@ export default function RootLayout({
   // const context = headerList.get("context");
 
   // Getting context data from custom context provider to spread into content.
-  const context = Context();
+  const context = Context(); // TODO: Remove this once I've onboard react context.
 
   return (
     <html lang="en">

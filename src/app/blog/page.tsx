@@ -1,6 +1,6 @@
 import React, { Suspense } from "react";
-import { getMdxFilesFrontmatterByContentTypeByStatus } from "@/lib/MdxUtils/index";
-import Page from "@/components/mdx/page";
+import { getMdxFilesFrontmatterByContentTypeByStatus } from "@/libs/mdx/index";
+import MdxFeed from "@/components/mdx/page/feed";
 // import { SortAndFilter } from "@/lib/ObjectUtils/index";
 
 const defaults: any = {
@@ -62,6 +62,11 @@ async function getData(): Promise<{ allContent: [] }> {
   };
 }
 
+/**
+ * Take MDX Content and generate a feed.
+ *
+ * @returns {JSX.Element} - The rendered MDX content for Blog.
+ */
 export default async function BlogFeed(): Promise<JSX.Element> {
   const args = { ...defaults };
   // deconstructing
@@ -84,39 +89,19 @@ export default async function BlogFeed(): Promise<JSX.Element> {
     return data.allContent;
   });
 
-  // Building the feedData based on the sortAndFilterConfig
-  //let dataForFeed2 = SortAndFilter({
-  //  // ...feedData,
-  //  data: content,
-  //  config: sortAndFilterConfig,
-  //}) as any;
-
   let dataForFeed = content;
-  //{
-  //  // ...feedData,
-  //  data: content,
-  //  config: sortAndFilterConfig,
-  //} as any;
-
-  //console.log("!!!!: content: ", content);
-  //console.log("!!!!: feedData: ", feedData);
-  // console.log("!!!!: config: ", sortAndFilterConfig);
 
   return (
     <Suspense>
-      <Page
+      <MdxFeed
         title={title}
         description={description}
-        type={type}
-        feedData={dataForFeed}
-        singleData={singleData}
+        data={dataForFeed}
         path={path}
-        slug={slug}
         slugRoutingTo={"slugRoutingTo"}
         heightFrom={heightFrom}
         heightTo={heightTo}
         sortAndFilterConfig={sortAndFilterConfig}
-        hasSearch={true}
         searchDataKeys={[
           "slug",
           "title",
@@ -128,6 +113,7 @@ export default async function BlogFeed(): Promise<JSX.Element> {
           "contentType",
         ]}
         hasFilter={true}
+        hasSearch={true}
       />
       {/* TODO: 20230826 | Remove this console log once done testing. */}
       {/* {console.log("feedData", content)}{" "} */}
