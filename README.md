@@ -28,9 +28,9 @@ Additional libraries I used for this project that are not required for the core 
   - [x] `blog` - to be used with `next-mdx-remote`
 - [ ] Build App directory
 
-  - [ ] blog
-    - [ ] Feed - Get summary, generate cards of content that exists
-    - [ ] Page - Get full remote mdx content from slug
+  - [x] blog
+    - [x] Feed - Get summary, generate cards of content that exists
+    - [x] Page - Get full remote mdx content from slug
   - [ ] main
 
 - [ ] Use Page directory
