@@ -1,0 +1,6 @@
+## Reference: https://docs.github.com/en/communities/using-templates-to-encourage-useful-issues-and-pull-requests/configuring-issue-templates-for-your-repository#configuring-the-template-chooser
+blank_issues_enabled: false
+contact_links:
+  - name: "Erik Plachta"
+    url: "https://twitter.com/erikplachta"
+    about: "I'm a software engineer and open source enthusiast. I'm passionate about web development, TypeScript, and Next.js. I'm also a fan of Tailwind CSS and Contentlayer. I'm always looking for new opportunities to learn and grow as a developer. Feel free to reach out to me on Twitter if you have any questions or just want to chat!"
