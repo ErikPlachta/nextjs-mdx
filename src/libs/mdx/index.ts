@@ -27,6 +27,7 @@ export const CONTENT: any[] = [
 
 import SummaryCard from "@/components/mdx/card/summary";
 import Hero from "@/components/hero";
+import Callout from "@/components/callout";
 
 /**
  * Components that are embedded in  MDX content.
@@ -37,7 +38,7 @@ export const COMPONENTS: any = {
   Hero,
   SummaryCard,
   // SummaryCard
-  // Callout,
+  Callout,
   // Code,
   // ProsCard,
   // ConsCard,
