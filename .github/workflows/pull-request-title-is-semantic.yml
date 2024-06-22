@@ -1,0 +1,18 @@
+name: "Pull Request - Title Is Semantic"
+run-name: ${{ github.actor }} - Pull Request - Title Is Semantic
+on:
+  pull_request:
+    types:
+      - opened
+      - edited
+      - synchronize
+permissions:
+  pull-requests: read
+jobs:
+  main:
+    name: Pull Request - Title Is Semantic
+    runs-on: ubuntu-latest
+    steps:
+      - uses: amannn/action-semantic-pull-request@v5
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

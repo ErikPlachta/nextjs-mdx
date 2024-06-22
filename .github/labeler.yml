@@ -1,0 +1,17 @@
+# labels used by Labeler workflow.
+# https://github.com/actions/labeler
+"📌 area: .github":
+  - any: [".github/**/*"]
+
+"📌 area: src":
+  - any: ["src/**/*"]
+
+"📌 area: utils":
+  - any: ["src/utils/**/*"]
+
+"📚 documentation":
+  - any: ["www/**/*"]
+  - any: ["**/*.md"]
+
+"⚙️ config":
+  - any: ["package.json", "prettier.config.js", "tsconfig.json", "tsconfig.build.json", "next.config", ".eslintrc.json","tailwind.config.ts", "contentlayer.config.ts"]

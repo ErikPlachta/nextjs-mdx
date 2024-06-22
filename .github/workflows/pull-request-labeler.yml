@@ -1,0 +1,21 @@
+# Automatically label pull requests based on the branch name, title, or changes.
+# Action URL: https://github.com/actions/labeler
+
+name: Pull Request - Labeler
+run-name: ${{ github.actor }} Pull Request - Labler
+on:
+  pull_request_target:
+    branches: ["*"]
+
+jobs:
+  labeler:
+    name: Pull Request
+    permissions:
+      contents: read
+      pull-requests: write
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/labeler@v4
+        with:
+          repo-token: "${{ secrets.GITHUB_TOKEN }}"
+          sync-labels: true
