@@ -1,0 +1,20 @@
+name: 'Log Action'
+description: 'Logs data to a specified file with various formats'
+inputs:
+  localOutputPath:
+    description: 'Local Output Path including file name'
+    required: true
+  data:
+    description: 'Data to be log as a stringified array of objects.'
+    required: true
+    default: '{}'
+  crudOptions:
+    description: 'CRUD OPTIONS: Create, Append, or Replace existing log'
+    required: false
+    default: 'append'
+  logFormat:
+    description: 'Log, which controls the file extension and formatting. (JSON, MD, CSV, TXT)'
+    required: true
+runs:
+  using: 'node20'
+  main: 'index.js'
