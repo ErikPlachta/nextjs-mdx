@@ -1,0 +1,113 @@
+name: Issue Conventional Commit - Auto Title
+description: Template for creating a new issue using the Conventional Commit format. Works with `.github/workflows/issue-update-title-and-label.yml`.
+assignees:
+  - erikplachta
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## ☝🏼
+        
+        Title will be used as the description of the issue.
+        > ```<type>[optional scope]: <description>```
+
+        - Should be a short, imperative tense description of the change.
+        - Use the imperative, present tense: "change" not "changed" nor "changes".
+        - Don't capitalize first letter.
+        - No dot (.) at the end.
+
+  - type: input
+    id: labels
+    attributes:
+      label: Labels
+      description: CSV labels to add to the issue.
+      placeholder: ex. `search,ui,bug`
+    validations:
+      required: false
+  - type: dropdown
+    id: type
+    attributes:
+      label: Type
+      description: |
+        Select issue `type` using (Conventional Commit)[https://www.conventionalcommits.org/en/v1.0.0/]
+        format, `<type>[optional scope]: <description>`.
+        
+        <details>
+        <summary>Conventional Commit Type Reference</summary>
+        <ul>
+        <li> `build`: Changes that affect the build system or external dependencies (example scopes: gulp, broccoli, npm).</li>
+        <li> `ci`: Changes to our CI configuration files and scripts (example scopes: Travis, Circle, BrowserStack, SauceLabs).</li>
+        <li> `chore`: Other changes that don't modify src or test files.</li>
+        <li> `docs`: Documentation only changes.</li>
+        <li> `feat`: A new feature.</li>
+        <li> `fix`: A bug fix.</li>
+        <li> `perf`: A code change that improves performance.</li>
+        <li> `refactor`: A code change that neither fixes a bug nor adds a feature.</li>
+        <li> `revert`: Reverts a previous commit.</li>
+        <li> `style`: Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc).</li>
+        <li> `test`: Adding missing tests or correcting existing tests.</li>
+        </ul>
+        </details>
+      multiple: false
+      options:
+        - build
+        - ci
+        - chore
+        - docs
+        - feat
+        - fix
+        - perf
+        - refactor
+        - revert
+        - style
+        - test
+      default: 4
+    validations:
+      required: true
+  - type: input
+    id: scope
+    attributes:
+      label: Scope
+      description: |
+        The scope of the change. Can be empty (e.g. if the change is a global or difficult to assign to a single component), in which case the parentheses are omitted.
+      placeholder: ex. `search,ui,bug`
+    validations:
+      required: false
+  - type: textarea
+    id: problem-this-solves
+    attributes:
+      label: What problem does this feature solve?
+      description: Describe the problem this feature would solve. As a note, "problem" doesn't mean "bug" - it could be a missing feature, or a feature that could be improved.
+      placeholder: This feature would solve...
+    validations:
+      required: true
+  - type: textarea
+    id: solution
+    attributes:
+      label: How would you solve it?
+      description: Describe the solution you'd like to see.
+      placeholder: I'd like to see...
+    validations:
+      required: true
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority
+      description: How important is this feature to you?
+      options:
+        - Low
+        - Medium
+        - High
+        - Critical
+    validations:
+      required: true
+  - type: textarea
+    id: attachment
+    attributes:
+      label: Attachment
+      description: If you have any relevant screenshots or files, please attach them here.
+      placeholder: |
+        ![screenshot](https://example.com/screenshot.png)
+        [file](https://example.com/file.zip)
+    validations:
+      required: false
