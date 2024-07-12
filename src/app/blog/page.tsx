@@ -39,7 +39,7 @@ if (process.env.NODE_ENV === "development") {
     "hidden",
     "draft",
     "archived",
-    "deleted"
+    "deleted",
   );
   // Note: Uncomment to display templates. Keeping for dev purposes when updating templates.
   // defaults.sortAndFilterConfig.contentType.push("template");
@@ -57,7 +57,7 @@ async function getData(): Promise<{ allContent: [] }> {
   return {
     allContent: (await getMdxFilesFrontmatterByContentTypeByStatus(
       "blog", // contentType
-      defaults.sortAndFilterConfig.status // visibleStatusTypes
+      defaults.sortAndFilterConfig.status, // visibleStatusTypes
     )) as [], // TODO: Update to use a type
   };
 }
