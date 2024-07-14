@@ -1,24 +1,24 @@
----
-slug: "home"
-title: "Homepage"
-summary: "Homepage placeholder summary from within MDX"
-author: "Erik Plachta"
-createdAt: "2024-06-15"
-publishedAt: "2024-06-15"
-updatedAt:
-contentType: "main"
-status: "Published"
----
+export const frontmatter = {
+  slug: "home",
+  title: "Home | NextJs-MDX",
+  summary:
+    "Concept app for NextJs App with MDX content via `next-mdx` and `next-mdx-remote`.",
+  author: "Erik Plachta",
+  createdAt: "2024-06-15",
+  publishedAt: "2024-06-15",
+  updatedAt: "2024-07-11",
+  contentType: "main",
+  status: "Published",
+};
 
 <Hero
   content={{
     title: "Home",
-    description:
-      "Using MDX content within NextJs App and Page routes via `next-mdx` and `next-mdx-remote`.",
+    description: `Rendering MDX content in NextJs App Route with NextJs-MDX and Next-MDX-Remote.`,
   }}
 />
 
 <Callout emoji="🥳" headingLevel="2" title="Rendering a Component within MDX">
-  This is an custom Client component, `Callout`, with state defined in MDX, and
-  rendered by @next/mdx into jsx.
+  This is an custom Client component, `Callout`, with state defined in MDX and
+  rendered as JSX.
 </Callout>

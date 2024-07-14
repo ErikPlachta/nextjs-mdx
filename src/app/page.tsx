@@ -1,9 +1,21 @@
-"use client";
-import React, { ReactNode } from "react";
+// "use client";
+import type { Metadata } from "next";
 
-import HomepageMdx from "/content/main/homepage.mdx";
+// @ts-ignore - This is a Next.js specific import to allow extraction of metadata
+import HomepageMdx, { frontmatter } from "/content/main/homepage.mdx";
 
-export default function Homepage({ params }: any): JSX.Element {
-  // console.log("params", params);
+// let page = HomepageMdx({});
+// console.log("pageMeta: ", pageMeta);
+
+export const metadata: Metadata = {
+  ...frontmatter,
+  title: frontmatter?.title,
+  description: frontmatter?.summary,
+};
+
+export default function Homepage(props: any): JSX.Element {
+  //console.log("HomepageMdx", HomepageMdx({}));
+  //console.log("params", props);
+  // console.log("frontmatter", frontmatter);
   return <HomepageMdx />;
 }
