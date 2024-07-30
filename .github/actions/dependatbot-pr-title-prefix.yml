@@ -1,0 +1,73 @@
+name: Add Prefix to Dependabot PR Titles
+
+on:
+  pull_request:
+    types: [opened, edited]
+    branches:
+      - main
+
+jobs:
+  add-prefix:
+    runs-on: ubuntu-latest
+
+    if: github.actor == 'dependabot[bot]'
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+
+      - name: Install dependencies
+        run: npm install @octokit/rest
+
+      - name: Add prefix to PR title
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          node <<EOF
+          const { Octokit } = require("@octokit/rest");
+
+          const octokit = new Octokit({
+            auth: process.env.GITHUB_TOKEN,
+          });
+
+          const owner = "${{ github.repository_owner }}";
+          const repo = "${{ github.event.repository.name }}";
+          const pull_number = ${{ github.event.pull_request.number }};
+          const prefix = "chore(deps): ";
+
+          async function run() {
+            try {
+              const { data: pullRequest } = await octokit.pulls.get({
+                owner,
+                repo,
+                pull_number,
+              });
+
+              let newTitle = pullRequest.title;
+
+              // If the title does not already start with the prefix, add it
+              if (!newTitle.startsWith(prefix)) {
+                newTitle = prefix + newTitle;
+              }
+
+              await octokit.pulls.update({
+                owner,
+                repo,
+                pull_number,
+                title: newTitle,
+              });
+
+              console.log(`Pull request title updated to: ${newTitle}`);
+            } catch (error) {
+              console.error(`Error updating pull request title: ${error}`);
+              process.exit(1);
+            }
+          }
+
+          run();
+          EOF
