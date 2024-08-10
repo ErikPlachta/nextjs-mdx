@@ -6,7 +6,7 @@ run-name: ${{ github.actor }} Pull Request - Labler
 on:
   pull_request_target:
     branches: ["*"]
-
+    #types: [opened, edited]
 jobs:
   labeler:
     name: Pull Request

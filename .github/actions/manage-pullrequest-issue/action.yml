@@ -1,0 +1,40 @@
+name: "Manage PR and Issues"
+description: "GitHub Action that manages Pull Requests and Issues based on inputs."
+author: "Erik Plachta"
+
+branding:
+  icon: "git-pull-request"
+  color: "blue"
+
+# The action runs on pull_request and issues events
+runs:
+  using: "node16" # Note: Using Node.js 16 here because if I try 18 it fails.
+  main: "dist/index.js" # Path to the main file the action will run
+
+# Parameters passed in to the main logic from the workflow
+inputs:
+  actor:
+    description: "The GitHub actor making the request."
+    required: true
+  branches:
+    description: "CSV Repo branch names to evaluate. ex: `main,develop` or `*` for all branches."
+    required: true
+  event_types:
+    description: "CSV GitHub event types to evaluate. Default is both `pull_request` and `issue`. ex: `pull_request,issues`."
+    required: false
+    default: 'pull_request,issues'
+  title_prefix:
+    description: "Optional Title Prefix to add to Pull Request(s) and Issue(s). ex: `chore: `."
+    required: false
+    default: ""
+  dependabot_prefix:
+    description: "Default Prefix to add to Dependabot Pull Requests titles."
+    required: false
+    default: "chore: "
+  labels:
+    description: "Comma-separated list of labels to add. ex: `manage-pr-issue,action`. Default is none."
+    required: false
+    default: ""
+  GITHUB_TOKEN:
+    description: "GitHub token to authenticate with the GitHub API. Users must generate a Personal Access Token (PAT) with permissions to read and write Pull Requests, Issues, and view content. Token must be stored in GitHub Secrets for the Repo using name `PERSONAL_ACCESS_TOKEN`."
+    required: true
