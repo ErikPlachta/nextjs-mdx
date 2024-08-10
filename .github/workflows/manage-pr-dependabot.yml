@@ -1,0 +1,52 @@
+name: Manage Dependabot Pull Requests
+run-name: ${{github.actor}} PR on ${{github.repository}}. Executing custom action `manage-pullrequest-issue`.
+
+on:
+  pull_request:
+    types: [opened, edited]
+    branches:
+      - "*"
+
+jobs:
+  manage-dependabot-prs:
+    name: Manage Dependabot Pull Requests
+    runs-on: ubuntu-latest
+
+    # Skips this steps if the actor is dependabot[bot]
+    if: github.actor == 'dependabot[bot]'
+    steps:
+      - name: 1. Checkout Repository - ${{github.repository}}
+        id: checkout-repository
+        uses: actions/checkout@v3
+
+      - name: 2. Set up Node.js 18 for Action to Run
+        id: setup-node
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18"
+
+      - name: 3. Install Dependencies for Manage-PullRequest-Issue Action
+        id: install-dependencies
+        run: |
+          cd .github/actions/manage-pullrequest-issue
+          npm install
+        continue-on-error: false
+
+      - name: 4. Build Action and Transpile TypeScript to JavaScript
+        id: build-action
+        run: |
+          cd .github/actions/manage-pullrequest-issue
+          npm run build
+        continue-on-error: false
+
+      - name: 5. Run Action passing in Args from YML Configuration
+        id: run-action
+        uses: ./.github/actions/manage-pullrequest-issue
+        with:
+          actor: "dependabot[bot]"
+          branches: "main,develop"
+          event_types: "pull_request"
+          title_prefix: ""
+          dependabot_prefix: "chore: "
+          labels: "manage-pr-issue,dependabot"
+          GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
