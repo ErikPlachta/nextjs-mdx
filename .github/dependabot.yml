@@ -8,7 +8,9 @@ updates:
   - package-ecosystem: "npm" # See documentation for possible values
     directory: "/" # Location of package manifests
     schedule:
-      interval: "daily"
+      interval: "weekly"
+      # Check for npm updates on Saturdays
+      day: "saturday"
 # Add assignees
     assignees:
       - "erikplachta"
