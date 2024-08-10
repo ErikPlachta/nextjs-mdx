@@ -18,10 +18,12 @@
     "framer-motion": "^11.2.10",
     "next": "^14.2.4",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "tailwinds": "^0.0.0"
   },
   "devDependencies": {
     "@next/mdx": "^14.2.4",
+    "@tailwindcss/typography": "^0.5.14",
     "@types/mdx": "^2.0.13",
     "@types/node": "^20",
     "@types/react": "^18",
@@ -29,12 +31,11 @@
     "eslint": "^8",
     "eslint-config-next": "^14.2.4",
     "next-mdx-remote": "^5.0.0",
-    "postcss": "^8",
+    "postcss": "^8.4.41",
     "prettier": "^3.3.2",
     "prettier-plugin-tailwindcss": "^0.6.5",
-    "tailwindcss": "^3.4.1",
     "tailwind-highlightjs": "^2.0.1",
-    "@tailwindcss/typography": "^0.5.13",
+    "tailwindcss": "^3.4.1",
     "typescript": "^5"
   }
 }
