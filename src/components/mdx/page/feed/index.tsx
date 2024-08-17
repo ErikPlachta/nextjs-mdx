@@ -27,12 +27,18 @@ export const FeedComponent_DefaultProps: FeedComponentDefaultsTypes = {
     contentType: ["blog", "main"], // TODO: Update so this is pulled from Context and/or more generic.
     sortKey: "publishedAt", // is initially managed at the page level using the feed
     sortDataType: "date",
-    sortOrder: "descending", // is initially managed at the page level using the feed
+    sortOrder: "descending", // Default is set to descending
     noSortKey_Last: true,
     noSortKey_Remove: true,
   },
 };
 
+/**
+ * Generate a list of summary cards from an array of data.
+ *
+ * @param params
+ * @returns
+ */
 export default function Feed(params: FeedComponentPropsTypes): JSX.Element {
   //----------------------------------------------------------------------------
   // Spread Default Props and then params to ensure all values are set.
@@ -51,9 +57,9 @@ export default function Feed(params: FeedComponentPropsTypes): JSX.Element {
   let slugRoutingTo: FeedComponentPropsTypes["slugRoutingTo"] =
     useSearchParams()?.get("slug");
 
-  if (process.env.NODE_ENV === "development") {
-    // console.log(`[Feed.tsx] - dev so printing params: `, params);
-  }
+  // if (process.env.NODE_ENV === "development") {
+  //   console.log(`[Feed.tsx] - dev so printing params: `, params);
+  // }
 
   // function buildFilterTags(config: SortAndFilterPropTypes["config"]) {
   //   // 1. Get all distinct Tags from all data
@@ -134,7 +140,7 @@ export default function Feed(params: FeedComponentPropsTypes): JSX.Element {
 
       {/* Custom Search Component to search for content to navigate to instead of scroll click down below */}
       {props.hasSearch && (
-        <div id="feed-search-wrapper" className="p-2 m-auto max-w-[80%]">
+        <div id="feed-search-wrapper" className="m-auto w-full p-6">
           <Search
             data={Array.isArray(props.data) ? props.data : []}
             dataKeys={props.searchDataKeys as any}
@@ -157,7 +163,7 @@ export default function Feed(params: FeedComponentPropsTypes): JSX.Element {
       {/* TODO: Split up sort and filtering. for now just as one. */}
 
       {/* Wrapper around container holding cards */}
-      <section className="flex flex-col gap-4 h-full rounded-lg max-w-4xl mt-4 py-10 m-auto bg-slate-100 dark:bg-slate-800/30 shadow-sm shadow-slate-500 w-full">
+      <section className="m-auto mt-4 flex h-full w-full max-w-4xl flex-col gap-4 rounded-lg bg-slate-100 py-10 shadow-sm shadow-slate-500 dark:bg-slate-800/30">
         {/* Container holding cards */}
         <motion.div
           className="relative"
@@ -181,7 +187,7 @@ export default function Feed(params: FeedComponentPropsTypes): JSX.Element {
               slugRoutingTo,
               props.path,
               props.heightFrom,
-              props.heightTo
+              props.heightTo,
             )
           }
         </motion.div>
