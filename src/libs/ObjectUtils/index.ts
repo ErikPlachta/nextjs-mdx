@@ -279,12 +279,12 @@ export function SortAndFilter(params: SortAndFilterPropTypes): object[] {
       // -------------------------------
       // 5.a lastly, check if sortOrder is ascending and reverse the sortedData
       if (sortOrder === "ascending") {
-        console.log("ascending");
+        // console.log("ascending");
         return sortedData.reverse();
       }
       // 5.b else return sortedData
       else {
-        console.log("descending");
+        // console.log("descending");
         return sortedData;
       }
     } catch (error) {

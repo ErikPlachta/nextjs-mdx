@@ -125,8 +125,6 @@ export default async function BlogFeed(): Promise<JSX.Element> {
         hasFilter={true}
         hasSearch={true}
       />
-      {/* TODO: 20230826 | Remove this console log once done testing. */}
-      {/* {console.log("feedData", content)}{" "} */}
     </Suspense>
   );
 }
