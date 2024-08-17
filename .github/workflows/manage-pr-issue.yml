@@ -44,9 +44,10 @@ jobs:
         id: run-action
         uses: ./.github/actions/manage-pullrequest-issue
         with:
+          #actor: ${{github.actor}} # executing actor passed in dynamically
           actor: "all" # Use a wildcard or manage actor differently in the custom action
           branches: "main,develop"
           event_types: "pull_request,issues" # Event Types to be manage
           title_prefix: "" # No default prefix for this action. Should be set dynamically.
-          labels: "manage-pr-issue,test"
+          labels: "manage-pr-issue"
           GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }} # Use PAT for testing purposes
