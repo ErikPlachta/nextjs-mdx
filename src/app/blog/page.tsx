@@ -1,7 +1,7 @@
 import React, { Suspense } from "react";
 import { getMdxFilesFrontmatterByContentTypeByStatus } from "@/libs/mdx/index";
 import MdxFeed from "@/components/mdx/page/feed";
-// import { SortAndFilter } from "@/lib/ObjectUtils/index";
+import { SortAndFilter } from "@/libs/ObjectUtils"; // Sorting and filtering data on server before sending up to client.
 
 const defaults: any = {
   // TODO: import the correct type and add here
@@ -24,11 +24,11 @@ const defaults: any = {
   sortAndFilterConfig: {
     status: ["published"],
     contentType: ["note"],
-    sortKey: "updatedAt",
+    sortKey: "publishedAt",
     sortDataType: "date",
-    sortOrder: "descending",
+    sortOrder: "ascending", // overriding default
     // noSortKey_Last: true,
-    noSortKey_Remove: true,
+    //noSortKey_Remove: true,
   },
 };
 
@@ -85,8 +85,18 @@ export default async function BlogFeed(): Promise<JSX.Element> {
   } = args;
 
   const content: any = await getData().then((data) => {
-    // console.log("data: ", data.allContent);
-    return data.allContent;
+    // console.log(data.allContent);
+
+    // Get all content
+    let _allContent = data?.allContent;
+    // Sort and filter data before sending to client.
+    let sortedFilteredContent = SortAndFilter({
+      data: _allContent,
+      config: sortAndFilterConfig,
+    });
+
+    // return sorted and filtered data
+    return sortedFilteredContent;
   });
 
   let dataForFeed = content;
@@ -115,8 +125,6 @@ export default async function BlogFeed(): Promise<JSX.Element> {
         hasFilter={true}
         hasSearch={true}
       />
-      {/* TODO: 20230826 | Remove this console log once done testing. */}
-      {/* {console.log("feedData", content)}{" "} */}
     </Suspense>
   );
 }

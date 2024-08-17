@@ -58,13 +58,13 @@ export const COMPONENTS: any = {
  */
 export async function getMdxFileByContentTypeBySlug(
   contentType: string,
-  slug: string
+  slug: string,
 ): Promise<any> {
   // TODO: 20240616 #EP || Add type here once finalized concept
-  console.log("readPostFile: ", contentType, slug);
+  // console.log("readPostFile: ", contentType, slug);
   // 1. Based on contentType, get directory and then files
   const contentDir = CONTENT.find(
-    (content) => content.type === contentType
+    (content) => content.type === contentType,
   )?.dir;
   if (!contentDir) {
     // Invalid request
@@ -113,10 +113,10 @@ export async function getMdxFileByContentTypeBySlug(
  */
 export async function getMdxFilesFrontmatterByContentTypeByStatus(
   contentType: string,
-  visibleStatusTypes: string[]
+  visibleStatusTypes: string[],
 ): Promise<any[]> {
   const contentDir = CONTENT.find(
-    (content) => content.type === contentType
+    (content) => content.type === contentType,
   )?.dir;
   if (!contentDir) {
     // Invalid request
@@ -125,7 +125,7 @@ export async function getMdxFilesFrontmatterByContentTypeByStatus(
 
   // 2. Get all the files in the content directory by filtering for MDX files.
   const files = (await readdir(contentDir)).filter((file) =>
-    file.endsWith(".mdx")
+    file.endsWith(".mdx"),
   );
 
   // 3. Compile the MDX Content, and extract just the front matter filtering by status
@@ -137,14 +137,14 @@ export async function getMdxFilesFrontmatterByContentTypeByStatus(
 
       if (
         visibleStatusTypes.includes(
-          (frontmatter.status as string).toLowerCase().trim()
+          (frontmatter.status as string).toLowerCase().trim(),
         )
       ) {
         return frontmatter;
       }
       // If the status is not in the visibleStatusTypes, return null
       return null;
-    })
+    }),
   );
 
   // Filter out null values and return the front matter

@@ -88,7 +88,7 @@ const ObjectUtils = {
 export function pick(
   data: IndexedObjectType[],
   keys: string[],
-  searchTerm: string
+  searchTerm: string,
 ): IndexedObjectType[] {
   const lowerCaseSearchTerm = searchTerm.toLowerCase();
 
@@ -135,7 +135,7 @@ export function pick(
  *
  * TODO: 20230904 #EP || Move to utilities folder so can be used in other places once verified.
  */
-export function SortAndFilter(params: SortAndFilterPropTypes): Object[] {
+export function SortAndFilter(params: SortAndFilterPropTypes): object[] {
   //-- Deconstruct Params & Create Vars
   const { data, config } = params;
 
@@ -150,13 +150,16 @@ export function SortAndFilter(params: SortAndFilterPropTypes): Object[] {
    * Filter data and return results that match status: (e.g. "published", "draft", etc.)
    *
    * @private
-   * @function filterDataByStatus
+   * @function _filterDataByStatus
    * @param {object[]} data - Array of objects to sort.
    * @param {string[]} status - Array of status values to filter by.
    *
    * @returns {object[]} - Sorted array of objects that match status.
    */
-  function filterDataByStatus(data: object[], status: statusTypes[]): Object[] {
+  function _filterDataByStatus(
+    data: object[],
+    status: statusTypes[],
+  ): Object[] {
     // console.log("data.length", typeof data);
     // if (!data) return [];
     //if (typeof data === "string") return [];
@@ -177,15 +180,15 @@ export function SortAndFilter(params: SortAndFilterPropTypes): Object[] {
    * Filter data and return results that match contentType: (e.g. "note", "project", etc.)
    *
    * @private
-   * @function filterDataByContentType
+   * @function _filterDataByContentType
    * @param {object[]} data - Array of objects to sort.
    * @param {string[]} contentType - Array of content type values to filter by.
    *
    * @returns {object[]} - Sorted array of objects that match content type.
    */
-  function filterDataByContentType(
+  function _filterDataByContentType(
     data: object[],
-    contentType: string[]
+    contentType: string[],
   ): Object[] {
     return data.filter((post: any) => {
       return contentType.includes(post.contentType.toLowerCase());
@@ -196,7 +199,7 @@ export function SortAndFilter(params: SortAndFilterPropTypes): Object[] {
    * Utility for sorting object based on key and data-type.
    *
    * @private
-   * @function sortDataByKeyTypeOrder
+   * @function _sortDataByKeyTypeOrder
    * @param {object[]} data - Array of objects to sort.
    * @param {string} sortKey - Key to sort by.
    * @param {string} sortDataType - Type of data to sort by.
@@ -209,15 +212,13 @@ export function SortAndFilter(params: SortAndFilterPropTypes): Object[] {
    * @TODO 20230904 #EP || Add SortOrder logic.
    * @TODO 20240225 #EP || Add noSortKey logic.
    * */
-  function sortDataByKeyTypeOrder(
+  function _sortDataByKeyTypeOrder(
     data: object[],
     sortKey: SortAndFilterPropTypes["config"]["sortKey"],
     sortDataType: SortAndFilterPropTypes["config"]["sortDataType"],
-    // TODO: 20230904 #EP || Add SortOrder logic
-    sortOrder: SortAndFilterPropTypes["config"]["sortOrder"],
-    // TODO: 20240225 #EP ||  Add noSortKey logic.
-    noSortKey_Remove: SortAndFilterPropTypes["config"]["noSortKey_Remove"],
-    noSortKey_Last: SortAndFilterPropTypes["config"]["noSortKey_Last"]
+    sortOrder: SortAndFilterPropTypes["config"]["sortOrder"], // TODO: 20230904 #EP || Add SortOrder logic
+    noSortKey_Remove: SortAndFilterPropTypes["config"]["noSortKey_Remove"], // TODO: 20240225 #EP ||  Add noSortKey logic.
+    noSortKey_Last: SortAndFilterPropTypes["config"]["noSortKey_Last"],
   ): Object[] {
     try {
       let sortedData = []; // Array to hold sorted data.
@@ -251,7 +252,7 @@ export function SortAndFilter(params: SortAndFilterPropTypes): Object[] {
       }
 
       // ---------------------------------
-      // 4. Sorting by a string
+      // 4.a Sorting by a string
       if (sortDataType === "date") {
         sortedData = data.sort((a: any, b: any) => {
           if (new Date(a?.[sortKey]) > new Date(b?.[sortKey])) {
@@ -259,12 +260,8 @@ export function SortAndFilter(params: SortAndFilterPropTypes): Object[] {
           }
           return 1;
         });
-        // // check if sortOrder is ascending
-        // if (sortOrder === "ascending") return sortedData.reverse();
-        // else return sortedData
-        // else return sortedData;
       }
-      // 5. Sorting by a number
+      // 4.b Sorting by a number
       else if (sortDataType === "number") {
         // Sort data by number in descending order.
         sortedData = data.sort((a: any, b: any) => {
@@ -274,62 +271,75 @@ export function SortAndFilter(params: SortAndFilterPropTypes): Object[] {
           return 1;
         });
       }
-      //-- Type not defined above.
+      // 4.c Type not defined above.
       else {
         throw new Error(`sortDataType "${sortDataType}" is not defined.`);
       }
 
-      // check if sortOrder is ascending
-      if (sortOrder === "ascending") return sortedData.reverse();
-      // else return sortedData
-      else return sortedData;
+      // -------------------------------
+      // 5.a lastly, check if sortOrder is ascending and reverse the sortedData
+      if (sortOrder === "ascending") {
+        // console.log("ascending");
+        return sortedData.reverse();
+      }
+      // 5.b else return sortedData
+      else {
+        // console.log("descending");
+        return sortedData;
+      }
     } catch (error) {
-      console.error("Error in sortDataByKeyTypeOrder: ", error);
+      console.error("Error in _sortDataByKeyTypeOrder: ", error);
       return [];
     }
   }
 
-  //------------------------------------
-  //-- Main functionality
-
-  function main() {
+  /**
+   * Primary function executing Sort and Filter's private functions.
+   */
+  function _main_SortAndFilter() {
     // 1. Create object to hold data to be returned
     let data_filtered: Object[] = [];
 
     // 2. Populates data_filtered array with posts that match status and content type
     if (config) {
       // 2.1 Filter data by status and content type.
-      data_filtered = filterDataByStatus(data, config.status); // TODO: Remove this function once verified not wanted here. (I'm filtering on server side now so shouldn't be needed)
+      data_filtered = _filterDataByStatus(data, config.status); // TODO: Remove this function once verified not wanted here. (I'm filtering on server side now so shouldn't be needed)
 
       // 2.2 Filter data by content type.
-      data_filtered = filterDataByContentType(
+      data_filtered = _filterDataByContentType(
         data_filtered,
-        config.contentType
+        config.contentType,
       );
 
       // 2.3. Sort filtered data by sortKey, sortDataType, and sortOrder.
-      data_filtered = sortDataByKeyTypeOrder(
+      data_filtered = _sortDataByKeyTypeOrder(
         data,
         config.sortKey,
         config.sortDataType,
         config.sortOrder,
         config.noSortKey_Remove,
-        config.noSortKey_Last
+        config.noSortKey_Last,
       ) as Object[];
 
-      console.log("!!!data", data_filtered);
-      console.log("!!!data_filtered", data_filtered);
+      // console.log("!!!data_filtered", data_filtered);
 
       // 4. Return filtered data to be be used, if any.
       return data_filtered;
     } else {
       throw new Error(
-        "[util][SortAndFilter] Invalid request. No config object provided."
+        "[util][SortAndFilter] Invalid request. No config object provided.",
       );
     }
   }
 
-  return main();
+  /** Uncomment to verify data
+  console.log(
+    "data",
+    data.forEach((item: any) => console.log(item.title)),
+  );
+  */
+
+  return _main_SortAndFilter();
 }
 
 // -----------------------------------------------------------------------------
