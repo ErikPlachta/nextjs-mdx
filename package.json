@@ -8,7 +8,8 @@
     "url": "https://erikplachta.com"
   },
   "scripts": {
-    "dev": "next dev --turbopack",
+    "devTurbo": "next dev --turbopack",
+    "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"

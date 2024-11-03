@@ -229,7 +229,7 @@ export default function Search(props: SearchComponentPropsTypes) {
             autoFocus: autoFocus,
             placeholder: placeholder,
             value: searchTerm,
-            onChang: handleInputChange,
+            onChange: handleInputChange,
             onKeyDown: handleInputKeyDown,
             onFocus: () => handleAnimation("focus"),
             onBlur: () => handleAnimation("blur"),
