@@ -3,7 +3,7 @@
  */
 
 import { FooterDefault } from "./types";
-import { HomeIcon, PencilIcon } from "@heroicons/react/20/solid";
+//import { HomeIcon, PencilIcon } from "@heroicons/react/20/solid";
 
 /**
  * The default props for the `footer` and `nav` components within breadcrumb component.

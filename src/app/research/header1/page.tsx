@@ -1,8 +1,8 @@
-import { Suspense } from "react";
+import { Suspense, type JSX } from "react";
 import { headers } from "next/headers";
 
-export default function TestPage(): JSX.Element {
-  const headerList = headers();
+export default async function TestPage(): Promise<JSX.Element> {
+  const headerList = await headers();
   // console.log("headers: ", headerList);
   return (
     <Suspense fallback={null}>

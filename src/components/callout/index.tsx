@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect } from "react";
+import React, { useEffect, type JSX } from "react";
 import { motion, useAnimationControls, Variants } from "framer-motion";
 
 /**
@@ -169,19 +169,20 @@ export default function Callout({
   //-- PRIMARY RETURN
   return (
     <motion.section
-      className={
-        `c_callout ${styles?.wrapper ? `${styles?.wrapper} ` : ``}` +
-        `${
-          !minStyle && !noStyle
-            ? "border-b-1 border-l-1 border-r-1 border-t-1 my-8 flex break-before-auto flex-wrap gap-4 rounded border border-solid border-neutral-200/70 bg-white/70 p-6 dark:border-neutral-800 dark:bg-neutral-900"
-            : ""
-        }` +
-        `${
-          minStyle && !noStyle
-            ? "flex break-before-auto flex-wrap overflow-hidden rounded-lg border border-neutral-200 bg-neutral-100 p-4 dark:border-neutral-800 dark:bg-neutral-900"
-            : ""
-        }`
-      }
+      {...{
+        className:
+          `c_callout ${styles?.wrapper ? `${styles?.wrapper} ` : ``}` +
+          `${
+            !minStyle && !noStyle
+              ? "border-b-1 border-l-1 border-r-1 border-t-1 my-8 flex break-before-auto flex-wrap gap-4 rounded border border-solid border-neutral-200/70 bg-white/70 p-6 dark:border-neutral-800 dark:bg-neutral-900"
+              : ""
+          }` +
+          `${
+            minStyle && !noStyle
+              ? "flex break-before-auto flex-wrap overflow-hidden rounded-lg border border-neutral-200 bg-neutral-100 p-4 dark:border-neutral-800 dark:bg-neutral-900"
+              : ""
+          }`,
+      }}
       animate={controls}
       // initial='initial'
       // initial={

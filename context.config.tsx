@@ -9,10 +9,10 @@
  * @type {Object}
  */
 
-import Image from "next/image";
-import githubMark from "./public/images/github-mark-white.svg";
+//import Image from "next/image";
+//import githubMark from "./public/images/github-mark-white.svg";
 // Icons to be used in the header navigation. (Hero Icons is NOT a part of the library, can use anything.)
-import { HomeIcon, PencilIcon, UserIcon } from "@heroicons/react/20/solid";
+//import { HomeIcon, PencilIcon, UserIcon } from "@heroicons/react/20/solid";
 
 // Custom library types for the context configuration.
 import { ContextConfig } from "@/libs/context/types";
@@ -66,7 +66,7 @@ const config: ContextConfig = {
               label: "Homepage for this project.",
               value: "Home",
               default: true,
-              icon: () => <HomeIcon />,
+              icon: () => <>H</>, // TODO: get icons to work again
             },
             {
               title: "mdx",
@@ -74,7 +74,7 @@ const config: ContextConfig = {
               label: "Blog feed using next-mdx-remote.",
               value: "MDX Blog",
               default: true,
-              icon: () => <PencilIcon />,
+              icon: () => <>B</>, //<PencilIcon />,
             },
             {
               title: "github",
@@ -85,9 +85,10 @@ const config: ContextConfig = {
               target: "_blank",
               rel: "noopener noreferrer",
               icon: () => (
-                <span className="w-2">
-                  <Image src={githubMark} alt="GitHub Mark" />
-                </span>
+                // <span className="w-2">
+                //   <Image src={githubMark} alt="GitHub Mark" />
+                // </span>
+                <>G</>
               ),
             },
             {
@@ -98,7 +99,7 @@ const config: ContextConfig = {
               default: true,
               target: "_blank",
               rel: "noopener noreferrer",
-              icon: () => <UserIcon />,
+              icon: () => <>W</>, //<UserIcon />,
             },
           ],
         },

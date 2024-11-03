@@ -10,14 +10,13 @@ import { SortAndFilterPropTypes } from "@/libs/ObjectUtils";
 /**
  * Render MDX Content for a single Blog post from slug.
  */
-export default async function PostPage({
-  params,
-}: {
-  params: { slug: string };
+export default async function PostPage(props: {
+  params: Promise<{ slug: string }>;
 }) {
+  const params = await props.params;
   const markdown: string = await getMdxFileByContentTypeBySlug(
     "blog",
-    params.slug
+    params.slug,
   );
 
   if (!markdown) {
@@ -43,6 +42,8 @@ export default async function PostPage({
 
   // console.log("frontmatter: ", frontmatter);
   // Render a single Markdown data into a Client Component.
+  // return <span>test</span>;
+
   return (
     <MdxSinglePage
       path="blog"

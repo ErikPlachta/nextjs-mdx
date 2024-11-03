@@ -1,5 +1,7 @@
 import { StylesType } from "@/libs/context/types";
 
+import type { JSX } from "react";
+
 /**
  * Optional args to be passed in to Footer component.
  */
