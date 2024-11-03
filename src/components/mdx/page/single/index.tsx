@@ -191,7 +191,9 @@ export default function MdxPage(params: SingleProps) {
       <Link href={`/${path}`} passHref scroll={false} legacyBehavior>
         <motion.a
           data-role="button-back"
-          className={`text-md absolute left-2 top-2 z-0 flex items-center gap-1 rounded-md bg-slate-600 bg-opacity-10 px-2 py-2 font-medium text-gray-50 duration-100 ease-in-out hover:bg-opacity-70`}
+          {...{
+            className: `text-md absolute left-2 top-2 z-0 flex items-center gap-1 rounded-md bg-slate-600 bg-opacity-10 px-2 py-2 font-medium text-gray-50 duration-100 ease-in-out hover:bg-opacity-70`,
+          }}
           initial="hidden"
           animate={handleAnimate}
           exit="exiting"
@@ -204,14 +206,18 @@ export default function MdxPage(params: SingleProps) {
       {post && (
         <>
           <motion.div
+            {...{
+              className: "flex h-full w-full flex-col",
+            }}
             layoutId={`post-card-${post.slug}`}
-            className="flex h-full w-full flex-col"
             data-role="page-header"
             ref={targetRefWrapper}
           >
             {/* Image and Background at top of post */}
             <motion.div
-              className={`pointer-events-none -z-10 mx-0 h-[100%] rounded-tl-lg rounded-tr-lg bg-grid bg-repeat pt-20`}
+              {...{
+                className: `pointer-events-none -z-10 mx-0 h-[100%] rounded-tl-lg rounded-tr-lg bg-grid bg-repeat pt-20`,
+              }}
               layoutId={`image-wrapper-${post.slug}`}
               animate={handleAnimate}
               initial="hidden"
@@ -220,11 +226,13 @@ export default function MdxPage(params: SingleProps) {
             >
               {/* The Background container image */}
               <motion.div
-                className={`pointer-events-none absolute top-0 z-0 h-[100%] w-[100%] ${
-                  post.blend
-                    ? post.blend
-                    : "bg-gradient-to-br from-slate-800/80 to-slate-900/80"
-                }`}
+                {...{
+                  className: `pointer-events-none absolute top-0 z-0 h-[100%] w-[100%] ${
+                    post.blend
+                      ? post.blend
+                      : "bg-gradient-to-br from-slate-800/80 to-slate-900/80"
+                  }`,
+                }}
                 onLayoutAnimationStart={() =>
                   startResizeImage(pathname || "", slug, imageGrowFinished)
                 }
@@ -241,10 +249,12 @@ export default function MdxPage(params: SingleProps) {
               >
                 {post.image && (
                   <motion.img
+                    {...{
+                      className: `pointer-events-none w-full rounded-tl-lg rounded-tr-lg bg-gradient-to-tr bg-repeat object-cover shadow-md`,
+                      src: post.image,
+                      alt: `Cover photo for ${post.title}.`,
+                    }}
                     layoutId={`image-${post.slug}`}
-                    className={`pointer-events-none w-full rounded-tl-lg rounded-tr-lg bg-gradient-to-tr bg-repeat object-cover shadow-md`}
-                    src={post.image}
-                    alt={`Cover photo for ${post.title}.`}
                     initial={"initial"}
                     animate={"animated"}
                     variants={{
@@ -261,11 +271,13 @@ export default function MdxPage(params: SingleProps) {
               </motion.div>
 
               <motion.h1
+                {...{
+                  // id="page-title"
+                  className: `relative w-full px-4 font-semibold tracking-tighter [text-shadow:_0_2px_1px_rgb(0_0_0_/_70%)] md:text-5xl`,
+                }}
                 ref={targetRefPageTitle}
                 data-role={`page-title`}
-                // id="page-title"
                 // layoutId={`title-header-${post.slug}`}
-                className={`relative w-full px-4 font-semibold tracking-tighter [text-shadow:_0_2px_1px_rgb(0_0_0_/_70%)] md:text-5xl`}
                 initial={"hidden"}
                 animate={handleAnimate}
                 style={{
@@ -290,11 +302,14 @@ export default function MdxPage(params: SingleProps) {
           {/* Body / Built from MDX Data */}
           {post?.content && (
             <motion.div
+              {...{
+                className:
+                  "px-6 py-4 text-base text-gray-700 dark:text-gray-100",
+              }}
               initial="hidden"
               animate={handleAnimate}
               data-role="page-body"
               exit="exiting"
-              className="px-6 py-4 text-base text-gray-700 dark:text-gray-100"
               transition={{ ease: "easeOut" }}
               variants={variants.contentPrimary}
             >
@@ -304,11 +319,14 @@ export default function MdxPage(params: SingleProps) {
 
           {post.technologies && (
             <motion.div
+              {...{
+                className:
+                  "px-6 py-4 text-base text-gray-700 dark:text-gray-100",
+              }}
               initial="hidden"
               animate={handleAnimate}
               data-role="page-changelog"
               exit="exiting"
-              className="px-6 py-4 text-base text-gray-700 dark:text-gray-100"
               transition={{ ease: "easeOut" }}
               variants={variants.contentPrimary}
             >
@@ -337,11 +355,14 @@ export default function MdxPage(params: SingleProps) {
 
           {post.changeLog && (
             <motion.div
+              {...{
+                className:
+                  "px-6 py-4 text-base text-gray-700 dark:text-gray-100",
+              }}
               initial="hidden"
               animate={handleAnimate}
               data-role="page-changelog"
               exit="exiting"
-              className="px-6 py-4 text-base text-gray-700 dark:text-gray-100"
               transition={{ ease: "easeOut" }}
               variants={variants.contentPrimary}
             >

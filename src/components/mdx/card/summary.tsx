@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { Suspense, useEffect } from "react";
+import { Suspense, useEffect, type JSX } from "react";
 
 /**
  * Build a summary card from MDX content.
@@ -12,7 +12,7 @@ export default function SummaryCards(
   slugRoutingTo: string | null | undefined,
   basePath: string | null,
   heightFrom: number,
-  heightTo: number
+  heightTo: number,
 ): JSX.Element[] {
   // No data, return empty array.
   if (!data) return [];
@@ -25,15 +25,15 @@ export default function SummaryCards(
     return dataForFeed.map((item: any, index: number) => {
       return (
         <motion.div
+          {...{ className: "w-full md:w-1/2 lg:w-1/3 xl:w-1/4 p-4" }}
           key={index}
-          className="w-full md:w-1/2 lg:w-1/3 xl:w-1/4 p-4"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: index * 0.1 }}
         >
           <Link href={`${basePath}/${item?.slug}`}>
-            <div className="h-full p-6 rounded-lg shadow-md hover:shadow-lg bg-blue-700/20">
-              <h3 className="text-lg font-semibold mb-2">{item?.title}</h3>
+            <div className="h-full rounded-lg bg-blue-700/20 p-6 shadow-md hover:shadow-lg">
+              <h3 className="mb-2 text-lg font-semibold">{item?.title}</h3>
               <p className="text-sm text-gray-100">{item?.summary}</p>
             </div>
           </Link>
@@ -54,19 +54,21 @@ export default function SummaryCards(
         >
           {/** * Parent Element around each item?. */}
           <motion.a
-            id={index + "_" + item?.slug}
-            // id={item?.slug}
-            layoutId={`post-card-${item?.slug}`}
-            className={`relative block h-full -z-0 break-words mx-2 rounded-3xl mb-8 bg-grid min-h-['fit-content'] ${
-              item?.blend ? ` ${item?.blend}` : ""
-            }}`}
-            // className="relative block mx-2 overflow-hidden rounded-md shadow shadow-slate-900/40"
+            {...{
+              id: `${index}"_"${item?.slug}`,
+              // id={item?.slug}
+              layoutId: `post-card-${item?.slug}`,
+              // className="relative block mx-2 overflow-hidden rounded-md shadow shadow-slate-900/40"
+              className: `relative -z-0 mx-2 mb-8 block h-full min-h-['fit-content'] break-words rounded-3xl bg-grid ${
+                item?.blend ? ` ${item?.blend}` : ""
+              }}`,
+              onClick: () => {
+                slugRoutingTo = item?.slug;
+              },
+            }}
             initial="hidden"
             animate="showing"
             whileHover={"hover"}
-            onClick={() => {
-              slugRoutingTo = item?.slug;
-            }}
             exit={item?.slug === slugRoutingTo ? "showing" : "hidden"}
             variants={{
               hidden: { opacity: 0.7 },
@@ -84,16 +86,17 @@ export default function SummaryCards(
           >
             {/** * Container around image with gradient/blended background. */}
             <motion.div
-              // layoutId={`image-wrapper-${item?.slug}`}
-              className={
-                `relative border border-solid border-secondary rounded-3xl shadow shadow-slate-900/40 dark:shadow-slate-500/20 z-10 min-h-fit ` /* space is intentional */ +
-                `${
-                  item?.blend
-                    ? item?.blend
-                    : "bg-gradient-to-br from-slate-900/100 via-slate-900/90 to-slate-900/100"
-                }`
+              {...{
+                // layoutId={`image-wrapper-${item?.slug}`}
+                className:
+                  `relative z-10 min-h-fit rounded-3xl border border-solid border-secondary shadow shadow-slate-900/40 dark:shadow-slate-500/20 ` /* space is intentional */ +
+                  `${
+                    item?.blend
+                      ? item?.blend
+                      : "bg-gradient-to-br from-slate-900/100 via-slate-900/90 to-slate-900/100"
+                  }`,
                 // + `bg-gradient-to-tr from-slate-700/20 to-blue-900/20`
-              }
+              }}
               // className={`relative bg-repeat bg-grid border border-solid border-secondary rounded-xl shadow shadow-slate-900/40 overflow-hidden z-10`}
               // className={`relative bg-gradient-to-tr ${item?.blend}`}
               style={{ originX: 0.5 }}
@@ -116,10 +119,13 @@ export default function SummaryCards(
                 <motion.img
                   // layoutId={`image-${item?.slug}`}
                   // layout
-                  src={"/assets/images/placeholder.svg"}
-                  // src={item?.image}
-                  alt={item?.title}
-                  className="absolute w-full object-cover rounded-md shadow shadow-slate-900/40 bg-grid min-h-[200px]"
+                  {...{
+                    // src={item?.image}
+                    src: "/assets/images/placeholder.svg",
+                    alt: item?.title,
+                    className:
+                      "absolute min-h-[200px] w-full rounded-md bg-grid object-cover shadow shadow-slate-900/40",
+                  }}
                   initial={"initial"}
                   animate={"showing"}
                   whileHover={"hover"}
@@ -151,8 +157,11 @@ export default function SummaryCards(
 
             {/* Container around Place Name. */}
             <motion.div
-              // layoutId={`title-${item?.slug}`}
-              className="absolute flex flex-col justify-between top-0 py-4 px-4 z-10 w-full h-full rounded-3xl"
+              {...{
+                // layoutId={`title-${item?.slug}`}
+                className:
+                  "absolute top-0 z-10 flex h-full w-full flex-col justify-between rounded-3xl px-4 py-4",
+              }}
               initial="hidden"
               animate="showing"
               variants={{
@@ -161,9 +170,11 @@ export default function SummaryCards(
               }}
             >
               <motion.div
-                // layoutId={`title-${item?.slug}`}
-                //TODO: 20231001 #EP || Add better way to handle if overflowing. For now clip keeps it in the parent.
-                className="flex flex-col gap-2 h-full overflow-hidden"
+                {...{
+                  // layoutId={`title-${item?.slug}`}
+                  //TODO: 20231001 #EP || Add better way to handle if overflowing. For now clip keeps it in the parent.
+                  className: "flex h-full flex-col gap-2 overflow-hidden",
+                }}
                 animate={"showing"}
                 variants={{
                   hidden: { opacity: 0 },
@@ -172,9 +183,12 @@ export default function SummaryCards(
               >
                 {/* Title of the item?. */}
                 <motion.h3
-                  // layout
-                  // layoutId={`title-header-${item?.slug}`}
-                  className="block text-xl md:text-2xl font-medium tracking-tighter"
+                  {...{
+                    // layout
+                    // layoutId={`title-header-${item?.slug}`}
+                    className:
+                      "block text-xl font-medium tracking-tighter md:text-2xl",
+                  }}
                   animate="showing"
                   initial={"hidden"}
                   variants={{
@@ -188,8 +202,9 @@ export default function SummaryCards(
                 {/* Text */}
                 {item?.summary && (
                   <motion.p
-                    className="line-clamp-2 overflow-ellipsis"
-                    // layout
+                    {...{
+                      className: "line-clamp-2 overflow-ellipsis",
+                    }}
                   >
                     {item?.summary}
                   </motion.p>
@@ -197,7 +212,10 @@ export default function SummaryCards(
 
                 {/* Card footer */}
                 <motion.span
-                  className="flex justify-between w-full gap-4 mt-auto opacity-0 tracking-wide"
+                  {...{
+                    className:
+                      "mt-auto flex w-full justify-between gap-4 tracking-wide opacity-0",
+                  }}
                   initial={"hidden"}
                   animate={"showing"}
                   variants={{
@@ -210,12 +228,14 @@ export default function SummaryCards(
                 >
                   {item?.status && (
                     <motion.p
-                      // layout
-                      className="text-sm flex flex-col flex-wrap"
+                      {...{
+                        // layout
+                        className: "flex flex-col flex-wrap text-sm",
+                      }}
                     >
                       <span
                         data-role="key"
-                        className="text-xs m-auto bold uppercase"
+                        className="bold m-auto text-xs uppercase"
                       >
                         Status:
                       </span>
@@ -226,7 +246,10 @@ export default function SummaryCards(
                   {/* Wrapper around Published and Updated dates to group together in footer. */}
                   {(item?.publishedAt || item?.updatedAt) && (
                     <motion.span
-                      className="flex justify-between gap-4 mt-auto opacity-0"
+                      {...{
+                        className:
+                          "mt-auto flex justify-between gap-4 opacity-0",
+                      }}
                       initial={"hidden"}
                       animate={"showing"}
                       variants={{
@@ -240,11 +263,14 @@ export default function SummaryCards(
                       {item?.publishedAt && (
                         <motion.p
                           // layout
-                          className="text-sm flex flex-col flex-wrap min-w-fit"
+                          {...{
+                            className:
+                              "flex min-w-fit flex-col flex-wrap text-sm",
+                          }}
                         >
                           <span
                             data-role="key"
-                            className="text-xs m-auto bold uppercase"
+                            className="bold m-auto text-xs uppercase"
                           >
                             Published:
                           </span>
@@ -253,12 +279,14 @@ export default function SummaryCards(
                       )}
                       {item?.updatedAt && (
                         <motion.p
-                          // layout
-                          className="text-sm flex flex-col flex-wrap"
+                          {...{
+                            // layout
+                            className: "flex flex-col flex-wrap text-sm",
+                          }}
                         >
                           <span
                             data-role="key"
-                            className="text-xs m-auto bold uppercase"
+                            className="bold m-auto text-xs uppercase"
                           >
                             Updated:
                           </span>

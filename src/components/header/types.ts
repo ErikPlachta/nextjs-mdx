@@ -1,6 +1,6 @@
 import { MdxFrontmatterTypes } from "@/libs/mdx/types";
 import StylesType from "@/types/styles";
-import { HTMLAttributeAnchorTarget, HtmlHTMLAttributes } from "react";
+import { HTMLAttributeAnchorTarget, HtmlHTMLAttributes, type JSX } from "react";
 
 /**
  * Optional args to be passed in to Header component to override default values via src/context/config/index.tsx

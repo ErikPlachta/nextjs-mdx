@@ -1,4 +1,4 @@
-import React, { Suspense } from "react";
+import React, { Suspense, type JSX } from "react";
 import { getMdxFilesFrontmatterByContentTypeByStatus } from "@/libs/mdx/index";
 import MdxFeed from "@/components/mdx/page/feed";
 import { SortAndFilter } from "@/libs/ObjectUtils"; // Sorting and filtering data on server before sending up to client.

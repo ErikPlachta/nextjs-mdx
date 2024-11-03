@@ -5,6 +5,8 @@ import {
   HeroDefault,
 } from "@/libs/context/types";
 
+import type { JSX } from "react";
+
 // Gets default component values for the Hero Component from src/context. ( Application defaults unless user modified in src/context/config/index.tsx )
 const context: ContextConfigType = Context();
 const heroDefaults: HeroDefault = context.app.component.hero;
