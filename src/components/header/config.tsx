@@ -16,7 +16,7 @@ export const HeaderDefaultConfig: HeaderDefault = {
         label: "Default Homepage for this project.",
         value: "Home",
         default: true,
-        icon: () => "H", // TODO: get icons to work again <HomeIcon />,
+        icon: () => <>H</>, // TODO: get icons to work again <HomeIcon />,
         rel: "noopener",
         target: "_self",
       },

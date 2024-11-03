@@ -1,10 +1,6 @@
 {
   "compilerOptions": {
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -22,27 +18,17 @@
       }
     ],
     "paths": {
-      "@/*": [
-        "./src/*"
-      ],
+      "@/*": ["./src/*"],
       // ----------------- Content ---------------------------------------------
       // MDX Content used in the application.
-      "content": [
-        "./content/*"
-      ],
+      "content": ["./content/*"],
       // ----------------- Context ---------------------------------------------
       // Context contains application configuration controls for components to override default values.
-      "context": [
-        "./src/libs/context/index.tsx"
-      ], // Primary Context library file.
-      "context/*": [
-        "./src/libs/context/*"
-      ], // Secondary Context library files.
-      "UserConfig": [
-        "./context.config.tsx"
-      ] // Context Configuration
+      "context": ["./src/libs/context/index.tsx"], // Primary Context library file.
+      "context/*": ["./src/libs/context/*"], // Secondary Context library files.
+      "UserConfig": ["./context.config.tsx"] // Context Configuration
     },
-    "target": "ES2017"
+    "target": "ES2023"
   },
   "include": [
     "next-env.d.ts",
@@ -51,7 +37,5 @@
     ".next/types/**/*.ts",
     ".config.tsx"
   ],
-  "exclude": [
-    "node_modules"
-  ]
+  "exclude": ["node_modules"]
 }
