@@ -192,22 +192,28 @@ export default function Search(props: SearchComponentPropsTypes) {
   return (
     <div className={styles.wrapper} id="search-wrapper">
       <motion.div
-        className={styles.container}
-        id="search-container"
+        {...{
+          className: styles.container,
+          id: "search-container",
+        }}
         animate={controls}
         initial={"isInactive"}
         onTap={() => handleAnimation("focus")}
         //TODO: Add FramerMotion animations
       >
         <motion.span
-          id="button-search-wrapper"
-          className={styles.buttonSearch_wrapper}
+          {...{
+            id: "button-search-wrapper",
+            className: styles.buttonSearch_wrapper,
+          }}
         >
           <motion.button
-            className={styles.buttonSearch}
-            id="button-search"
-            disabled={searchTerm.length === 0}
-            onClick={() => handleOnClick(searchInputRef.current, searchTerm)}
+            {...{
+              id: "button-search",
+              className: styles.buttonSearch,
+              onClick: () => handleOnClick(searchInputRef.current, searchTerm),
+              disabled: searchTerm.length === 0,
+            }}
             //TODO: Add FramerMotion animations
           >
             <MagnifyingGlassIcon />
@@ -215,17 +221,19 @@ export default function Search(props: SearchComponentPropsTypes) {
         </motion.span>
 
         <motion.input
-          ref={searchInputRef}
-          className={styles.input}
-          disabled={data.length === 0 || dataKeys.length === 0 ? true : false}
-          type="text"
-          autoFocus={autoFocus}
-          placeholder={placeholder}
-          value={searchTerm}
-          onChange={handleInputChange}
-          onKeyDown={handleInputKeyDown}
-          onFocus={() => handleAnimation("focus")}
-          onBlur={() => handleAnimation("blur")}
+          {...{
+            className: styles.input,
+            ref: searchInputRef,
+            disabled: data.length === 0 || dataKeys.length === 0 ? true : false,
+            type: "text",
+            autoFocus: autoFocus,
+            placeholder: placeholder,
+            value: searchTerm,
+            onChange: handleInputChange,
+            onKeyDown: handleInputKeyDown,
+            onFocus: () => handleAnimation("focus"),
+            onBlur: () => handleAnimation("blur"),
+          }}
           variants={{
             isInactive: {
               backgroundColor: "var(--color-secondary)",
@@ -241,12 +249,16 @@ export default function Search(props: SearchComponentPropsTypes) {
 
         {searchTerm && (
           <motion.span
-            id="button-clear-wrapper"
-            className={styles.buttonClear_wrapper}
+            {...{
+              id: "button-clear-wrapper",
+              className: styles.buttonClear_wrapper,
+            }}
           >
             <motion.button
-              className={styles.buttonClear}
-              onClick={() => setSearchTerm("")}
+              {...{
+                className: styles.buttonClear,
+                onClick: () => setSearchTerm(""),
+              }}
               //TODO: Add FramerMotion animations
             >
               <XMarkIcon />
@@ -258,8 +270,10 @@ export default function Search(props: SearchComponentPropsTypes) {
       {/* Results */}
       {filteredData.length > 0 && (
         <motion.section
-          className={styles.results}
-          id="search-results"
+          {...{
+            id: "search-results",
+            className: styles.results,
+          }}
           variants={{
             hidden: { opacity: 0, y: 10 },
             showing: { opacity: 1, y: 0 },
