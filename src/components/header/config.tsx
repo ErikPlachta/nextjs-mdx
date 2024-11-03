@@ -1,5 +1,5 @@
 import { HeaderDefault } from "./types";
-import { HomeIcon } from "@heroicons/react/20/solid";
+//import { HomeIcon } from "@heroicons/react/20/solid";
 
 /**
  * Header components default configuration.
@@ -16,7 +16,7 @@ export const HeaderDefaultConfig: HeaderDefault = {
         label: "Default Homepage for this project.",
         value: "Home",
         default: true,
-        icon: () => <HomeIcon />,
+        icon: () => "H", // TODO: get icons to work again <HomeIcon />,
         rel: "noopener",
         target: "_self",
       },

@@ -14,32 +14,27 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@heroicons/react": "^2.1.5",
+    "@mdx-js/loader": "^3.1.0",
+    "@mdx-js/react": "^3.1.0",
     "framer-motion": "^11.11.9",
-    "next": "15.0.2",
-    "react": "19.0.0-rc-02c0e824-20241028",
-    "react-dom": "19.0.0-rc-02c0e824-20241028",
+    "next": "^15.0.2",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
     "tailwinds": "^0.0.0"
   },
   "devDependencies": {
-    "@next/mdx": "15.0.2",
+    "@next/mdx": "^15.0.2",
+    "@tailwindcss/typography": "^0.5.14",
     "@types/mdx": "^2.0.13",
     "@types/node": "^22.8.6",
-    "@types/react": "npm:types-react@19.0.0-rc.1",
-    "@types/react-dom": "npm:types-react-dom@19.0.0-rc.1",
     "eslint": "^8.57.0",
     "eslint-config-next": "15.0.2",
     "next-mdx-remote": "^5.0.0",
     "postcss": "^8.4.41",
     "prettier": "^3.3.3",
     "prettier-plugin-tailwindcss": "^0.6.8",
-    "tailwindcss": "^3.4.10",
     "tailwind-highlightjs": "^2.0.1",
-    "@tailwindcss/typography": "^0.5.14",
+    "tailwindcss": "^3.4.10",
     "typescript": "^5"
-  },
-  "overrides": {
-    "@types/react": "npm:types-react@19.0.0-rc.1",
-    "@types/react-dom": "npm:types-react-dom@19.0.0-rc.1"
   }
 }

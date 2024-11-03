@@ -3,7 +3,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import { motion, animate, useAnimation } from "framer-motion";
 import Link from "next/link";
-import { ChevronLeftIcon } from "@heroicons/react/20/solid";
+// import { ChevronLeftIcon } from "@heroicons/react/20/solid";
 import { usePathname } from "next/navigation";
 import useClientMetrics, { ElementToMonitor } from "@/hooks/useClientMetrics";
 
@@ -172,7 +172,8 @@ export default function MdxPage(params: SingleProps) {
         <span>
           <Link href={`/${path}`} passHref scroll={false} legacyBehavior>
             <a className="text-md flex items-center gap-1 bg-slate-600 bg-opacity-10 px-4 py-2 font-medium text-gray-50 duration-100 ease-in-out hover:bg-opacity-70">
-              <ChevronLeftIcon className="h-4 w-4" />
+              {/* <ChevronLeftIcon className="h-4 w-4" /> */}
+              <span className="h-4 w-4"> &lt; </span>
               Back
             </a>
           </Link>

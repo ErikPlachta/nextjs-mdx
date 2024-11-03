@@ -3,7 +3,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import { motion, useAnimationControls } from "framer-motion";
-import { MagnifyingGlassIcon, XMarkIcon } from "@heroicons/react/24/outline";
+// import { MagnifyingGlassIcon, XMarkIcon } from "@heroicons/react/24/outline";
 
 // Custom Content
 import useDebounce from "@/hooks/useDebounce";
@@ -216,7 +216,7 @@ export default function Search(props: SearchComponentPropsTypes) {
             }}
             //TODO: Add FramerMotion animations
           >
-            <MagnifyingGlassIcon />
+            {/* <MagnifyingGlassIcon /> */}
           </motion.button>
         </motion.span>
 
@@ -261,7 +261,8 @@ export default function Search(props: SearchComponentPropsTypes) {
               }}
               //TODO: Add FramerMotion animations
             >
-              <XMarkIcon />
+              {/* <XMarkIcon /> */}
+              x
             </motion.button>
           </motion.span>
         )}
