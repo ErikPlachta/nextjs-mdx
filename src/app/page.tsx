@@ -4,6 +4,8 @@ import type { Metadata } from "next";
 // @ts-ignore - This is a Next.js specific import to allow extraction of metadata
 import HomepageMdx, { frontmatter } from "/content/main/homepage.mdx";
 
+import type { JSX } from "react";
+
 // let page = HomepageMdx({});
 // console.log("pageMeta: ", pageMeta);
 

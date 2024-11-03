@@ -1,4 +1,4 @@
-import React from "react";
+import React, { type JSX } from "react";
 import { FooterConfig, FooterDefault } from "./types";
 import getFooterDefaultConfig from "./config";
 

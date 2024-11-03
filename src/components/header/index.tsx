@@ -1,4 +1,4 @@
-import React from "react";
+import React, { type JSX } from "react";
 import { HeaderDefault } from "./types";
 
 import Navigation from "./navigation";

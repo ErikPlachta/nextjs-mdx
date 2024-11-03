@@ -16,19 +16,19 @@
   "dependencies": {
     "@heroicons/react": "^2.1.5",
     "framer-motion": "^11.11.9",
-    "next": "^14.2.15",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
+    "next": "15.0.2",
+    "react": "19.0.0-rc-02c0e824-20241028",
+    "react-dom": "19.0.0-rc-02c0e824-20241028",
     "tailwinds": "^0.0.0"
   },
   "devDependencies": {
-    "@next/mdx": "^14.2.15",
+    "@next/mdx": "15.0.2",
     "@types/mdx": "^2.0.13",
     "@types/node": "^22.8.6",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
+    "@types/react": "npm:types-react@19.0.0-rc.1",
+    "@types/react-dom": "npm:types-react-dom@19.0.0-rc.1",
     "eslint": "^8.57.0",
-    "eslint-config-next": "^14.2.15",
+    "eslint-config-next": "15.0.2",
     "next-mdx-remote": "^5.0.0",
     "postcss": "^8.4.41",
     "prettier": "^3.3.3",
@@ -37,5 +37,9 @@
     "tailwind-highlightjs": "^2.0.1",
     "@tailwindcss/typography": "^0.5.14",
     "typescript": "^5"
+  },
+  "overrides": {
+    "@types/react": "npm:types-react@19.0.0-rc.1",
+    "@types/react-dom": "npm:types-react-dom@19.0.0-rc.1"
   }
 }

@@ -1,5 +1,5 @@
 "use client";
-import React, { Suspense } from "react";
+import React, { Suspense, type JSX } from "react";
 // import ExtLink from '@/components/anchor/external';
 import { motion } from "framer-motion";
 import { useSearchParams } from "next/navigation";
@@ -166,7 +166,9 @@ export default function Feed(params: FeedComponentPropsTypes): JSX.Element {
       <section className="m-auto mt-4 flex h-full w-full max-w-4xl flex-col gap-4 rounded-lg bg-slate-100 py-10 shadow-sm shadow-slate-500 dark:bg-slate-800/30">
         {/* Container holding cards */}
         <motion.div
-          className="relative"
+          {...{
+            className: "relative",
+          }}
           initial="hidden"
           animate="showing"
           variants={{

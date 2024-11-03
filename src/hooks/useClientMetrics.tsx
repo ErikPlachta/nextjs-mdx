@@ -25,7 +25,7 @@ export interface WindowMetric {
  */
 export interface ElementToMonitor {
   role: string;
-  ref?: React.RefObject<HTMLElement>;
+  ref?: React.RefObject<HTMLElement | null>;
   id?: string;
   element?: HTMLElement | null;
   orderId: number;

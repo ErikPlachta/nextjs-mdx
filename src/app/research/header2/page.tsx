@@ -1,40 +1,38 @@
 import { headers } from "next/headers";
-import { Suspense } from "react";
+import { Suspense, type JSX } from "react";
 
-export default function TestPage(): JSX.Element {
-  const headerList = headers();
+export default async function TestPage(): Promise<JSX.Element> {
+  const headerList = await headers();
   // console.log("headers: ", headerList);
   const context = headerList.get("context");
 
   return (
-    <Suspense fallback={null}>
+    (<Suspense fallback={null}>
       <div>
         <h1>Test Page</h1>
         {context
           ? Object.keys(JSON.parse(context)).map((key: any) => {
               let x = JSON.parse(context);
               return (
-                <div className="p-4" key={key}>
+                (<div className="p-4" key={key}>
                   <h2>{key}</h2>
                   {typeof x[key] === "string" ? (
                     // to a string
-                    <div>
-                      1
-                      <p className="px-10">
+                    (<div>1
+                                            <p className="px-10">
                         {JSON.stringify(Object.keys(x[key]))}
                       </p>
-                    </div>
+                    </div>)
                   ) : (
                     // to an object
-                    <div>
-                      2<p className="px-10">{JSON.stringify(x[key])}</p>
-                    </div>
+                    (<div>2<p className="px-10">{JSON.stringify(x[key])}</p>
+                    </div>)
                   )}
-                </div>
+                </div>)
               );
             })
           : null}
       </div>
-    </Suspense>
+    </Suspense>)
   );
 }
