@@ -6,16 +6,16 @@
 version: 2
 updates:
   - package-ecosystem: "npm" # See documentation for possible values
-    directory: "/" # Location of package manifests
+    directory: "/"           # Location of package manifests
     schedule:
-      interval: "weekly"
-      # Check for npm updates on Saturdays
-      day: "saturday"
-# Add assignees
+      interval: "weekly"      # Frequency of updates
+      day: "saturday"         # Check for npm updates on Saturdays
+    target-branch: "development" # Push into dev branch
+    commit-message:
+      prefix: "chore"         # Custom prefix for commit messages
     assignees:
-      - "erikplachta"
-# Specify labels for npm pull requests
+      - "erikplachta"         # Add assignees to pull requests
     labels:
-      - "npm"
+      - "npm"                 # Specify labels for npm pull requests
       - "dependencies"
       - "dependabot"
